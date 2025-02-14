@@ -12,22 +12,22 @@ redirect_from:
 I'm an MD-PhD Candidate and Fu Ching Yen Fellow at Fudan University, passionate about AI for Science. 
 
 ## Research Experience
-I have 9 years of research experience in AI and cancer research, including work at Fudan University, Zhongshan Hospital, and the Chinese Academy of Sciences.
+I have 9 years of experience in AI and cancer research, including work at Fudan University, Zhongshan Hospital, and the Chinese Academy of Sciences. My advisor is [Dr Qiang Gao](https://hupi.fudan.edu.cn/en/rcdw/rc_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1097&wbnewsid=1422).
 
 ## Awards and Honors
-China Association for S&T Early Career Talent Fellowship
-National Natural Science Foundation of China - Early-Career Grant
-Shanghai Science Rising Star
-Sidney & Joan Pestka Award
-National Natural Science Foundation of China - Lindau Fellow
-National Early-Career Innovation Award
-National Outstanding Student Award
-National Training Program of Innovation Fellowship
-Fudan University Outstanding Student Honoree
-IUBMB Young Scientist Fellowship
-Roche Research Foundation Fellowship
-National Scholarship (2017; 2020; 2022; 2024)
-Challenge-Cup Grand Prize
+- China Association for S&T Early Career Talent Fellowship
+- National Natural Science Foundation of China - Early-Career Grant
+- Shanghai Science Rising Star
+- Sidney & Joan Pestka Award
+- National Natural Science Foundation of China - Lindau Fellow
+- National Early-Career Innovation Award
+- National Outstanding Student Award
+- National Training Program of Innovation Fellowship
+- Fudan University Outstanding Student Honoree
+- IUBMB Young Scientist Fellowship
+- Roche Research Foundation Fellowship
+- National Scholarship (2017; 2020; 2022; 2024)
+- Challenge-Cup Grand Prize
 
 ## Publications
 1. **Yingcheng Wu#**, Jiaqiang Ma#, Xupeng Yang#, Fang Nan#, Tiancheng Zhang#, Shuyi Ji, Dongning Rao, Hua Feng, Ke Gao, Xixi Gu, Shan Jiang, Guohe Song, Jiaomeng Pan, Mao Zhang, Yanan Xu, Shu Zhang, Yihui Fan, Xiaoying Wang, Jian Zhou, Li Yang, Jia Fan, Xiaoming Zhang, Qiang Gao. Neutrophil profiling illuminates anti-tumor antigen-presenting potency. **Cell**. 2024.
