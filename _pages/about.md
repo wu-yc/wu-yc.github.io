@@ -12,12 +12,12 @@ redirect_from:
 I'm an MD-PhD Candidate and Fu Ching Yen Fellow at Fudan University, passionate about AI for Science. 
 
 ## Research Experience
-I have 9 years of experience in AI and cancer research, including work at Fudan University, Zhongshan Hospital, and the Chinese Academy of Sciences. My advisor is [Dr. Qiang Gao](https://hupi.fudan.edu.cn/en/rcdw/rc_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1097&wbnewsid=1422).
+With 9+ years of experience in AI and cancer research, I have conducted research at institutions including Fudan University, Zhongshan Hospital, University of Toronto, Institut Pasteur of Shanghai, Shanghai Institute of Biochemistry and Cell Biology, Chinese Academy of Sciences. My advisor is [Dr. Qiang Gao](https://hupi.fudan.edu.cn/en/rcdw/rc_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1097&wbnewsid=1422).
 
 ## Awards and Honors
 - China Association for S&T Early Career Talent Fellowship
-- National Natural Science Foundation of China - Early-Career Grant
-- National Natural Science Foundation of China - Lindau Fellow
+- National Natural Science Foundation of China Early-Career Grant
+- National Natural Science Foundation of China Lindau Fellow
 - National Early-Career Innovation Award
 - National Outstanding Student Award
 - National Training Program of Innovation Fellowship
