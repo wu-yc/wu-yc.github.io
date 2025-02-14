@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Medical Student and AI Researcher"
+title: "About me"
 author_profile: true
 redirect_from: 
   - /about/
@@ -28,9 +28,6 @@ IUBMB Young Scientist Fellowship
 Roche Research Foundation Fellowship
 National Scholarship (2017; 2020; 2022; 2024)
 Challenge-Cup Grand Prize
-Fu Ching Yen Fellowship, Fudan University, 2020 - present
-National Scholarship, Ministry of Education of China, 2018
-Outstanding Graduate, Fudan University, 2016
 
 ## Publications
 1. **Yingcheng Wu#**, Jiaqiang Ma#, Xupeng Yang#, Fang Nan#, Tiancheng Zhang#, Shuyi Ji, Dongning Rao, Hua Feng, Ke Gao, Xixi Gu, Shan Jiang, Guohe Song, Jiaomeng Pan, Mao Zhang, Yanan Xu, Shu Zhang, Yihui Fan, Xiaoying Wang, Jian Zhou, Li Yang, Jia Fan, Xiaoming Zhang, Qiang Gao. Neutrophil profiling illuminates anti-tumor antigen-presenting potency. **Cell**. 2024.
