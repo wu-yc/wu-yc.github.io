@@ -22,13 +22,13 @@ repository               : "academicpages/academicpages.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
-  name             : "Medical Student and AI Researcher"
+  avatar           : "CV photo1.jpeg"
+  name             : "AI4S Researcher"
   pronouns         : "they/them"
-  bio              : "Passionate about integrating AI and medicine to drive scientific discoveries."
+  bio              : "AI for Medicine"
   location         : "Shanghai, China"
   employer         : "Fudan University"
-  uri              : "https://your-website.github.io"
+  uri              : "https://wu-yc.github.io"
   email            : "yingchengwu21@m.fudan.edu.cn"
 
 
