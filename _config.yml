@@ -28,12 +28,12 @@ author:
   bio              : "AI for Medicine"
   location         : "Shanghai, China"
   employer         : "Fudan University"
-  uri              : "https://wu-yc.github.io"
+  # uri              : "https://wu-yc.github.io"
   email            : "yingchengwu21@m.fudan.edu.cn"
 
 
   ## Academic websites
-  googlescholar    : "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
+  googlescholar    : "https://scholar.google.com/citations?user=szIas6UAAAAJ&hl=en"
   researchgate     : "https://www.researchgate.net/profile/Yingcheng-Wu?ev=hdr_xprf"
 
   # Social media
