@@ -65,4 +65,6 @@ With 9+ years of experience in AI and cancer research, I have conducted research
 
 
 ## Other
-I'm also into coding, swimming, traveling, and philosophy—and I won a bronze (breaststroke) in Fudan swimming competition.
+I love philosophy, coding, swimming, traveling, and so much more.
+🥉 Bronze (breaststroke) at Fudan 
+🎻 Erhu Player of Amateur Level 10
