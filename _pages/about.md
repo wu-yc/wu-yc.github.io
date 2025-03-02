@@ -28,6 +28,10 @@ With 9+ years of experience in AI and cancer research, I have conducted research
 - Challenge-Cup Grand Prize
 
 ## Publications
+<p align="center">
+  <img width="358" alt="image" src="https://github.com/user-attachments/assets/7c216dec-ed57-4035-8c76-051c5210e0e3" />
+</p>
+
 1. **Yingcheng Wu#**, Jiaqiang Ma#, Xupeng Yang#, Fang Nan#, Tiancheng Zhang#, ..., Li Yang, Jia Fan, Xiaoming Zhang, Qiang Gao.
    Neutrophil profiling illuminates anti-tumor antigen-presenting potency.
    [**Cell**](https://pubmed.ncbi.nlm.nih.gov/38447573/). 2024.
@@ -64,7 +68,10 @@ With 9+ years of experience in AI and cancer research, I have conducted research
     [**Science Translational Medicine**](https://pubmed.ncbi.nlm.nih.gov/37494474/). 2023. IF=17.1
 
 
+
 ## Other
 I love philosophy, coding, swimming, traveling, and so much more.
+
 🥉 Bronze (breaststroke) at Fudan 
+
 🎻 Erhu Player of Amateur Level 10
