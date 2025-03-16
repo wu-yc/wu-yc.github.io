@@ -9,7 +9,7 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "default"
-title                    : "Yingcheng Wu"
+title                    : "Yingcheng Wu (吴英成)"
 title_separator          : "-"
 name                     : &name "Yingcheng Wu (吴英成)"
 description              : &description "personal description"
@@ -25,7 +25,7 @@ author:
   avatar           : "imresizer-1739512068826.jpg"
   name             : "Yingcheng Wu"
   pronouns         : "吴英成"
-  bio              : "AI for Medicine"
+  bio              : "AI for Science; Cancer Immunology"
   location         : "Shanghai, China"
   employer         : "Fudan University"
   # uri              : "https://wu-yc.github.io"
@@ -37,7 +37,7 @@ author:
   researchgate     : "https://www.researchgate.net/profile/Yingcheng-Wu?ev=hdr_xprf"
 
   # Social media
-  twitter          : "https://x.com/Charles_Y_Wu"
+  twitter          : "Charles_Y_Wu"
 
 
 # Site Settings
