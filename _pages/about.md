@@ -22,10 +22,13 @@ With 9+ years of experience in AI and cancer research, I have conducted research
 - National Training Program of Innovation Fellowship
 - National Scholarship (2017; 2020; 2022; 2024)
 - [Sidney & Joan Pestka Award from ICIS](https://cytokinesociety.org/congratulations-yingcheng-wu-2024-sidney-joan-pestka-graduate-award-winner/)
-- Shanghai Science Rising Star
+- APASL Young Investigator Award
 - [Fudan University Outstanding Student Honoree](https://news.fudan.edu.cn/2025/0127/c31a144068/page.htm)
 - IUBMB Young Scientist Fellowship
+- APPLE Young Investigator Award
 - Challenge-Cup Grand Prize
+- Shanghai Science Rising Star
+
 
 ## Publications
 <p align="center">
