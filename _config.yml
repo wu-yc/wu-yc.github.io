@@ -9,7 +9,7 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "default"
-title                    : "Yingcheng Wu (吴英成)"
+title                    : "Yingcheng Wu, Fudan University 吴英成 (复旦大学)"
 title_separator          : "-"
 name                     : &name "Yingcheng Wu (吴英成)"
 description              : &description "personal description"
