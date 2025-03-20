@@ -70,6 +70,9 @@ With 9+ years of experience in AI and cancer research, I have conducted research
     Pharmaco-proteogenomic characterization of liver cancer organoids for precision oncology.
     [**Science Translational Medicine**](https://pubmed.ncbi.nlm.nih.gov/37494474/). 2023. IF=17.1
 
+<p align="center">
+  <img width="416" alt="image" src="https://github.com/user-attachments/assets/86037486-0e34-4dee-af86-aaf1db47d3e9" />
+</p>
 
 
 ## Other
