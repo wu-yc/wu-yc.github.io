@@ -9,25 +9,26 @@ redirect_from:
 
 
 
-I'm an MD-PhD Candidate and Fu Ching Yen Fellow at Fudan University, passionate about AI for Science. 
+I'm a Fu Ching Yen Fellow and MD-PhD Candidate at Fudan University, passionate about AI4S. 
 
 ## Research Experience
 With 9+ years of experience in AI and cancer research, I have conducted research at institutions including Fudan University, Zhongshan Hospital, University of Toronto, Institut Pasteur of Shanghai, Shanghai Institute of Biochemistry and Cell Biology, Chinese Academy of Sciences. My advisor is [Dr. Qiang Gao](https://hupi.fudan.edu.cn/en/rcdw/rc_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1097&wbnewsid=1422).
 
 ## Awards and Honors
-- China Association for S&T Early Career Talent Fellowship
-- National Natural Science Foundation of China Early-Career Grant
-- National Natural Science Foundation of China Lindau Fellow
+- Early Career Talent Fellowship, China Association for Science & Technology
+- Early-Career Award, National Natural Science Foundation of China 
+- Lindau Fellow, National Natural Science Foundation of China 
 - National Early-Career Innovation Award
 - National Training Program of Innovation Fellowship
 - National Scholarship (2017; 2020; 2022; 2024)
 - [Sidney & Joan Pestka Award from ICIS](https://cytokinesociety.org/congratulations-yingcheng-wu-2024-sidney-joan-pestka-graduate-award-winner/)
 - APASL Young Investigator Award
-- [Fudan University Outstanding Student Honoree](https://news.fudan.edu.cn/2025/0127/c31a144068/page.htm)
 - IUBMB Young Scientist Fellowship
 - APPLE Young Investigator Award
-- Challenge-Cup Grand Prize
+- Challenge-Cup Grand Prize, Ministry of Education
 - Shanghai Science Rising Star
+- [Fudan Outstanding Student Honoree](https://news.fudan.edu.cn/2025/0127/c31a144068/page.htm) (Highest honor for FUDANers)
+
 
 
 ## Publications
@@ -70,8 +71,10 @@ With 9+ years of experience in AI and cancer research, I have conducted research
     Pharmaco-proteogenomic characterization of liver cancer organoids for precision oncology.
     [**Science Translational Medicine**](https://pubmed.ncbi.nlm.nih.gov/37494474/). 2023. IF=17.1
 
+
+
 <p align="center">
-  <img width="416" alt="image" src="https://github.com/user-attachments/assets/86037486-0e34-4dee-af86-aaf1db47d3e9" />
+  <img width="700" alt="image" src="https://github.com/user-attachments/assets/0ee118dc-90c6-4abf-9538-c1377ceb42bd" />
 </p>
 
 
