@@ -27,7 +27,8 @@ With 9+ years of experience in AI and cancer research, I have conducted research
 - APPLE Young Investigator Award
 - Challenge-Cup Grand Prize, Ministry of Education
 - Shanghai Science Rising Star
-- [Fudan Outstanding Student Honoree](https://news.fudan.edu.cn/2025/0127/c31a144068/page.htm) (Highest honor for FUDANers)
+- Fudan Academic Star
+- [Fudan Outstanding Honoree](https://news.fudan.edu.cn/2025/0127/c31a144068/page.htm) (Highest honor for FUDANers)
 
 
 
