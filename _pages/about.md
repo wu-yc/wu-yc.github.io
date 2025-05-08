@@ -11,10 +11,10 @@ redirect_from:
 
 I'm a Fu Ching Yen Fellow and MD-PhD Candidate at Fudan. 
 
-## Research Experience
+## Research
 With 9+ years of experience in AI and cancer research, I have conducted research at Fudan University, Zhongshan Hospital, UofT, Institut Pasteur of Shanghai, and SIBCB of CAS. My advisor is [Dr. Qiang Gao](https://hupi.fudan.edu.cn/en/rcdw/rc_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1097&wbnewsid=1422).
 
-## Awards and Honors
+## Awards & Honors
 - Early Career Talent Fellowship, China Association for Science & Technology
 - Early-Career Award, National Natural Science Foundation of China 
 - Lindau Fellow, National Natural Science Foundation of China 
@@ -40,25 +40,12 @@ With 9+ years of experience in AI and cancer research, I have conducted research
 1. **Yingcheng Wu#**, Jiaqiang Ma#, Xupeng Yang#, Fang Nan#, Tiancheng Zhang#, ..., Li Yang, Jia Fan, Xiaoming Zhang, Qiang Gao.
    Neutrophil profiling illuminates anti-tumor antigen-presenting potency.
    [**Cell**](https://pubmed.ncbi.nlm.nih.gov/38447573/). 2024.
-    - Featured in Nature Immunology, 25, 583 (2024).
-    - Featured in Nature Reviews Immunology, 24, 850–857 (2024).
-    - Featured in Cancer Discovery, doi:10.1158/2159-8290.CD-RW2024-044
-    - Highlighted by Fudan News
-    - Highlighted by the University of Chinese Academy of Sciences Website
-    - Highlighted by the Chinese Society for Immunology (CSI)
-    - Featured in 2024 Top 10 Fudan Advances
+   - Featured in Nature Immunology, 25, 583 (2024); Nature Reviews Immunology, 24, 850–857 (2024); Cancer Discovery, doi:10.1158/2159-8290.CD-RW2024-044; Fudan News; CAS News; Chinese Society for Immunology (CSI); 2024 Top 10 Fudan Advances
 
 3. Jiaqiang Ma#, **Yingcheng Wu#**, Lifeng Ma#, Xupeng Yang#, Tiancheng Zhang#, ..., Jia Fan, Guoji Guo, Xiaoming Zhang, Qiang Gao.
    A blueprint for tumor-infiltrating B cells across human cancers.
    [**Science**](https://pubmed.ncbi.nlm.nih.gov/38696569/). 2024.
-    - Featured in Cell, Volume 187, Issue 17, 4551-4553
-    - Featured in Science, Vol 384, Issue 6695, pp. 510-511
-    - Featured in Cancer Cell, Volume 42, Issue 10, 1650–1652
-    - Featured in Immunity, Volume 57, Issue 7, 1454-1456
-    - Featured in Cancer Discovery, doi:10.1158/2159-8290.CD-RW2024-071
-    - Featured in Cellular & Molecular Immunology, volume 21, pages1180–1182
-    - Highlighted by Fudan News
-    - Highlighted by the Chinese Academy of Sciences News
+   - Featured in Cell, Volume 187, Issue 17, 4551-4553; Science, Vol 384, Issue 6695, pp. 510-511; Cancer Cell, Volume 42, Issue 10, 1650–1652; Immunity, Volume 57, Issue 7, 1454-1456; Cancer Discovery, doi:10.1158/2159-8290.CD-RW2024-071; Cellular & Molecular Immunology, volume 21, pages1180–1182; Fudan News; CAS News
 
 5. **Yingcheng Wu#**, Shuaixi Yang#, Jiaqiang Ma#, Zechuan Chen#, ..., Jia Fan, Xiaoming Zhang, Qiang Gao.
    Spatiotemporal Immune Landscape of Colorectal Cancer Liver Metastasis at Single-Cell Level.
