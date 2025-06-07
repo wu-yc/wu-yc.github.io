@@ -25,7 +25,7 @@ With 9+ years of experience in AI and cancer research, I have conducted research
 - APASL Young Investigator Award
 - IUBMB Young Scientist Fellowship
 - APPLE Young Investigator Award
-- Challenge-Cup Grand Prize, Ministry of Education
+- Challenge-Cup Grand Prize, Chinese National Ministry of Education
 - Shanghai Science Rising Star
 - Fudan Academic Star
 - [Fudan Outstanding Honoree](https://news.fudan.edu.cn/2025/0127/c31a144068/page.htm) (Highest honor for FUDANers)
@@ -42,22 +42,22 @@ With 9+ years of experience in AI and cancer research, I have conducted research
    [**Cell**](https://pubmed.ncbi.nlm.nih.gov/38447573/). 2024.
    - Featured in Nature Immunology, 25, 583 (2024); Nature Reviews Immunology, 24, 850–857 (2024); Cancer Discovery, doi:10.1158/2159-8290.CD-RW2024-044; Fudan News; CAS News; Chinese Society for Immunology (CSI); 2024 Top 10 Fudan Advances
 
-3. Jiaqiang Ma#, **Yingcheng Wu#**, Lifeng Ma#, Xupeng Yang#, Tiancheng Zhang#, ..., Jia Fan, Guoji Guo, Xiaoming Zhang, Qiang Gao.
+2. Jiaqiang Ma#, **Yingcheng Wu#**, Lifeng Ma#, Xupeng Yang#, Tiancheng Zhang#, ..., Jia Fan, Guoji Guo, Xiaoming Zhang, Qiang Gao.
    A blueprint for tumor-infiltrating B cells across human cancers.
    [**Science**](https://pubmed.ncbi.nlm.nih.gov/38696569/). 2024.
    - Featured in Cell, Volume 187, Issue 17, 4551-4553; Science, Vol 384, Issue 6695, pp. 510-511; Cancer Cell, Volume 42, Issue 10, 1650–1652; Immunity, Volume 57, Issue 7, 1454-1456; Cancer Discovery, doi:10.1158/2159-8290.CD-RW2024-071; Cellular & Molecular Immunology, volume 21, pages1180–1182; Fudan News; CAS News
 
-5. **Yingcheng Wu#**, Shuaixi Yang#, Jiaqiang Ma#, Zechuan Chen#, ..., Jia Fan, Xiaoming Zhang, Qiang Gao.
+3. **Yingcheng Wu#**, Shuaixi Yang#, Jiaqiang Ma#, Zechuan Chen#, ..., Jia Fan, Xiaoming Zhang, Qiang Gao.
    Spatiotemporal Immune Landscape of Colorectal Cancer Liver Metastasis at Single-Cell Level.
    [**Cancer Discovery**](https://pubmed.ncbi.nlm.nih.gov/34417225/). 2022. IF=38.3
 
-8. **Yingcheng Wu**, Qiang Zou, Peng Jiang, Qiang Gao.
+4. **Yingcheng Wu**, Qiang Zou, Peng Jiang, Qiang Gao.
    Tumor-Host Cometabolism Collaborates to Shape Cancer Immunity.
     [**Cancer Discovery**](https://pubmed.ncbi.nlm.nih.gov/38571418/). 2024. IF=29.1
 
-11. Shuyi Ji#, Li Feng#, Zile Fu#, Gaohua Wu#, **Yingcheng Wu#**, ..., Jia Fan, Hans Clevers, Hu Zhou, Yidi Sun, Qiang Gao.
-    Pharmaco-proteogenomic characterization of liver cancer organoids for precision oncology.
-    [**Science Translational Medicine**](https://pubmed.ncbi.nlm.nih.gov/37494474/). 2023. IF=17.1
+5. Zhongyue Zhang, Zijie Qiu, **Yingcheng Wu#**, Shuya Li, Dingyan Wang, Zhuomin Zhou, ..., Lei Bai, Qiang Gao, Siqi Sun, Shuangjia Zheng.
+    OriGene: A Self-Evolving Virtual Disease Biologist Automating Therapeutic Target Discovery
+    [**bioRxiv**](https://doi.org/10.1101/2025.06.03.657658). 2025.06.03.657658.
 
 
 
