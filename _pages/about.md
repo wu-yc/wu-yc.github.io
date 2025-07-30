@@ -34,7 +34,7 @@ With 9+ years of experience in AI and cancer research, I have conducted research
 
 ## Publications
 <p align="center">
-  <img width="358" alt="image" src="https://github.com/user-attachments/assets/7c216dec-ed57-4035-8c76-051c5210e0e3" />
+<img width="358" alt="image" src="https://github.com/user-attachments/assets/1984b33d-7a7b-43fa-be3d-0b82f9eb40a6" />
 </p>
 
 1. **Yingcheng Wu#**, Jiaqiang Ma#, Xupeng Yang#, Fang Nan#, Tiancheng Zhang#, ..., Li Yang, Jia Fan, Xiaoming Zhang, Qiang Gao.
@@ -59,7 +59,10 @@ With 9+ years of experience in AI and cancer research, I have conducted research
     OriGene: A Self-Evolving Virtual Disease Biologist Automating Therapeutic Target Discovery
     [**bioRxiv**](https://doi.org/10.1101/2025.06.03.657658). 2025.06.03.657658.
 
+6. Shuojun Li, Yinghui Meng, Zihan Wang, **Yingcheng Wu#**, ..., Jia Fan, Chenqi Xu, Qiang Gao, Shuo Han.
+    [**Nature**](https://nature.com/). Accepted.
 
+   
 
 <p align="center">
   <img width="700" alt="image" src="https://github.com/user-attachments/assets/0ee118dc-90c6-4abf-9538-c1377ceb42bd" />
