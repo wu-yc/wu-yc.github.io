@@ -17,7 +17,6 @@ With 9+ years of experience in cancer research, I have conducted research at Fud
 ## Awards & Honors
 - Early Career Talent Fellowship, China Association for Science & Technology
 - Early-Career Award, National Natural Science Foundation of China 
-- Lindau Fellow, National Natural Science Foundation of China 
 - National Early-Career Innovation Award
 - National Training Program of Innovation Fellowship
 - National Scholarship (2017; 2020; 2022; 2024)
@@ -25,6 +24,7 @@ With 9+ years of experience in cancer research, I have conducted research at Fud
 - APASL Young Investigator Award
 - IUBMB Young Scientist Fellowship
 - APPLE Young Investigator Award
+- Invited Young Scientist, Lindau Nobel Laureate Meetings
 - Challenge-Cup Grand Prize, Chinese National Ministry of Education
 - Shanghai Science Rising Star
 - Fudan Academic Star
@@ -47,8 +47,8 @@ With 9+ years of experience in cancer research, I have conducted research at Fud
    [**Science**](https://pubmed.ncbi.nlm.nih.gov/38696569/). 2024.
    - Featured in Cell, Volume 187, Issue 17, 4551-4553; Science, Vol 384, Issue 6695, pp. 510-511; Cancer Cell, Volume 42, Issue 10, 1650–1652; Immunity, Volume 57, Issue 7, 1454-1456; Cancer Discovery, doi:10.1158/2159-8290.CD-RW2024-071; Cellular & Molecular Immunology, volume 21, pages1180–1182; Fudan News; CAS News
   
-3. Shuojun Li, Yinghui Meng, Zihan Wang, **Yingcheng Wu#**, ..., Jia Fan, Chenqi Xu, Qiang Gao, Shuo Han.
-    [**Nature**](https://nature.com/). Accepted. 2025.
+3. Shuojun Li#, Yinghui Meng#, Zihan Wang#, **Yingcheng Wu#**, ..., Jia Fan, Chenqi Xu, Qiang Gao, Shuo Han. Amplifying antigen-induced cellular responses with proximity labelling.
+    [**Nature**](https://www.nature.com/articles/s41586-025-09518-6). 2025.
 
 4. **Yingcheng Wu#**, Shuaixi Yang#, Jiaqiang Ma#, Zechuan Chen#, ..., Jia Fan, Xiaoming Zhang, Qiang Gao.
    Spatiotemporal Immune Landscape of Colorectal Cancer Liver Metastasis at Single-Cell Level.
