@@ -17,7 +17,7 @@ With 9+ years of experience in cancer research, I have conducted research at Fud
 ## Awards & Honors
 - Early Career Talent Fellowship, China Association for Science & Technology
 - Early-Career Award, National Natural Science Foundation of China
-- World's Top 2% Scientists (Stanford)
+- Stanford's World's Top 2% Scientists
 - National Early-Career Innovation Award
 - National Training Program of Innovation Fellowship
 - National Scholarship (2017; 2020; 2022; 2024)
