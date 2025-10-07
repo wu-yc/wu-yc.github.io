@@ -9,12 +9,14 @@ redirect_from:
 
 
 
-I'm a Fu Ching Yen Fellow and MD-PhD Candidate at Fudan. 
+I'm a Fu Ching Yen Fellow and MD-PhD Candidate in AI & medicine at Fudan. 
 
-## Research
-With 9+ years of experience in cancer research, I have conducted research at Fudan University, Zhongshan Hospital, UofT, Institut Pasteur of Shanghai, and SIBCB of CAS. My advisor is [Dr. Qiang Gao](https://hupi.fudan.edu.cn/en/rcdw/rc_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1097&wbnewsid=1422).
+## 🔬 Research
+With 9+ years of experience in cancer & AI research, I have conducted research at Fudan University, Zhongshan Hospital, and CAS. I work with [Dr. Qiang Gao](https://hupi.fudan.edu.cn/en/rcdw/rc_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1097&wbnewsid=1422).
 
-## Awards & Honors
+I am interested in AI for cancer immunology & AI-driven therapeutic design. 
+
+## 🏆 Awards & Honors
 - Early Career Talent Fellowship, China Association for Science & Technology
 - Early-Career Award, National Natural Science Foundation of China
 - Stanford's World's Top 2% Scientists
@@ -33,7 +35,7 @@ With 9+ years of experience in cancer research, I have conducted research at Fud
 
 
 
-## Publications
+## 📄 Publications
 <p align="center">
 <img width="358" alt="image" src="https://github.com/user-attachments/assets/1984b33d-7a7b-43fa-be3d-0b82f9eb40a6" />
 </p>
@@ -59,6 +61,10 @@ With 9+ years of experience in cancer research, I have conducted research at Fud
    Tumor-Host Cometabolism Collaborates to Shape Cancer Immunity.
     [**Cancer Discovery**](https://pubmed.ncbi.nlm.nih.gov/38571418/). 2024. IF=29.1
 
+6. Zhongyue Zhang, Zijie Qiu, **Yingcheng Wu**, ..., Lei Bai, Qiang Gao, Siqi Sun, Shuangjia Zheng
+   OriGene: A Self-Evolving Virtual Disease Biologist Automating Therapeutic Target Discovery
+    [**bioRxiv**](https://doi.org/10.1101/2025.06.03.657658). 2025.
+
 
    
 
@@ -67,9 +73,6 @@ With 9+ years of experience in cancer research, I have conducted research at Fud
 </p>
 
 
-## Other
-I love philosophy, coding, swimming, traveling, and so much more.
+## 🎯 Beyond Science
+I enjoy philosophy, coding, swimming, and traveling. 🥉 Bronze in breaststroke at Fudan | 🎻 Erhu Level 10
 
-🥉 Bronze (breaststroke) at Fudan 
-
-🎻 Erhu Player of Amateur Level 10
