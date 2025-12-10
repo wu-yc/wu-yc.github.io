@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yingcheng Wu | AI for Science</title>
+    <meta name="description" content="Yingcheng Wu - Fudan & Stanford. AI for Science and Cancer Immunology.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* Light Theme Variables */
+            --bg-main: #f8fafc;       /* 浅灰白背景 */
+            --bg-card: #ffffff;       /* 纯白卡片 */
+            --text-main: #0f172a;     /* 深邃黑蓝文字 */
+            --text-muted: #64748b;    /* 次级灰文字 */
+            --border-color: #e2e8f0;  /* 浅色边框 */
+            
+            /* Accents (Keep the brand colors) */
+            --accent-cyan: #0891b2;   /* 加深一点的青色，适应白底 */
+            --accent-purple: #7c3aed; /* 加深一点的紫色 */
+            --accent-green: #059669;  /* Nature Green */
+            --accent-red: #dc2626;    /* Cell Red */
+            --accent-gold: #d97706;   /* Science Gold */
+            
+            --font-main: 'Inter', sans-serif;
+            --font-code: 'JetBrains Mono', monospace;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- 粒子背景容器 (浅色) --- */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            /* 纯净的渐变背景 */
+            background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f1f5f9 100%);
+        }
+
+        /* --- 导航栏 --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-logo {
+            font-family: var(--font-code);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-logo span {
+            color: var(--accent-cyan);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* --- Hero Section with Typing Animation --- */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+            position: relative;
+        }
+
+        /* 已移除 .hero-tag */
+
+        .hero-name {
+            font-size: 3.5rem; /* 调小了字号 */
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .cn-name {
+            font-size: 2rem; /* 调小了字号 */
+            font-weight: 400;
+            margin-left: 15px;
+            color: var(--text-muted);
+            vertical-align: middle;
+        }
+
+        .hero-title {
+            font-size: 2rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            height: 3rem; /* Fixed height to prevent layout shift */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        /* Dynamic Typing Text Styles */
+        .typing-container {
+            font-weight: 700;
+            color: var(--text-main);
+            position: relative;
+            display: inline-block;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: var(--accent-cyan);
+            animation: blink 1s infinite;
+            margin-left: 2px;
+            height: 1.2em;
+            vertical-align: bottom;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .btn-primary {
+            background: var(--text-main);
+            color: white;
+            border: 1px solid var(--text-main);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--text-main);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: white;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-main);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* --- Main Content Layout --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 5rem 1.5rem;
+        }
+
+        section {
+            margin-bottom: 8rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .line {
+            height: 2px;
+            flex-grow: 1;
+            background: var(--border-color);
+            border-radius: 2px;
+        }
+
+        /* --- About Card --- */
+        .about-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-purple));
+        }
+
+        .about-text p {
+            margin-bottom: 1.2rem;
+            font-size: 1.15rem;
+            color: var(--text-main);
+        }
+        
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-text strong {
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        /* --- Publications --- */
+        .pub-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .pub-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .pub-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent-cyan);
+        }
+
+        .pub-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .pub-content h3 {
+            font-size: 1.35rem;
+            line-height: 1.4;
+            margin-bottom: 0.8rem;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .pub-authors {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .pub-authors strong {
+            color: var(--text-main);
+            border-bottom: 2px solid rgba(8, 145, 178, 0.3);
+        }
+
+        .pub-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            align-items: center;
+            font-size: 0.9rem;
+            margin-top: 1.2rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .journal-tag {
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        .pub-year-badge {
+            background: var(--text-main);
+            color: white;
+            font-family: var(--font-code);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        /* Specific Journal Styles */
+        .tag-cell { background: #fee2e2; color: var(--accent-red); }
+        .tag-science { background: #fef3c7; color: var(--accent-gold); }
+        .tag-nature { background: #d1fae5; color: var(--accent-green); }
+        .tag-cd { background: #cffafe; color: var(--accent-cyan); }
+        .tag-normal { background: #f1f5f9; color: var(--text-muted); }
+
+        .news-badge {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: #f8fafc;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* --- Awards List (Simple Style) --- */
+        .awards-list-simple {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .award-simple-item {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            display: block;
+            line-height: 1.5;
+            padding-left: 1rem;
+            border-left: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .award-simple-item:hover {
+            border-left-color: var(--accent-cyan);
+            transform: translateX(5px);
+        }
+
+        .award-name {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .award-org {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--border-color);
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .footer-content p {
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .clustrmaps-container {
+            width: 300px; 
+            margin: 0 auto; 
+            overflow: hidden; 
+            text-align: center;
+        }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 768px) {
+            .hero-name { font-size: 2.2rem; }
+            .cn-name { display: block; margin: 0.5rem 0 0 0; font-size: 1.6rem; }
+            .hero-title { font-size: 1.2rem; flex-direction: column; height: auto; gap: 0.2rem; margin-bottom: 2rem; }
+            .nav-links { display: none; }
+            .section-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            .line { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-logo">WU<span>.AI</span></div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#publications">Research</a></li>
+            <li><a href="#awards">Honors</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <!-- hero-tag 已移除 -->
+        
+        <h1 class="hero-name">Yingcheng Wu <span class="cn-name">吴英成</span></h1>
+        
+        <!-- Animated Typing Title -->
+        <h2 class="hero-title">
+            AI for 
+            <span class="typing-container">
+                <span id="typing-text">Science</span><span class="cursor"></span>
+            </span>
+        </h2>
+        
+        <div class="social-buttons">
+            <a href="mailto:wuyc@stanford.edu" class="btn btn-primary">
+                <i class="fas fa-envelope"></i> Contact Me
+            </a>
+            <a href="https://scholar.google.com/citations?user=szIas6UAAAAJ&hl=en" target="_blank" class="btn btn-outline">
+                <i class="fas fa-graduation-cap"></i> Google Scholar
+            </a>
+            <a href="https://x.com/Charles_Y_Wu" target="_blank" class="btn btn-outline">
+                <i class="fab fa-twitter"></i> Twitter / X
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- About Section -->
+        <section id="about" class="fade-in">
+            <div class="section-header">
+                <h2>Overview</h2>
+                <div class="line"></div>
+            </div>
+            <div class="about-card">
+                <div class="about-text">
+                    <p>I am an <strong>MD-PhD Candidate</strong> in AI & Medicine, bridging the gap between computational intelligence and biological complexity.</p>
+                    <p>With <strong>9+ years of experience</strong> in cancer & AI research, I have conducted research at <strong>Fudan</strong>, <strong>CAS</strong>, and <strong>Stanford</strong>. I currently work with Dr. Qiang Gao.</p>
+                    <p>My primary focus lies in <strong>AI-driven therapeutic design</strong> and deciphering the <strong>tumor microenvironment</strong> to unlock new possibilities in cancer immunotherapy.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications" class="fade-in">
+            <div class="section-header">
+                <h2>Selected Publications</h2>
+                <div class="line"></div>
+            </div>
+
+
+<div class="pub-card">
+                    <div class="pub-content">
+                        <p align="center">
+<img width="758" alt="image" src="https://github.com/user-attachments/assets/1984b33d-7a7b-43fa-be3d-0b82f9eb40a6" />
+</p>
+
+                    </div>
+                </div>
+
+
+            <div class="pub-grid">
+
+                <!-- 1. Cell 2024 -->
+                <div class="pub-card">
+                    <div class="pub-header">
+                        <span class="journal-tag tag-cell">Cell</span>
+                        <span class="pub-year-badge">Cell, 2024</span>
+                    </div>
+                    <div class="pub-content">
+                        <h3>Neutrophil profiling illuminates anti-tumor antigen-presenting potency</h3>
+                        <div class="pub-authors">
+                            <strong>Yingcheng Wu#</strong>, Jiaqiang Ma#, Xupeng Yang#, Fang Nan#, Tiancheng Zhang#, Shuyi Ji, Dongning Rao, Hua Feng, Ke Gao, Xixi Gu, Shan Jiang, Guohe Song, Jiaomeng Pan, Mao Zhang, Yanan Xu, Shu Zhang, Yihui Fan, Xiaoying Wang, Jian Zhou, Li Yang, Jia Fan, Xiaoming Zhang, Qiang Gao.
+                        </div>
+                        <div class="pub-meta">
+                            <span class="news-badge"><i class="fas fa-star"></i> Featured in Nature Immunology</span>
+                            <span class="news-badge"><i class="fas fa-star"></i> Nature Reviews Immunology</span>
+                            <span class="news-badge"><i class="fas fa-star"></i> Cancer Discovery</span>
+                            <span class="news-badge"><i class="fas fa-star"></i> Fudan News & CAS News</span>
+                            <span class="news-badge"><i class="fas fa-star"></i> Chinese Society for Immunology</span>
+                            <span class="news-badge"><i class="fas fa-award"></i> 2024 Top 10 Fudan Advances</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Science 2024 -->
+                <div class="pub-card">
+                    <div class="pub-header">
+                        <span class="journal-tag tag-science">Science</span>
+                        <span class="pub-year-badge">Science, 2024</span>
+                    </div>
+                    <div class="pub-content">
+                        <h3>A blueprint for tumor-infiltrating B cells across human cancers</h3>
+                        <div class="pub-authors">
+                            Jiaqiang Ma#, <strong>Yingcheng Wu#</strong>, Lifeng Ma#, Xupeng Yang#, Tiancheng Zhang#, Guohe Song, Teng Li, Ke Gao, Xia Shen, Jian Lin, Yamin Chen, Xiaoshan Liu, Yuting Fu, Xixi Gu, Zechuan Chen, Shan Jiang, Dongning Rao, Jiaomeng Pan, Shu Zhang, Jian Zhou, Chen Huang, Si Shi, Jia Fan, Guoji Guo, Xiaoming Zhang, Qiang Gao.
+                        </div>
+                        <div class="pub-meta">
+                            <span class="news-badge"><i class="fas fa-newspaper"></i> Featured in Cell</span>
+                            <span class="news-badge"><i class="fas fa-newspaper"></i> Cancer Cell</span>
+                            <span class="news-badge"><i class="fas fa-newspaper"></i> Science</span>
+                            <span class="news-badge"><i class="fas fa-newspaper"></i> Immunity</span>
+                            <span class="news-badge"><i class="fas fa-newspaper"></i> Cancer Discovery</span>
+                            <span class="news-badge"><i class="fas fa-newspaper"></i> Cell Mol Immunol</span>
+                            <span class="news-badge"><i class="fas fa-newspaper"></i> Fudan News & CAS News</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Nature 2025 -->
+                <div class="pub-card">
+                    <div class="pub-header">
+                        <span class="journal-tag tag-nature">Nature</span>
+                        <span class="pub-year-badge">Nature, 2025</span>
+                    </div>
+                    <div class="pub-content">
+                        <h3>Amplifying antigen-induced cellular responses with proximity labelling</h3>
+                        <div class="pub-authors">
+                            Shuojun Li#, Yinghui Meng#, Zihan Wang#, <strong>Yingcheng Wu#</strong>, Hao Sun, Mingyang Yin, Xinrui Fan, Guiyun Deng, Zhicheng Yang, Tiange Yang, Yudian Xiao, Hu Zhou, Guangchuan Wang, Jia Fan, Chenqi Xu, Qiang Gao, Shuo Han.
+                        </div>
+                        <div class="pub-meta">
+                            <span class="news-badge"><i class="fas fa-newspaper"></i> Featured in Nature Chemical Engineering</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Cancer Discovery 2022 -->
+                <div class="pub-card">
+                    <div class="pub-header">
+                        <span class="journal-tag tag-cd">Cancer Discovery</span>
+                        <span class="pub-year-badge">Cancer Discovery, 2022</span>
+                    </div>
+                    <div class="pub-content">
+                        <h3>Spatiotemporal Immune Landscape of Colorectal Cancer Liver Metastasis at Single-Cell Level</h3>
+                        <div class="pub-authors">
+                            <strong>Yingcheng Wu#</strong>, Shuaixi Yang#, Jiaqiang Ma#, Zechuan Chen#, Guohe Song, Dongning Rao, Jiaomeng Pan, Maorong Jiang, Li Wang, Jian Zhou, Jia Fan, Xiaoming Zhang, Qiang Gao.
+                        </div>
+                        <div class="pub-meta">
+                            <span class="news-badge">IF=38.3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Cancer Discovery 2024 -->
+                <div class="pub-card">
+                    <div class="pub-header">
+                        <span class="journal-tag tag-cd">Cancer Discovery</span>
+                        <span class="pub-year-badge">Cancer Discovery, 2024</span>
+                    </div>
+                    <div class="pub-content">
+                        <h3>Tumor-Host Cometabolism Collaborates to Shape Cancer Immunity</h3>
+                        <div class="pub-authors">
+                            <strong>Yingcheng Wu</strong>, Qiang Zou, Peng Jiang, Qiang Gao.
+                        </div>
+                        <div class="pub-meta">
+                            <span class="news-badge">IF=29.1</span>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- 6. BioRxiv 2025 -->
+                 <div class="pub-card">
+                    <div class="pub-header">
+                        <span class="journal-tag tag-normal">bioRxiv</span>
+                        <span class="pub-year-badge">bioRxiv, 2025</span>
+                    </div>
+                    <div class="pub-content">
+                        <h3>OriGene: A Self-Evolving Virtual Disease Biologist Automating Therapeutic Target Discovery</h3>
+                        <div class="pub-authors">
+                            Zhongyue Zhang#, Zijie Qiu#, <strong>Yingcheng Wu#</strong>,..., Lei Bai, Qiang Gao, Siqi Sun, Shuangjia Zheng.
+                        </div>
+                        <div class="pub-meta">
+                            <span class="news-badge">Agent for Science</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Awards Section (Simple List, No Logos) -->
+        <section id="awards" class="fade-in">
+            <div class="section-header">
+                <h2>Honors & Awards</h2>
+                <div class="line"></div>
+            </div>
+            
+            <ul class="awards-list-simple">
+                <li class="award-simple-item">
+                    <span class="award-name">Early Career Talent Fellowship</span>, <span class="award-org">China Association for Science & Technology</span>
+                </li>
+                <li class="award-simple-item">
+                    <span class="award-name">Early-Career Award</span>, <span class="award-org">National Natural Science Foundation of China</span>
+                </li>
+                <li class="award-simple-item">
+                    <span class="award-name">World’s Top 2% Scientists</span>, <span class="award-org">Stanford</span>
+                </li>
+                <li class="award-simple-item">
+                    <span class="award-name">National Early-Career Innovation Award</span>, <span class="award-org">Ministry of Education, China</span>
+                </li>
+                <li class="award-simple-item">
+                    <span class="award-name">National Training Program of Innovation Fellowship</span>, <span class="award-org">Ministry of Education, China</span>
+                </li>
+                <li class="award-simple-item">
+                    <span class="award-name">National Scholarship</span>, <span class="award-org">2017; 2020; 2022; 2024, Ministry of Education, China</span>
+                </li>
+                <li class="award-simple-item">
+                    <span class="award-name">Sidney & Joan Pestka Award</span>, <span class="award-org">International Cytokine & Interferon Society (ICIS)</span>
+                </li>
+                <li class="award-simple-item">
+                    <span class="award-name">APASL Young Investigator Award</span>, <span class="award-org">Asian Pacific Association for the Study of the Liver (APASL)</span>
+                </li>
+                <li class="award-simple-item">
+                    <span class="award-name">IUBMB Young Scientist Fellowship</span>, <span class="award-org">Intl. Union of Biochemistry and Molecular Biology (IUBMB)</span>
+                </li>
+                <li class="award-simple-item">
+                    <span class="award-name">APPLE Young Investigator Award</span>, <span class="award-org">Asia-Pacific Primary Liver Cancer Expert Meeting (APPLE)</span>
+                </li>
+                <li class="award-simple-item">
+                    <span class="award-name">Invited Young Scientist</span>, <span class="award-org">Lindau Nobel Laureate Meetings</span>
+                </li>
+                <li class="award-simple-item">
+                    <span class="award-name">Challenge-Cup Grand Prize</span>, <span class="award-org">Ministry of Education, China</span>
+                </li>
+                <li class="award-simple-item">
+                    <span class="award-name">Shanghai Science Rising Star</span>, <span class="award-org">Shanghai Government</span>
+                </li>
+                <li class="award-simple-item">
+                    <span class="award-name">Fudan Academic Star; Fudan Outstanding Honoree; Fudan Fenglin Star</span>, <span class="award-org">Fudan University</span>
+                </li>
+            </ul>
+
+        </section>
+
+        <!-- Beyond Science -->
+        <section id="beyond" class="fade-in">
+             <div class="section-header">
+                <h2>Beyond Science</h2>
+                <div class="line"></div>
+            </div>
+            <div style="text-align: center; color: var(--text-muted); background: white; padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color);">
+                <p style="font-size: 1.15rem; margin-bottom: 1.5rem; color: var(--text-main);">
+                    "I enjoy philosophy, coding, swimming, and traveling."
+                </p>
+                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                    <span style="display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-swimmer" style="color:var(--accent-cyan)"></i> Bronze in Breaststroke (Fudan)</span>
+                    <span style="display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-music" style="color:var(--accent-purple)"></i> Erhu Level 10</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Yingcheng Wu (吴英成). Powered by AI & Bio-Intelligence.</p>
+            <p style="font-size: 0.85rem;">Site last updated 2025-11-29</p>
+        </div>
+        
+        <!-- ClustrMaps Embed Container (Replaced with Script) -->
+        <div class="clustrmaps-container" style="width: 300px; margin: 0 auto; overflow: hidden; text-align: center;">
+            <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=8SwR08WZbioiUW8E8oUvkbYbql4odT8G5ORh8MwdDi4&cl=ffffff&w=a"></script>
+        </div>
+    </footer>
+
+    <!-- Particles JS Library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <script>
+        // 1. Initialize Particles.js (Light Mode)
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 50, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#94a3b8" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.4, "random": true },
+                "size": { "value": 3, "random": true },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#cbd5e1",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": { "enable": true, "speed": 1, "direction": "none", "random": false, "out_mode": "out" }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" },
+                    "onclick": { "enable": true, "mode": "push" }
+                },
+                "modes": {
+                    "grab": { "distance": 140, "line_linked": { "opacity": 0.8 } }
+                }
+            },
+            "retina_detect": true
+        });
+
+        // 2. Scroll Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(section => {
+            observer.observe(section);
+        });
+
+        // 3. Typing Animation
+        const textElement = document.getElementById('typing-text');
+        const words = ["Science", "Medicine", "Immunology", "Discovery"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typeSpeed = 100;
+
+        function type() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                textElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+                typeSpeed = 50; // Faster deleting
+            } else {
+                textElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+                typeSpeed = 150; // Normal typing
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                isDeleting = true;
+                typeSpeed = 2000; // Pause at end of word
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeSpeed = 500; // Pause before new word
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        // Start typing animation after load
+        document.addEventListener('DOMContentLoaded', type);
+    </script>
+</body>
+</html>
