@@ -452,7 +452,164 @@
             text-align: center;
         }
 
+
+        /* --- Overview Text Animation --- */
+        .about-text p {
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        /* First paragraph: Typing effect */
+        .about-text p:nth-child(1) {
+            animation: typingFirst 1.5s steps(50, end) forwards;
+            animation-delay: 0.3s;
+            border-right: 2px solid var(--accent-cyan);
+            white-space: nowrap;
+            max-width: 0;
+        }
+
+        .about-text p:nth-child(1).typing-done {
+            border-right: none;
+            max-width: 100%;
+            white-space: normal;
+        }
+
+        /* Other paragraphs: Fade in with slide up */
+        .about-text p:nth-child(2) {
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 2.0s;
+            transform: translateY(20px);
+        }
+
+        .about-text p:nth-child(3) {
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 2.8s;
+            transform: translateY(20px);
+        }
+
+        /* Last paragraph: Typing effect with cursor */
+        .about-text p:nth-child(4) {
+            animation: typingLast 2s steps(60, end) forwards, blinkCursor 1s step-end infinite;
+            animation-delay: 3.6s, 5.6s;
+            border-right: 3px solid var(--accent-cyan);
+            white-space: nowrap;
+            max-width: 0;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes typingFirst {
+            from { max-width: 0; opacity: 1; }
+            to { max-width: 100%; opacity: 1; white-space: normal; }
+        }
+
+        @keyframes typingLast {
+            from { max-width: 0; opacity: 1; }
+            to { max-width: 100%; opacity: 1; }
+        }
+
+        @keyframes blinkCursor {
+            from, to { border-color: var(--accent-cyan); }
+            50% { border-color: transparent; }
+        }
+
         /* --- Mobile Responsive --- */
+
+        /* --- Journal Covers Animation --- */
+        .journal-covers-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .journal-cover {
+            opacity: 0;
+            border-radius: 12px;
+            box-shadow: var(--shadow-hover);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .journal-cover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.15), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .journal-cover img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+        }
+
+        /* Scroll animation - covers accumulate (3s cycle, quick intervals) */
+        .journal-cover.cell { 
+            animation: scrollInCell 3s ease-in-out infinite;
+        }
+        .journal-cover.science { 
+            animation: scrollInScience 3s ease-in-out infinite;
+        }
+        .journal-cover.nature { 
+            animation: scrollInNature 3s ease-in-out infinite;
+        }
+
+        /* Cell: appears immediately */
+        @keyframes scrollInCell {
+            0%, 8% {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            12%, 100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Science: appears at 0.8s (27% of 3s) */
+        @keyframes scrollInScience {
+            0%, 23% {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            30%, 100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Nature: appears at 1.6s (53% of 3s) */
+        @keyframes scrollInNature {
+            0%, 50% {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            57%, 100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .journal-caption {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
         @media (max-width: 768px) {
             .hero-name { font-size: 2.2rem; }
             .cn-name { display: block; margin: 0.5rem 0 0 0; font-size: 1.6rem; }
@@ -549,11 +706,12 @@
                     <p>I am an MD-PhD Candidate & incoming Stanford AI<sup>2</sup> Fellow in AI & Medicine.</p>
                     <p>
                         I developed
-                        <a href="https://medos-ai.github.io/" target="_blank" style="color: var(--accent-cyan); text-decoration: none; font-weight: 600;">MedOS</a> 
+                        <a href="https://labclaw-ai.github.io/" target="_blank" style="color: var(--accent-cyan); text-decoration: none; font-weight: 600;">LabClaw</a>,
+                        <a href="https://medos-ai.github.io/" target="_blank" style="color: var(--accent-cyan); text-decoration: none; font-weight: 600;">MedOS</a>, 
                         and 
                         <a href="https://github.com/wu-yc/scMetabolism" target="_blank" style="color: var(--accent-cyan); text-decoration: none; font-weight: 600;">scMetabolism</a>, 
                         and organized 
-                        <a href="https://openio-consortium.github.io/" target="_blank" style="color: var(--accent-cyan); text-decoration: none; font-weight: 600;">OpenIO Consortium</a>.
+                        <a href="https://openio-consortium.github.io/" target="_blank" style="color: var(--accent-cyan); text-decoration: none; font-weight: 600;">OpenIO</a>.
                     </p>
                     <p>
                         With works in <strong>Cell</strong>, <strong>Science</strong>, & <strong>Nature</strong>, I am advised by
@@ -572,6 +730,31 @@
             </div>
         </section>
 
+
+        <!-- Videos Section -->
+        <section id="videos" class="fade-in">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow-sm);">
+                    <video id="video1" autoplay muted loop playsinline preload="auto" style="width: 100%; border-radius: 8px; box-shadow: var(--shadow-md);">
+                        <source src="./logo/video1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p style="text-align: center; margin-top: 1rem; color: var(--text-muted); font-size: 0.95rem;">
+                        LabClaw🦞
+                    </p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow-sm);">
+                    <video id="video2" controls preload="auto" style="width: 100%; border-radius: 8px; box-shadow: var(--shadow-md);">
+                        <source src="./logo/video2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p style="text-align: center; margin-top: 1rem; color: var(--text-muted); font-size: 0.95rem;">
+                        MedOS World Model
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <!-- Publications Section -->
         <section id="publications" class="fade-in">
             <div class="section-header">
@@ -580,11 +763,19 @@
             </div>
 
 
-<div class="pub-card">
+<div class="pub-card" style="text-align: center; padding: 2.5rem; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
                     <div class="pub-content">
-                        <p align="center">
-<img width="308" alt="image" src="https://github.com/user-attachments/assets/1984b33d-7a7b-43fa-be3d-0b82f9eb40a6" />
-</p>
+                        <div class="journal-covers-container">
+                            <div class="journal-cover cell" style="width: 100px;">
+                                <img src="./logo/cell_cover.jpg" alt="Cell Journal Cover" />
+                            </div>
+                            <div class="journal-cover science" style="width: 100px;">
+                                <img src="./logo/science_cover.jpg" alt="Science Journal Cover" />
+                            </div>
+                            <div class="journal-cover nature" style="width: 100px;">
+                                <img src="./logo/nature_cover.jpg" alt="Nature Journal Cover" />
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -897,7 +1088,19 @@
             setTimeout(type, typeSpeed);
         }
 
-        // Start typing animation after load
+
+        // 4. Typing Animation Completion Handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstParagraph = document.querySelector('.about-text p:nth-child(1)');
+            if (firstParagraph) {
+                setTimeout(function() {
+                    firstParagraph.classList.add('typing-done');
+                }, 2000); // Remove cursor after typing completes
+            }
+        });
+
+
+                // Start typing animation after load
         document.addEventListener('DOMContentLoaded', type);
     </script>
 </body>
