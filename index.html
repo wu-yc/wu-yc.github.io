@@ -16,25 +16,52 @@
 
     <style>
         :root {
-            /* Light Theme Variables */
-            --bg-main: #f8fafc;       /* 浅灰白背景 */
-            --bg-card: #ffffff;       /* 纯白卡片 */
-            --text-main: #0f172a;     /* 深邃黑蓝文字 */
-            --text-muted: #64748b;    /* 次级灰文字 */
-            --border-color: #e2e8f0;  /* 浅色边框 */
+            /* Enhanced Color Palette */
+            --bg-main: #fafbfc;                    /* 更纯净的浅色背景 */
+            --bg-card: #ffffff;                    /* 纯白卡片 */
+            --bg-card-hover: #fdfdfd;              /* 卡片hover背景 */
+            --text-main: #1a1a2e;                 /* 更深邃的主文字 */
+            --text-muted: #5a6b7c;                /* 更柔和的次要文字 */
+            --text-light: #8b95a5;                /* 浅色文字 */
+            --border-color: #e8ecf1;              /* 更精致的边框 */
+            --border-light: #f0f3f7;              /* 浅色边框 */
             
-            /* Accents (Keep the brand colors) */
-            --accent-cyan: #0891b2;   /* 加深一点的青色，适应白底 */
-            --accent-purple: #7c3aed; /* 加深一点的紫色 */
-            --accent-green: #059669;  /* Nature Green */
-            --accent-red: #dc2626;    /* Cell Red */
-            --accent-gold: #d97706;   /* Science Gold */
+            /* Accent Colors - Enhanced */
+            --accent-cyan: #06b6d4;               /* 更亮的青色 */
+            --accent-cyan-light: #22d3ee;         /* 浅青色 */
+            --accent-purple: #8b5cf6;             /* 更现代的紫色 */
+            --accent-green: #10b981;              /* 更鲜艳的绿色 */
+            --accent-red: #ef4444;                /* 更鲜亮的红色 */
+            --accent-gold: #f59e0b;               /* 更明亮的金色 */
             
-            --font-main: 'Inter', sans-serif;
-            --font-code: 'JetBrains Mono', monospace;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-card: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
+            --gradient-hover: linear-gradient(135deg, #fdfdfd 0%, #f8fafc 100%);
+            
+            /* Enhanced Shadows */
+            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.04), 0 1px 2px -1px rgb(0 0 0 / 0.04);
+            --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.06), 0 2px 8px -2px rgb(0 0 0 / 0.04);
+            --shadow-lg: 0 10px 25px -5px rgb(0 0 0 / 0.08), 0 8px 16px -6px rgb(0 0 0 / 0.04);
+            --shadow-hover: 0 20px 35px -10px rgb(0 0 0 / 0.12), 0 8px 20px -8px rgb(0 0 0 / 0.06);
+            --shadow-glow: 0 0 20px rgba(6, 182, 212, 0.15);
+            
+            /* Typography */
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-code: 'JetBrains Mono', 'SF Mono', Monaco, monospace;
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-full: 9999px;
         }
 
         * {
@@ -64,53 +91,77 @@
             background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f1f5f9 100%);
         }
 
-        /* --- 导航栏 --- */
+        /* --- Enhanced Navigation --- */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 1.2rem 5%;
+            padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
         }
 
         .nav-logo {
             font-family: var(--font-code);
-            font-weight: 700;
-            font-size: 1.5rem;
+            font-weight: 800;
+            font-size: 1.4rem;
             color: var(--text-main);
-            letter-spacing: -0.5px;
+            letter-spacing: -0.8px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: transform 0.3s ease;
         }
 
-        .nav-logo span {
-            color: var(--accent-cyan);
+        .nav-logo:hover {
+            transform: scale(1.02);
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             list-style: none;
         }
 
         .nav-links a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: -0.2px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-cyan);
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .nav-links a:hover {
             color: var(--accent-cyan);
         }
 
-        /* --- Hero Section with Typing Animation --- */
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* --- Enhanced Hero Section --- */
         .hero {
             min-height: 90vh;
             display: flex;
@@ -122,19 +173,20 @@
             position: relative;
         }
 
-        /* 已移除 .hero-tag */
-
         .hero-name {
-            font-size: 3rem; /* 调小了字号 */
-            font-weight: 800;
+            font-size: 3.2rem;
+            font-weight: 900;
             line-height: 1.1;
-            letter-spacing: -0.03em;
-            color: var(--text-main);
+            letter-spacing: -0.04em;
             margin-bottom: 0.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .cn-name {
-            font-size: 2rem; /* 调小了字号 */
+            font-size: 2.2rem;
             font-weight: 400;
             margin-left: 15px;
             color: var(--text-muted);
@@ -142,15 +194,16 @@
         }
 
         .hero-title {
-            font-size: 4rem;
+            font-size: 1.5rem;
             color: var(--text-muted);
-            margin-bottom: 2.5rem;
-            font-weight: 300;
-            height: 3rem; /* Fixed height to prevent layout shift */
+            margin-bottom: 3rem;
+            font-weight: 400;
+            height: 2.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            letter-spacing: -0.2px;
         }
 
         /* Dynamic Typing Text Styles */
@@ -164,7 +217,7 @@
         .cursor {
             display: inline-block;
             width: 3px;
-            background-color: var(--accent-cyan);
+            background: var(--accent-cyan);
             animation: blink 1s infinite;
             margin-left: 2px;
             height: 1.2em;
@@ -183,41 +236,67 @@
             justify-content: center;
         }
 
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* --- Enhanced Buttons --- */
         .btn {
-            padding: 0.8rem 1.8rem;
-            border-radius: 8px;
+            padding: 0.85rem 2rem;
+            border-radius: var(--radius-md);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            letter-spacing: -0.3px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             gap: 0.6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn-primary {
-            background: var(--text-main);
+            background: var(--gradient-primary);
             color: white;
-            border: 1px solid var(--text-main);
-            box-shadow: var(--shadow-md);
+            border: none;
+            box-shadow: var(--shadow-md), var(--shadow-glow);
         }
 
         .btn-primary:hover {
-            background: transparent;
-            color: var(--text-main);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
         }
 
         .btn-outline {
             background: white;
-            border: 1px solid var(--border-color);
+            border: 1.5px solid var(--border-color);
             color: var(--text-main);
             box-shadow: var(--shadow-sm);
         }
 
         .btn-outline:hover {
-            border-color: var(--text-main);
-            transform: translateY(-2px);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            transform: translateY(-3px);
             box-shadow: var(--shadow-md);
         }
 
@@ -228,8 +307,9 @@
             padding: 5rem 1.5rem;
         }
 
+        /* --- Enhanced Sections --- */
         section {
-            margin-bottom: 8rem;
+            margin-bottom: 6rem;
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s ease-out;
@@ -244,31 +324,42 @@
             margin-bottom: 3rem;
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
         .section-header h2 {
-            font-size: 2.2rem;
-            font-weight: 700;
+            font-size: 2rem;
+            font-weight: 800;
             color: var(--text-main);
+            letter-spacing: -0.5px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .line {
             height: 2px;
             flex-grow: 1;
-            background: var(--border-color);
+            background: linear-gradient(90deg, var(--border-color) 0%, transparent 100%);
             border-radius: 2px;
         }
 
-        /* --- About Card --- */
+        /* --- Enhanced Cards --- */
         .about-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
+            background: var(--gradient-card);
+            border: 1px solid var(--border-light);
             padding: 3rem;
-            border-radius: 16px;
+            border-radius: var(--radius-lg);
             box-shadow: var(--shadow-md);
             position: relative;
             overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .about-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
         }
         
         .about-card::before {
@@ -276,9 +367,21 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 6px;
+            width: 4px;
             height: 100%;
-            background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-purple));
+            background: var(--gradient-primary);
+            opacity: 0.8;
+        }
+
+        .about-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.03) 0%, transparent 70%);
+            border-radius: 50%;
         }
 
         .about-text p {
@@ -303,20 +406,39 @@
             gap: 2rem;
         }
 
+        /* --- Enhanced Publication Cards --- */
         .pub-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
+            background: var(--gradient-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
             padding: 2rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+
+        .pub-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .pub-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-6px);
             box-shadow: var(--shadow-hover);
-            border-color: var(--accent-cyan);
+            border-color: var(--accent-cyan-light);
+        }
+
+        .pub-card:hover::before {
+            transform: scaleX(1);
         }
 
         .pub-header {
@@ -357,69 +479,112 @@
             border-top: 1px solid var(--border-color);
         }
 
+        /* --- Enhanced Journal Tags --- */
         .journal-tag {
-            padding: 0.3rem 0.8rem;
-            border-radius: 6px;
+            padding: 0.4rem 1rem;
+            border-radius: var(--radius-sm);
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             display: inline-block;
+            letter-spacing: -0.2px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .journal-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
         .pub-year-badge {
-            background: var(--text-main);
+            background: var(--gradient-primary);
             color: white;
             font-family: var(--font-code);
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
             font-weight: 700;
+            box-shadow: var(--shadow-sm);
         }
 
-        /* Specific Journal Styles */
-        .tag-cell { background: #fee2e2; color: var(--accent-red); }
-        .tag-science { background: #fef3c7; color: var(--accent-gold); }
-        .tag-nature { background: #d1fae5; color: var(--accent-green); }
-        .tag-cd { background: #cffafe; color: var(--accent-cyan); }
-        .tag-normal { background: #f1f5f9; color: var(--text-muted); }
+        /* Specific Journal Styles - Enhanced */
+        .tag-cell { 
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); 
+            color: var(--accent-red);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+        .tag-science { 
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); 
+            color: var(--accent-gold);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+        .tag-nature { 
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); 
+            color: var(--accent-green);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        .tag-cd { 
+            background: linear-gradient(135deg, #cffafe 0%, #a5f3fc 100%); 
+            color: var(--accent-cyan);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+        .tag-normal { 
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); 
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+        }
 
+        /* --- Enhanced News Badges --- */
         .news-badge {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
             display: flex;
             align-items: center;
             gap: 0.4rem;
-            background: #f8fafc;
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            border: 1px solid var(--border-color);
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 0.3rem 0.7rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
         }
 
-        /* --- Awards List (Simple Style) --- */
+        .news-badge:hover {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* --- Enhanced Awards List --- */
         .awards-list-simple {
             display: flex;
             flex-direction: column;
-            gap: 1.2rem;
+            gap: 1rem;
             padding-left: 0;
             list-style: none;
         }
 
         .award-simple-item {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: var(--text-main);
             display: block;
-            line-height: 1.5;
-            padding-left: 1rem;
+            line-height: 1.6;
+            padding: 0.8rem 1rem;
             border-left: 3px solid transparent;
-            transition: all 0.3s ease;
+            background: var(--gradient-card);
+            border-radius: var(--radius-sm);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border-light);
         }
 
         .award-simple-item:hover {
             border-left-color: var(--accent-cyan);
-            transform: translateX(5px);
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
+            background: var(--gradient-hover);
         }
 
         .award-name {
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text-main);
         }
 
@@ -428,12 +593,12 @@
             font-weight: 400;
         }
 
-        /* --- Footer --- */
+        /* --- Enhanced Footer --- */
         footer {
             text-align: center;
             padding: 4rem 2rem;
-            border-top: 1px solid var(--border-color);
-            background: white;
+            border-top: 1px solid var(--border-light);
+            background: linear-gradient(180deg, var(--bg-main) 0%, #ffffff 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -443,6 +608,7 @@
         .footer-content p {
             color: var(--text-muted);
             margin-bottom: 0.5rem;
+            font-size: 0.95rem;
         }
 
         .clustrmaps-container {
@@ -450,63 +616,16 @@
             margin: 0 auto; 
             overflow: hidden; 
             text-align: center;
+            padding: 1rem;
+            background: var(--gradient-card);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
         }
 
 
-        /* --- Overview Text Animation --- */
+        /* --- Overview Text --- */
         .about-text p {
-            opacity: 0;
-            overflow: hidden;
-        }
-
-        /* First paragraph: Typing effect */
-        .about-text p:nth-child(1) {
-            animation: typingFirst 1.5s steps(50, end) forwards;
-            animation-delay: 0.3s;
-            border-right: 2px solid var(--accent-cyan);
-            white-space: nowrap;
-            max-width: 0;
-        }
-
-        .about-text p:nth-child(1).typing-done {
-            border-right: none;
-            max-width: 100%;
-            white-space: normal;
-        }
-
-        /* Other paragraphs: Fade in with slide up */
-        .about-text p:nth-child(2) {
-            animation: fadeInUp 0.8s ease-out forwards;
-            animation-delay: 2.0s;
-            transform: translateY(20px);
-        }
-
-        .about-text p:nth-child(3) {
-            animation: fadeInUp 0.8s ease-out forwards;
-            animation-delay: 2.8s;
-            transform: translateY(20px);
-        }
-
-        /* Last paragraph: Typing effect with cursor */
-        .about-text p:nth-child(4) {
-            animation: typingLast 2s steps(60, end) forwards, blinkCursor 1s step-end infinite;
-            animation-delay: 3.6s, 5.6s;
-            border-right: 3px solid var(--accent-cyan);
-            white-space: nowrap;
-            max-width: 0;
-            font-weight: 500;
-            color: var(--text-main);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            opacity: 1;
         }
 
         @keyframes typingFirst {
@@ -1089,15 +1208,7 @@
         }
 
 
-        // 4. Typing Animation Completion Handler
-        document.addEventListener('DOMContentLoaded', function() {
-            const firstParagraph = document.querySelector('.about-text p:nth-child(1)');
-            if (firstParagraph) {
-                setTimeout(function() {
-                    firstParagraph.classList.add('typing-done');
-                }, 2000); // Remove cursor after typing completes
-            }
-        });
+
 
 
                 // Start typing animation after load
