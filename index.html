@@ -100,8 +100,8 @@
             justify-content: space-between;
             align-items: center;
             background: rgba(248, 250, 252, 0.58);
-            backdrop-filter: blur(26px);
-            -webkit-backdrop-filter: blur(26px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.7);
             box-shadow: 0 18px 34px -32px rgba(15, 23, 42, 0.3);
@@ -1319,8 +1319,9 @@
     <!-- Hero Section -->
     <header class="hero">
         <div class="hero-video" aria-hidden="true">
-            <video autoplay muted loop playsinline preload="auto">
-                <source src="./logo/first.mp4" type="video/mp4">
+            <video class="lazy-video" data-lazy data-autoplay data-desktop-only
+                   muted loop playsinline preload="none" poster="./logo/first_poster.jpg">
+                <source data-src="./logo/first.mp4" type="video/mp4">
             </video>
         </div>
         <div class="hero-overlay" aria-hidden="true"></div>
@@ -1387,15 +1388,15 @@
         <section id="videos" class="fade-in">
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
                 <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow-sm);">
-                    <video id="video1" autoplay muted loop playsinline preload="auto" style="width: 100%; border-radius: 8px; box-shadow: var(--shadow-md);">
-                        <source src="./logo/video1.mp4" type="video/mp4">
+                    <video id="video1" class="lazy-video" data-lazy data-autoplay muted loop playsinline preload="none" poster="./logo/video1_poster.jpg" style="width: 100%; border-radius: 8px; box-shadow: var(--shadow-md); aspect-ratio: 16/9; background: #e9edf2;">
+                        <source data-src="./logo/video1.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <p class="video-caption">LabClaw</p>
                 </div>
                 <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow-sm);">
-                    <video id="video2" controls preload="auto" style="width: 100%; border-radius: 8px; box-shadow: var(--shadow-md);">
-                        <source src="./logo/video2.mp4" type="video/mp4">
+                    <video id="video2" class="lazy-video" data-lazy controls preload="none" poster="./logo/video2_poster.jpg" style="width: 100%; border-radius: 8px; box-shadow: var(--shadow-md); aspect-ratio: 16/9; background: #e9edf2;">
+                        <source data-src="./logo/video2.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <p class="video-caption">MedOS World Model</p>
@@ -1408,13 +1409,13 @@
             <div class="publication-backdrop" aria-hidden="true">
                 <div class="publication-cover-cluster">
                     <figure class="publication-cover cell">
-                        <img src="./logo/cell_cover.jpg" alt="" />
+                        <img src="./logo/cell_cover.jpg" alt="" loading="lazy" decoding="async" />
                     </figure>
                     <figure class="publication-cover science">
-                        <img src="./logo/science_cover.jpg" alt="" />
+                        <img src="./logo/science_cover.jpg" alt="" loading="lazy" decoding="async" />
                     </figure>
                     <figure class="publication-cover nature">
-                        <img src="./logo/nature_cover.jpg" alt="" />
+                        <img src="./logo/nature_cover.jpg" alt="" loading="lazy" decoding="async" />
                     </figure>
                 </div>
             </div>
@@ -1664,52 +1665,127 @@
         </div>
     </footer>
 
-    <!-- Particles JS Library -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Particles JS Library (deferred so it never blocks first paint) -->
+    <script defer src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <script>
-        // 1. Initialize Particles.js (Light Mode)
-        particlesJS("particles-js", {
-            "particles": {
-                "number": { "value": 28, "density": { "enable": true, "value_area": 900 } },
-                "color": { "value": "#b3becc" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.2, "random": true },
-                "size": { "value": 2.2, "random": true },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 164,
-                    "color": "#d7dee8",
-                    "opacity": 0.24,
-                    "width": 1
-                },
-                "move": { "enable": true, "speed": 0.65, "direction": "none", "random": false, "out_mode": "out" }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": { "enable": true, "mode": "grab" },
-                    "onclick": { "enable": true, "mode": "push" }
-                },
-                "modes": {
-                    "grab": { "distance": 132, "line_linked": { "opacity": 0.45 } }
-                }
-            },
-            "retina_detect": true
-        });
+    (function () {
+        'use strict';
+        var mq = window.matchMedia || function () { return { matches: false }; };
+        var reduceMotion = mq('(prefers-reduced-motion: reduce)').matches;
+        var smallScreen = mq('(max-width: 640px)').matches;
 
-        // 2. Scroll Animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+        // 1. Lazy-load videos: defer the heavy downloads until they're near the viewport.
+        function loadVideo(video) {
+            if (video.dataset.loaded) return;
+            video.dataset.loaded = '1';
+            var sources = video.querySelectorAll('source[data-src]');
+            for (var i = 0; i < sources.length; i++) {
+                sources[i].src = sources[i].getAttribute('data-src');
+                sources[i].removeAttribute('data-src');
+            }
+            video.load();
+            if (video.hasAttribute('data-autoplay')) {
+                var p = video.play();
+                if (p && p.catch) { p.catch(function () {}); }
+            }
+        }
+
+        var lazyVideos = Array.prototype.slice.call(document.querySelectorAll('video[data-lazy]'))
+            // The hero video is purely decorative — skip its download on phones / reduced-motion.
+            .filter(function (v) {
+                return !(v.hasAttribute('data-desktop-only') && (smallScreen || reduceMotion));
             });
-        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.fade-in').forEach(section => {
-            observer.observe(section);
-        });
+        if ('IntersectionObserver' in window) {
+            var videoObserver = new IntersectionObserver(function (entries, obs) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        loadVideo(entry.target);
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: '400px 0px' });
+            lazyVideos.forEach(function (v) { videoObserver.observe(v); });
+        } else {
+            lazyVideos.forEach(loadVideo);
+        }
+
+        // 2. Scroll reveal (cheap — run immediately).
+        if ('IntersectionObserver' in window) {
+            var sectionObserver = new IntersectionObserver(function (entries, obs) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-in').forEach(function (s) { sectionObserver.observe(s); });
+        } else {
+            document.querySelectorAll('.fade-in').forEach(function (s) { s.classList.add('visible'); });
+        }
+
+        // 3. Particles background — skip on mobile/reduced-motion, otherwise init when idle.
+        var particlesEl = document.getElementById('particles-js');
+        if (reduceMotion || smallScreen) {
+            if (particlesEl) { particlesEl.style.display = 'none'; }
+            return;
+        }
+
+        function initParticles() {
+            if (typeof particlesJS === 'undefined') { setTimeout(initParticles, 200); return; }
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": { "value": 28, "density": { "enable": true, "value_area": 900 } },
+                    "color": { "value": "#b3becc" },
+                    "shape": { "type": "circle" },
+                    "opacity": { "value": 0.2, "random": true },
+                    "size": { "value": 2.2, "random": true },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 164,
+                        "color": "#d7dee8",
+                        "opacity": 0.24,
+                        "width": 1
+                    },
+                    "move": { "enable": true, "speed": 0.65, "direction": "none", "random": false, "out_mode": "out" }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": { "enable": true, "mode": "grab" },
+                        "onclick": { "enable": true, "mode": "push" }
+                    },
+                    "modes": {
+                        "grab": { "distance": 132, "line_linked": { "opacity": 0.45 } }
+                    }
+                },
+                // retina_detect:true rendered the full-screen canvas at 2x — a constant GPU/CPU drain. Off = big win.
+                "retina_detect": false
+            });
+
+            // Pause the canvas animation loop while the tab is hidden to save battery/CPU.
+            document.addEventListener('visibilitychange', function () {
+                try {
+                    var pjs = window.pJSDom && window.pJSDom[0] && window.pJSDom[0].pJS;
+                    if (!pjs) return;
+                    if (document.hidden) {
+                        cancelAnimationFrame(pjs.fn.drawAnimFrame);
+                    } else {
+                        pjs.fn.vendors.draw();
+                    }
+                } catch (e) { /* internal API moved — ignore */ }
+            });
+        }
+
+        var idle = window.requestIdleCallback || function (cb) { return setTimeout(cb, 300); };
+        if (document.readyState === 'complete') {
+            idle(initParticles);
+        } else {
+            window.addEventListener('load', function () { idle(initParticles); });
+        }
+    })();
     </script>
 </body>
 </html>
