@@ -12,7 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
     <style>
         :root {
@@ -70,6 +72,10 @@
             scroll-behavior: smooth;
         }
 
+        html {
+            overflow-x: hidden;
+        }
+
         body {
             font-family: var(--font-main);
             background-color: var(--bg-main);
@@ -94,6 +100,8 @@
         nav {
             position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             width: 100%;
             padding: 0.9rem 5.2%;
             display: flex;
@@ -118,6 +126,7 @@
             letter-spacing: 0;
             text-transform: none;
             transition: transform 0.3s ease;
+            flex-shrink: 0;
         }
 
         .nav-logo:hover {
@@ -148,6 +157,7 @@
             display: flex;
             gap: 2rem;
             list-style: none;
+            min-width: 0;
         }
 
         .nav-links a {
@@ -255,6 +265,7 @@
             color: var(--text-main);
             text-wrap: balance;
             max-width: 15ch;
+            overflow-wrap: normal;
         }
 
         .cn-name {
@@ -371,14 +382,22 @@
         /* --- Enhanced Sections --- */
         section {
             margin-bottom: 5.25rem;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
+        }
+
+        section.fade-in {
+            opacity: 1;
+            transform: none;
+            transition: none;
         }
 
         section.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        .container > section {
+            content-visibility: auto;
+            contain-intrinsic-size: 1px 560px;
         }
 
         .section-header {
@@ -1014,22 +1033,40 @@
         }
 
         @media (max-width: 768px) {
+            :root {
+                --shadow-sm: 0 10px 22px -20px rgba(15, 23, 42, 0.16);
+                --shadow-md: 0 14px 28px -24px rgba(15, 23, 42, 0.18);
+                --shadow-lg: 0 18px 34px -28px rgba(15, 23, 42, 0.2);
+            }
+
+            body {
+                letter-spacing: 0;
+            }
+
             nav {
                 padding: 0.82rem 1rem;
+                background: rgba(248, 250, 252, 0.94);
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
             }
+
             .hero {
-                min-height: 100svh;
-                padding: 5.75rem 1rem 3rem;
+                min-height: min(760px, 84svh);
+                padding: 5.5rem 1rem 2.6rem;
             }
             .hero-content { gap: 1.05rem; }
-            .hero-video video { transform: scale(1.1); }
+            .hero-video { display: none; }
+            .hero-overlay {
+                background:
+                    radial-gradient(circle at 50% 22%, rgba(255, 255, 255, 0.9) 0%, rgba(245, 248, 252, 0.66) 44%, rgba(238, 242, 247, 0.92) 100%);
+            }
             .nav-logo { gap: 0.38rem; font-size: 0.74rem; }
             .nav-logo-mark { font-size: 0.78rem; letter-spacing: 0.13em; }
             .nav-logo-meta { display: none; }
-            .hero-name { font-size: 3.1rem; line-height: 0.98; max-width: 11ch; }
+            .hero-name { font-size: clamp(2.7rem, 8.5vw, 3.1rem); line-height: 0.98; max-width: min(100%, 11ch); letter-spacing: -0.04em; }
             .cn-name { display: block; margin: 0.45rem 0 0 0; font-size: 1.35rem; }
-            .hero-title { font-size: 1.04rem; letter-spacing: -0.02em; }
-            .hero-lede { font-size: 0.9rem; line-height: 1.68; max-width: 34rem; }
+            .hero-title { font-size: 1.04rem; letter-spacing: -0.02em; max-width: min(100%, 28rem); }
+            .hero-lede { font-size: 0.9rem; line-height: 1.68; max-width: min(100%, 34rem); }
             .social-buttons { gap: 0.5rem 0.8rem; margin-top: 1.6rem; }
             .hero-social-link { font-size: 0.68rem; letter-spacing: 0.03em; padding: 0.18rem 0; }
             .nav-links { display: flex; gap: 0.9rem; }
@@ -1038,8 +1075,18 @@
             .section-header h2 { font-size: 1.36rem; }
             .line { width: 100%; }
             .about-card { padding: 1.6rem 1.35rem; }
+            .about-card,
+            .pub-card,
+            #videos > div > div,
+            #beyond > div:last-child {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
             .about-text p { font-size: 0.98rem; }
             .pub-card { padding: 1.15rem 1.1rem; }
+            #videos video {
+                box-shadow: none !important;
+            }
             #publications { padding: 1.15rem 0.9rem 0; }
             #publications .section-header { margin-bottom: 2.3rem; }
             .publication-backdrop { padding-top: 3.4rem; }
@@ -1050,8 +1097,6 @@
             .publication-cover.nature { top: 2.15rem; right: 2%; transform: rotate(8deg); }
             #publications .pub-card {
                 background: linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.92) 100%);
-                backdrop-filter: blur(12px);
-                -webkit-backdrop-filter: blur(12px);
             }
             .clustrmaps-container {
                 width: min(100%, 280px) !important;
@@ -1065,6 +1110,7 @@
 
             nav {
                 padding: 0.78rem 0.92rem;
+                gap: 0.75rem;
             }
 
             .nav-logo {
@@ -1077,16 +1123,19 @@
             }
 
             .nav-links {
-                gap: 0.72rem;
+                gap: 0.58rem;
+                margin-left: auto;
             }
 
             .nav-links a {
                 font-size: 0.6rem;
                 letter-spacing: 0.08em;
+                white-space: nowrap;
             }
 
             .hero {
-                padding: 5.15rem 1rem 2.6rem;
+                min-height: 78svh;
+                padding: 4.9rem 1rem 2.15rem;
             }
 
             .hero-content {
@@ -1095,18 +1144,19 @@
             }
 
             .hero-name {
-                font-size: clamp(2.5rem, 13vw, 3rem);
-                max-width: 9.5ch;
+                font-size: clamp(2.25rem, 10.5vw, 2.55rem);
+                max-width: min(100%, 11ch);
             }
 
             .hero-title {
                 font-size: 0.96rem;
+                max-width: min(100%, 22rem);
             }
 
             .hero-lede {
                 font-size: 0.9rem;
                 line-height: 1.62;
-                max-width: 28rem;
+                max-width: min(100%, 24rem);
             }
 
             .social-buttons {
@@ -1158,6 +1208,10 @@
                 border-radius: 16px !important;
             }
 
+            #videos video {
+                min-height: 170px;
+            }
+
             .video-caption {
                 margin-top: 0.78rem;
                 font-size: 0.69rem;
@@ -1173,7 +1227,7 @@
             }
 
             .publication-backdrop {
-                padding-top: 2.8rem;
+                display: none;
             }
 
             .publication-cover-cluster {
@@ -1273,7 +1327,37 @@
             }
         }
 
+        @media (max-width: 380px) {
+            nav {
+                padding: 0.72rem 0.75rem;
+            }
+
+            .nav-links {
+                gap: 0.5rem;
+            }
+
+            .nav-links a {
+                font-size: 0.56rem;
+                letter-spacing: 0.06em;
+            }
+
+            .hero-name {
+                font-size: clamp(2.08rem, 11vw, 2.42rem);
+            }
+
+            .social-buttons {
+                grid-template-columns: 1fr;
+                justify-items: center;
+                gap: 0.45rem;
+            }
+        }
+
         @media (prefers-reduced-motion: reduce) {
+            section.fade-in {
+                transition: none !important;
+                transform: none !important;
+            }
+
             .publication-backdrop,
             .publication-cover-cluster,
             .publication-cover,
@@ -1320,7 +1404,8 @@
     <header class="hero">
         <div class="hero-video" aria-hidden="true">
             <video class="lazy-video" data-lazy data-autoplay data-desktop-only
-                   muted loop playsinline preload="none" poster="./logo/first_poster.jpg">
+                   data-load-after-idle data-load-delay="1200" data-poster="./logo/first_poster.jpg"
+                   muted loop playsinline preload="none">
                 <source data-src="./logo/first.mp4" type="video/mp4">
             </video>
         </div>
@@ -1643,6 +1728,7 @@
                     Coder. 
                     Philosophy fans. 
                     AI enthusiast. 
+                    I love traveling (25+ countries).
                 </p>
                 <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
                     <span style="display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-swimmer" style="color:var(--accent-cyan)"></i> Bronze in Breaststroke (Fudan)</span>
@@ -1661,7 +1747,7 @@
         
         <!-- ClustrMaps Embed Container (Replaced with Script) -->
         <div class="clustrmaps-container" style="width: 300px; margin: 0 auto; overflow: hidden; text-align: center;">
-            <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=8SwR08WZbioiUW8E8oUvkbYbql4odT8G5ORh8MwdDi4&cl=ffffff&w=a"></script>
+            <script async defer type="text/javascript" id="clustrmaps" src="https://clustrmaps.com/map_v2.js?d=8SwR08WZbioiUW8E8oUvkbYbql4odT8G5ORh8MwdDi4&cl=ffffff&w=a"></script>
         </div>
     </footer>
 
@@ -1673,31 +1759,90 @@
         'use strict';
         var mq = window.matchMedia || function () { return { matches: false }; };
         var reduceMotion = mq('(prefers-reduced-motion: reduce)').matches;
-        var smallScreen = mq('(max-width: 640px)').matches;
+        var smallScreen = mq('(max-width: 768px)').matches;
+        var coarsePointer = mq('(pointer: coarse)').matches;
+        var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        var saveData = !!(connection && (connection.saveData || /(^|-)2g$/.test(connection.effectiveType || '')));
+        var conserveData = smallScreen || coarsePointer || saveData;
+        var raf = window.requestAnimationFrame || function (cb) { return setTimeout(cb, 16); };
 
-        // 1. Lazy-load videos: defer the heavy downloads until they're near the viewport.
+        function idle(callback) {
+            if (window.requestIdleCallback) {
+                window.requestIdleCallback(callback, { timeout: 2000 });
+            } else {
+                setTimeout(callback, 300);
+            }
+        }
+
+        function runAfterFirstPaint(callback) {
+            var done = false;
+            function run() {
+                if (done) return;
+                done = true;
+                callback();
+            }
+            raf(function () { raf(run); });
+            setTimeout(run, 120);
+        }
+
+        function playVideo(video) {
+            var p = video.play();
+            if (p && p.catch) { p.catch(function () {}); }
+        }
+
+        // 1. Lazy-load videos without letting decorative video compete with first paint.
         function loadVideo(video) {
             if (video.dataset.loaded) return;
             video.dataset.loaded = '1';
+            if (video.dataset.poster && !video.poster) {
+                video.poster = video.dataset.poster;
+            }
             var sources = video.querySelectorAll('source[data-src]');
             for (var i = 0; i < sources.length; i++) {
                 sources[i].src = sources[i].getAttribute('data-src');
                 sources[i].removeAttribute('data-src');
             }
             video.load();
-            if (video.hasAttribute('data-autoplay')) {
-                var p = video.play();
-                if (p && p.catch) { p.catch(function () {}); }
+            if (video.hasAttribute('data-autoplay') || video.dataset.userStarted) {
+                if (video.readyState >= 3) {
+                    playVideo(video);
+                } else {
+                    video.addEventListener('canplay', function () { playVideo(video); }, { once: true });
+                }
             }
         }
 
         var lazyVideos = Array.prototype.slice.call(document.querySelectorAll('video[data-lazy]'))
             // The hero video is purely decorative — skip its download on phones / reduced-motion.
             .filter(function (v) {
-                return !(v.hasAttribute('data-desktop-only') && (smallScreen || reduceMotion));
+                return !(v.hasAttribute('data-desktop-only') && (conserveData || reduceMotion));
             });
+        var deferredVideos = lazyVideos.filter(function (v) { return v.hasAttribute('data-load-after-idle'); });
+        var viewportVideos = lazyVideos.filter(function (v) { return !v.hasAttribute('data-load-after-idle'); });
 
-        if ('IntersectionObserver' in window) {
+        lazyVideos.forEach(function (video) {
+            if (conserveData && !video.hasAttribute('data-desktop-only')) {
+                video.controls = true;
+            }
+            video.addEventListener('pointerdown', function () {
+                video.dataset.userStarted = '1';
+                loadVideo(video);
+            }, { once: true });
+            video.addEventListener('focus', function () { loadVideo(video); }, { once: true });
+        });
+
+        if (!conserveData) {
+            deferredVideos.forEach(function (video) {
+                var delay = parseInt(video.getAttribute('data-load-delay') || '0', 10);
+                runAfterFirstPaint(function () {
+                    setTimeout(function () {
+                        idle(function () { loadVideo(video); });
+                    }, isNaN(delay) ? 0 : delay);
+                });
+            });
+        }
+
+        if (!conserveData && 'IntersectionObserver' in window) {
             var videoObserver = new IntersectionObserver(function (entries, obs) {
                 entries.forEach(function (entry) {
                     if (entry.isIntersecting) {
@@ -1705,30 +1850,20 @@
                         obs.unobserve(entry.target);
                     }
                 });
-            }, { rootMargin: '400px 0px' });
-            lazyVideos.forEach(function (v) { videoObserver.observe(v); });
-        } else {
-            lazyVideos.forEach(loadVideo);
+            }, { rootMargin: '160px 0px' });
+            viewportVideos.forEach(function (v) { videoObserver.observe(v); });
+        } else if (!conserveData) {
+            viewportVideos.forEach(function (v) { idle(function () { loadVideo(v); }); });
         }
 
-        // 2. Scroll reveal (cheap — run immediately).
-        if ('IntersectionObserver' in window) {
-            var sectionObserver = new IntersectionObserver(function (entries, obs) {
-                entries.forEach(function (entry) {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        obs.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.fade-in').forEach(function (s) { sectionObserver.observe(s); });
-        } else {
-            document.querySelectorAll('.fade-in').forEach(function (s) { s.classList.add('visible'); });
-        }
+        // 2. Keep content visible immediately; video loading is the only lazy work here.
+        Array.prototype.slice.call(document.querySelectorAll('.fade-in')).forEach(function (section) {
+            section.classList.add('visible');
+        });
 
         // 3. Particles background — skip on mobile/reduced-motion, otherwise init when idle.
         var particlesEl = document.getElementById('particles-js');
-        if (reduceMotion || smallScreen) {
+        if (reduceMotion || conserveData) {
             if (particlesEl) { particlesEl.style.display = 'none'; }
             return;
         }
@@ -1779,7 +1914,6 @@
             });
         }
 
-        var idle = window.requestIdleCallback || function (cb) { return setTimeout(cb, 300); };
         if (document.readyState === 'complete') {
             idle(initParticles);
         } else {
