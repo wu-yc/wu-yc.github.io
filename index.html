@@ -203,7 +203,7 @@
             position: relative;
             overflow: hidden;
             isolation: isolate;
-            background: radial-gradient(circle at top, rgba(255, 255, 255, 0.28) 0%, rgba(241, 245, 249, 0.18) 100%);
+            background: radial-gradient(circle at 50% 34%, #101a33 0%, #0a1122 56%, #060912 100%);
         }
 
         .hero > * {
@@ -232,27 +232,26 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.52;
+            opacity: 0.38;
             transform: scale(1.06);
-            filter: saturate(1.12) contrast(1.08) brightness(0.8);
+            filter: saturate(1.15) contrast(1.05) brightness(0.62);
         }
 
         .hero-overlay {
             background:
                 linear-gradient(
                     180deg,
-                    rgba(15, 23, 42, 0.2) 0%,
-                    rgba(15, 23, 42, 0.08) 18%,
-                    rgba(248, 250, 252, 0.08) 42%,
-                    rgba(248, 250, 252, 0.34) 74%,
-                    rgba(248, 250, 252, 0.72) 100%
+                    rgba(6, 9, 18, 0.35) 0%,
+                    rgba(6, 9, 18, 0.05) 26%,
+                    rgba(10, 17, 34, 0) 55%,
+                    rgba(243, 245, 248, 0.55) 88%,
+                    rgba(243, 245, 248, 1) 100%
                 ),
                 radial-gradient(
-                    circle at 50% 38%,
-                    rgba(255, 255, 255, 0.03) 0%,
-                    rgba(255, 255, 255, 0.1) 34%,
-                    rgba(248, 250, 252, 0.22) 60%,
-                    rgba(248, 250, 252, 0.54) 100%
+                    circle at 50% 40%,
+                    rgba(56, 189, 248, 0.08) 0%,
+                    rgba(99, 102, 241, 0.05) 34%,
+                    rgba(6, 9, 18, 0) 62%
                 );
         }
 
@@ -316,9 +315,34 @@
         }
 
         .hero-social-link:hover {
-            color: var(--text-main);
-            border-color: rgba(49, 86, 214, 0.28);
+            color: #ffffff;
+            border-color: rgba(56, 189, 248, 0.55);
             transform: translateY(-1px);
+        }
+
+        /* --- Dark hero theme (makes the neon array pop) --- */
+        .hero-name {
+            color: #f4f8ff;
+        }
+
+        .cn-name {
+            color: rgba(226, 232, 240, 0.72);
+        }
+
+        .hero-title {
+            color: rgba(203, 213, 225, 0.9);
+        }
+
+        .hero-lede {
+            color: rgba(203, 213, 225, 0.82);
+        }
+
+        .hero-lede strong {
+            color: #ffffff;
+        }
+
+        .hero-social-link {
+            color: rgba(226, 232, 240, 0.72);
         }
 
         /* --- Enhanced Buttons --- */
@@ -1058,7 +1082,8 @@
             .hero-video { display: none; }
             .hero-overlay {
                 background:
-                    radial-gradient(circle at 50% 22%, rgba(255, 255, 255, 0.9) 0%, rgba(245, 248, 252, 0.66) 44%, rgba(238, 242, 247, 0.92) 100%);
+                    linear-gradient(180deg, rgba(10, 17, 34, 0) 0%, rgba(10, 17, 34, 0) 62%, rgba(243, 245, 248, 0.7) 90%, rgba(243, 245, 248, 1) 100%),
+                    radial-gradient(circle at 50% 30%, rgba(56, 189, 248, 0.1) 0%, rgba(6, 9, 18, 0) 60%);
             }
             .nav-logo { gap: 0.38rem; font-size: 0.74rem; }
             .nav-logo-mark { font-size: 0.78rem; letter-spacing: 0.13em; }
@@ -1352,7 +1377,47 @@
             }
         }
 
+        /* --- Interactive particle canvas (hero only) --- */
+        .hero-particles {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* --- Cursor-follow glow (hero only) --- */
+        .hero-cursor-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0;
+            transform: translate3d(-50%, -50%, 0);
+            background: radial-gradient(circle,
+                rgba(56, 189, 248, 0.14) 0%,
+                rgba(99, 102, 241, 0.08) 42%,
+                rgba(56, 189, 248, 0) 70%);
+            transition: opacity 0.45s ease;
+            will-change: transform, opacity;
+            mix-blend-mode: screen;
+        }
+
+        .hero-cursor-glow.is-active {
+            opacity: 1;
+        }
+
         @media (prefers-reduced-motion: reduce) {
+            .hero-cursor-glow,
+            .hero-particles {
+                display: none !important;
+            }
+
             section.fade-in {
                 transition: none !important;
                 transform: none !important;
@@ -1410,6 +1475,8 @@
             </video>
         </div>
         <div class="hero-overlay" aria-hidden="true"></div>
+        <div class="hero-cursor-glow" aria-hidden="true"></div>
+        <canvas class="hero-particles" aria-hidden="true"></canvas>
         <div class="hero-content">
             <h1 class="hero-name">
                 Building Physical AGI Scientists
@@ -1553,7 +1620,7 @@
                 <div class="pub-card">
                     <div class="pub-header">
                         <span class="journal-tag tag-cell">Cancer Cell</span>
-                        <span class="pub-year-badge">Cancer Cell, 2026 (In Press)</span>
+                        <span class="pub-year-badge">Cancer Cell, 2026</span>
                     </div>
                     <div class="pub-content">
                         <h3>OpenIO: An Open Framework for AI-Native Immunotherapy</h3>
@@ -1605,6 +1672,34 @@
                     </div>
                 </div>
 
+                <!-- MedGenesis — medRxiv 2026 -->
+                <div class="pub-card">
+                    <div class="pub-header">
+                        <span class="journal-tag tag-normal">medRxiv</span>
+                        <span class="pub-year-badge">medRxiv, 2026</span>
+                    </div>
+                    <div class="pub-content">
+                        <h3><a href="https://www.medrxiv.org/content/10.64898/2026.06.14.26355612v1" target="_blank" style="color: inherit; text-decoration: none;">MedGenesis: Toward a World Model for Autonomous Clinical and Translational Research</a></h3>
+                        <div class="pub-authors">
+                            Hao Xiao, Nan Jiang, Tiancheng Zhang, Zhenfei Yin, Tao Gui, Zhongyue Zhang, Ke Shao, Jiacheng Ge, Rongyuan Wei, Jiaomeng Pan, Jiaqiang Ma, Ling Yang, Zhe Zhao, Jian Zhou, Jia Fan, Yugang Jiang, Philip Torr, Shuangjia Zheng, <strong>Yingcheng Wu*</strong>, Qiang Gao.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GALILEO — bioRxiv 2026 -->
+                <div class="pub-card">
+                    <div class="pub-header">
+                        <span class="journal-tag tag-normal">bioRxiv</span>
+                        <span class="pub-year-badge">bioRxiv, 2026</span>
+                    </div>
+                    <div class="pub-content">
+                        <h3><a href="https://www.biorxiv.org/content/10.64898/2026.06.10.731360v1" target="_blank" style="color: inherit; text-decoration: none;">GALILEO: Embodied AI Scientist for Autonomous Therapeutic Discovery in Dynamic Membrane Systems</a></h3>
+                        <div class="pub-authors">
+                            Nan Jiang, Rongyuan Wei, Hao Xiao, Zhenfei Yin, Xi Wang, Taoyong Cui, Ke Shao, Jian Zhou, Jia Fan, Philip Torr, <strong>Yingcheng Wu*</strong>, Qiang Gao.
+                        </div>
+                    </div>
+                </div>
+
                  <!-- 5. BioRxiv 2025 -->
                  <div class="pub-card">
                     <div class="pub-header">
@@ -1615,9 +1710,6 @@
                         <h3>OriGene: A Self-Evolving Virtual Disease Biologist Automating Therapeutic Target Discovery</h3>
                         <div class="pub-authors">
                             Zhongyue Zhang#, Zijie Qiu#, <strong>Yingcheng Wu#</strong>,..., Lei Bai, Qiang Gao, Siqi Sun, Shuangjia Zheng.
-                        </div>
-                        <div class="pub-meta">
-                            <span class="news-badge">Agent for Science</span>
                         </div>
                     </div>
                 </div>
@@ -1860,6 +1952,216 @@
         Array.prototype.slice.call(document.querySelectorAll('.fade-in')).forEach(function (section) {
             section.classList.add('visible');
         });
+
+        // 2b. Playful pointer effects — cursor glow in hero + click ripples.
+        //     Skip on touch devices and when the user prefers reduced motion.
+        if (!reduceMotion && !coarsePointer) {
+            var hero = document.querySelector('.hero');
+            var glow = document.querySelector('.hero-cursor-glow');
+
+            if (hero && glow) {
+                var glowX = 0, glowY = 0, glowRaf = null;
+                function moveGlow() {
+                    glowRaf = null;
+                    glow.style.transform = 'translate3d(' + glowX + 'px, ' + glowY + 'px, 0) translate(-50%, -50%)';
+                }
+                hero.addEventListener('pointermove', function (e) {
+                    var rect = hero.getBoundingClientRect();
+                    glowX = e.clientX - rect.left;
+                    glowY = e.clientY - rect.top;
+                    glow.classList.add('is-active');
+                    if (!glowRaf) { glowRaf = raf(moveGlow); }
+                });
+                hero.addEventListener('pointerleave', function () {
+                    glow.classList.remove('is-active');
+                });
+            }
+
+            // Interactive square-array field on the hero canvas.
+            // A grid of squares sits faintly at rest, brightens toward the cursor,
+            // and a click sends a ripple wave expanding through the array.
+            var canvas = document.querySelector('.hero-particles');
+            if (canvas && canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+                var dpr = Math.min(window.devicePixelRatio || 1, 2);
+                var cw = 0, ch = 0;
+                var GAP = 30;          // spacing between cells
+                var BASE_HALF = 1.7;   // half-size of a square at rest
+                var PEAK_HALF = 3.6;   // half-size when fully lit
+                var INFLUENCE = 145;   // cursor influence radius (px)
+                var WAVE_BAND = 48;    // thickness of the click wavefront
+                var LINK = GAP * 1.75; // max length of a mesh link
+                var cells = [];
+                var waves = [];
+                var pointer = { x: -9999, y: -9999, active: false };
+                var running = false, visible = true;
+
+                function buildGrid() {
+                    var rect = hero.getBoundingClientRect();
+                    cw = rect.width; ch = rect.height;
+                    canvas.width = Math.round(cw * dpr);
+                    canvas.height = Math.round(ch * dpr);
+                    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                    cells = [];
+                    var cols = Math.ceil(cw / GAP) + 1;
+                    var rows = Math.ceil(ch / GAP) + 1;
+                    var offX = (cw - (cols - 1) * GAP) / 2;
+                    var offY = (ch - (rows - 1) * GAP) / 2;
+                    for (var r = 0; r < rows; r++) {
+                        for (var c = 0; c < cols; c++) {
+                            cells.push({ x: offX + c * GAP, y: offY + r * GAP, e: 0 });
+                        }
+                    }
+                }
+                buildGrid();
+                window.addEventListener('resize', function () { idle(function () { buildGrid(); ensureRunning(); }); });
+
+                function draw() {
+                    if (!visible) { running = false; return; }
+                    ctx.clearRect(0, 0, cw, ch);
+
+                    for (var w = 0; w < waves.length; w++) {
+                        waves[w].r += 8.5;         // expansion speed
+                        waves[w].life -= 0.011;    // fade
+                    }
+                    waves = waves.filter(function (wv) { return wv.life > 0 && wv.r < wv.max; });
+
+                    // The array only animates while there's interaction; when idle it settles
+                    // to a calm, static grid and the loop stops.
+                    var active = pointer.active || waves.length > 0;
+                    var lit = [];
+                    for (var i = 0; i < cells.length; i++) {
+                        var cell = cells[i];
+                        var energy = 0;
+
+                        if (pointer.active) {
+                            var dx = cell.x - pointer.x;
+                            var dy = cell.y - pointer.y;
+                            var d = Math.sqrt(dx * dx + dy * dy);
+                            if (d < INFLUENCE) {
+                                var ct = 1 - d / INFLUENCE;
+                                energy = ct * ct;
+                            }
+                        }
+                        for (var w2 = 0; w2 < waves.length; w2++) {
+                            var wv = waves[w2];
+                            var wx = cell.x - wv.x, wy = cell.y - wv.y;
+                            var wd = Math.sqrt(wx * wx + wy * wy);
+                            var band = Math.abs(wd - wv.r);
+                            if (band < WAVE_BAND) {
+                                var wt = (1 - band / WAVE_BAND) * wv.life;
+                                if (wt > energy) { energy = wt; }
+                            }
+                        }
+
+                        cell.e += (energy - cell.e) * 0.18;
+                        var e = cell.e;
+                        if (e > 0.004) { active = true; } // keep animating until it fully settles
+
+                        var v = e; // idle cells stay plain
+                        if (v > 1) { v = 1; }
+
+                        // Crisp axis-aligned square that brightens toward the cursor — no bloom, no warp.
+                        var half = BASE_HALF + (PEAK_HALF - BASE_HALF) * v;
+                        var alpha = 0.12 + 0.82 * v;
+                        // Rest → accent blue (49,86,214); lit → clean cyan.
+                        var rr = (49 + 150 * v) | 0; if (rr > 255) rr = 255;
+                        var gg = (86 + 150 * v) | 0; if (gg > 255) gg = 255;
+                        var bb = (214 + 41 * v) | 0; if (bb > 255) bb = 255;
+                        ctx.fillStyle = 'rgba(' + rr + ',' + gg + ',' + bb + ',' + alpha.toFixed(3) + ')';
+                        ctx.fillRect(cell.x - half, cell.y - half, half * 2, half * 2);
+                        if (e > 0.28) { lit.push({ x: cell.x, y: cell.y, e: e }); }
+                    }
+
+                    // Thin connecting lines between lit nodes — a subtle circuit grid.
+                    if (lit.length > 1) {
+                        ctx.lineWidth = 1;
+                        for (var a = 0; a < lit.length; a++) {
+                            for (var b = a + 1; b < lit.length; b++) {
+                                var lx = lit[a].x - lit[b].x, ly = lit[a].y - lit[b].y;
+                                var ld = Math.sqrt(lx * lx + ly * ly);
+                                if (ld < LINK) {
+                                    var la = (1 - ld / LINK) * (lit[a].e < lit[b].e ? lit[a].e : lit[b].e) * 0.4;
+                                    ctx.strokeStyle = 'rgba(120,190,255,' + la.toFixed(3) + ')';
+                                    ctx.beginPath();
+                                    ctx.moveTo(lit[a].x, lit[a].y);
+                                    ctx.lineTo(lit[b].x, lit[b].y);
+                                    ctx.stroke();
+                                }
+                            }
+                        }
+                    }
+
+                    // Radar-ping: a crisp expanding ring for each click pulse.
+                    for (var wr = 0; wr < waves.length; wr++) {
+                        var rp = waves[wr];
+                        ctx.strokeStyle = 'rgba(90,180,255,' + (0.3 * rp.life).toFixed(3) + ')';
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2);
+                        ctx.stroke();
+                    }
+
+                    // HUD reticle tracking the cursor: thin ring + crosshair ticks.
+                    if (pointer.active) {
+                        ctx.strokeStyle = 'rgba(125,200,255,0.5)';
+                        ctx.lineWidth = 1;
+                        var R = 22, tk = 5;
+                        ctx.beginPath();
+                        ctx.arc(pointer.x, pointer.y, R, 0, Math.PI * 2);
+                        ctx.moveTo(pointer.x - R - tk, pointer.y); ctx.lineTo(pointer.x - R, pointer.y);
+                        ctx.moveTo(pointer.x + R, pointer.y);      ctx.lineTo(pointer.x + R + tk, pointer.y);
+                        ctx.moveTo(pointer.x, pointer.y - R - tk); ctx.lineTo(pointer.x, pointer.y - R);
+                        ctx.moveTo(pointer.x, pointer.y + R);      ctx.lineTo(pointer.x, pointer.y + R + tk);
+                        ctx.stroke();
+                    }
+
+                    if (active) {
+                        raf(draw);
+                    } else {
+                        running = false; // idle: static grid stays painted at its calm rest frame
+                    }
+                }
+
+                function ensureRunning() {
+                    if (!running && visible) { running = true; raf(draw); }
+                }
+
+                hero.addEventListener('pointermove', function (e) {
+                    if (e.pointerType === 'touch') return;
+                    var rect = hero.getBoundingClientRect();
+                    pointer.x = e.clientX - rect.left;
+                    pointer.y = e.clientY - rect.top;
+                    pointer.active = true;
+                    ensureRunning();
+                }, { passive: true });
+
+                hero.addEventListener('pointerleave', function () {
+                    pointer.active = false;
+                    ensureRunning(); // let the cluster ease back down, then stop
+                });
+
+                hero.addEventListener('pointerdown', function (e) {
+                    if (e.pointerType === 'touch') return;
+                    var rect = hero.getBoundingClientRect();
+                    waves.push({ x: e.clientX - rect.left, y: e.clientY - rect.top, r: 0, life: 1, max: Math.max(cw, ch) * 1.15 });
+                    ensureRunning();
+                }, { passive: true });
+
+                // Pause the animation loop when the hero scrolls off-screen or the tab is hidden.
+                if ('IntersectionObserver' in window) {
+                    new IntersectionObserver(function (entries) {
+                        visible = entries[0].isIntersecting;
+                        if (visible) { ensureRunning(); }
+                    }, { threshold: 0 }).observe(hero);
+                }
+                document.addEventListener('visibilitychange', function () {
+                    if (!document.hidden) { ensureRunning(); }
+                });
+
+                ensureRunning();
+            }
+        }
 
         // 3. Particles background — skip on mobile/reduced-motion, otherwise init when idle.
         var particlesEl = document.getElementById('particles-js');
