@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yingcheng (Charles) Wu 吴英成</title>
+<meta name="description" content="Yingcheng (Charles) Wu, incoming Assistant Professor and co-founder of PhAI Labs. I build AI that does science, in silico, in the lab and in the clinic.">
+<meta property="og:title" content="Yingcheng (Charles) Wu 吴英成">
+<meta property="og:description" content="I build AI that does science, in silico, in the lab and in the clinic.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://charles-wu.com/">
+<meta name="theme-color" content="#fafafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#131118" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233f2f86'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Georgia,serif' font-size='38' fill='%23fafafc'%3EW%3C/text%3E%3C/svg%3E">
+<style>
+  /*
+    Palette from an H&E stain: hematoxylin violet for links,
+    eosin pink used once (the hiring note). Everything else is ink on paper.
+  */
+  :root {
+    --paper: #fafafc;
+    --ink: #17151f;
+    --muted: #67626f;
+    --faint: #a7a2b0;
+    --rule: #e7e4ec;
+    --hema: #3f2f86;
+    --eosin: #c2416f;
+    /* System fonts only: Iowan Old Style (Mac/iOS), Palatino Linotype (Windows), Georgia elsewhere */
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", SimSun, serif;
+    --meta: 0.8125rem;
+    --sans: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #131118;
+      --ink: #ebe8f1;
+      --muted: #a29cad;
+      --faint: #5f5a69;
+      --rule: #29252f;
+      --hema: #b9aaf5;
+      --eosin: #ee8db0;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #131118;
+    --ink: #ebe8f1;
+    --muted: #a29cad;
+    --faint: #5f5a69;
+    --rule: #29252f;
+    --hema: #b9aaf5;
+    --eosin: #ee8db0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; text-rendering: optimizeLegibility; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: color-mix(in srgb, var(--eosin) 22%, transparent); }
+
+  a {
+    color: var(--hema);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in srgb, var(--hema) 28%, transparent);
+    text-underline-offset: 0.22em;
+    transition: text-decoration-color 0.2s ease;
+  }
+  a:hover { text-decoration-color: currentColor; }
+  a:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--hema);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  p { margin: 0 0 1rem; text-wrap: pretty; }
+  strong, b { font-weight: 700; }
+  ul { list-style: none; margin: 0; padding: 0; }
+
+  .page {
+    max-width: 53rem;
+    margin: 0 auto;
+    padding: 6.5rem 1.5rem 4rem;
+  }
+
+  /* ---------- Header ---------- */
+  .name {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2.2rem, 5.6vw, 3.1rem);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .name .zh {
+    display: inline-block;
+    font-size: 0.86em;
+    letter-spacing: 0.04em;
+  }
+  .roles {
+    font-family: var(--sans);
+    font-size: 1rem;
+    color: var(--muted);
+    margin-top: 1.4rem;
+    line-height: 1.55;
+  }
+  .roles a { color: inherit; text-decoration-color: color-mix(in srgb, var(--muted) 35%, transparent); }
+  .links {
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.4rem;
+    margin-top: 1.1rem;
+  }
+  .keep { white-space: nowrap; }
+  .lede {
+    font-size: clamp(1.55rem, 3.6vw, 2.15rem);
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin: 3.75rem 0 0;
+    text-wrap: balance;
+  }
+
+  /* ---------- Sections: label column + content column ---------- */
+  section, footer {
+    margin-top: 4.5rem;
+    padding-top: 1.35rem;
+    border-top: 1px solid var(--rule);
+  }
+  h2 {
+    font-family: var(--sans);
+    font-size: var(--meta);
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.005em;
+    margin: 0 0 1.25rem;
+    padding-top: 0.3rem;
+  }
+  h3 {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 500;
+    margin: 0;
+  }
+  @media (min-width: 880px) {
+    section, footer {
+      display: grid;
+      grid-template-columns: 9rem minmax(0, 38rem);
+      column-gap: 3.5rem;
+    }
+    h2 {
+      grid-column: 1;
+      position: sticky;
+      top: 1.75rem;
+      align-self: start;
+      margin: 0;
+    }
+    .sec { grid-column: 2; }
+    #hiring, footer { border-top: 0; }
+  }
+
+  /* Keep project names in one piece (no "PAST-" / "Bench" splits) */
+  .about a, .news a { white-space: nowrap; }
+
+  /* About */
+  .about p:last-child { margin-bottom: 0; }
+
+  /* News: a dated timeline */
+  .news li {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: 1rem;
+    padding: 0.3rem 0;
+  }
+  .news time {
+    font-family: var(--sans);
+    font-size: var(--meta);
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    padding-top: 0.32rem;
+    white-space: nowrap;
+  }
+
+  /* Research themes */
+  .themes li + li { margin-top: 1.6rem; }
+  .themes p { margin: 0.25rem 0 0; }
+  .themes .proj { font-family: var(--sans); font-size: var(--meta); color: var(--muted); margin-top: 0.35rem; }
+
+  /* Publications */
+  .pub-group + .pub-group { margin-top: 2.75rem; }
+  .group-h {
+    font-family: var(--sans);
+    font-size: var(--meta);
+    font-weight: 500;
+    color: var(--muted);
+    margin: 0 0 1.1rem;
+  }
+  .pubs li + li { margin-top: 1.35rem; }
+  .pubs .t {
+    display: block;
+    font-weight: 500;
+    font-size: 1.08rem;
+    line-height: 1.35;
+    text-wrap: pretty;
+  }
+  .pubs .a {
+    display: block;
+    font-family: var(--sans);
+    font-size: var(--meta);
+    line-height: 1.5;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+  .pubs .a b { color: var(--ink); font-weight: 600; }
+  .pubs .v {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 1rem;
+    font-family: var(--sans);
+    font-size: var(--meta);
+    color: var(--muted);
+    margin-top: 0.2rem;
+  }
+  .pubs .v em {
+    font-family: var(--serif);
+    font-size: 1.12em;
+    color: var(--ink);
+    margin-right: 0.3em;
+  }
+  .pubs .v em.top { font-weight: 700; font-size: 1.4em; }
+  .note { font-family: var(--sans); font-size: var(--meta); color: var(--muted); margin: 2rem 0 0; }
+
+  /* Collapsible extras */
+  details { margin-top: 1.35rem; }
+  summary {
+    font-family: var(--sans);
+    font-size: var(--meta);
+    color: var(--hema);
+    cursor: pointer;
+    list-style: none;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::before {
+    content: "";
+    width: 0.4rem;
+    height: 0.4rem;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(-45deg);
+    transition: transform 0.2s ease;
+  }
+  details[open] > summary::before { transform: rotate(45deg) translate(-1px, -1px); }
+  details[open] > summary { margin-bottom: 1.35rem; }
+
+  /* Honors */
+  .honors li { padding: 0.2rem 0; }
+  .zh-note {
+    font-family: var(--sans);
+    font-size: 0.7em;
+    color: var(--faint);
+    margin-left: 0.55em;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+  .honors li:hover .zh-note { color: var(--muted); }
+  details .honors { margin-top: -0.2rem; }
+
+  /* Hiring: the one eosin moment */
+  #hiring { margin-top: 3.5rem; }
+  .recruit {
+    margin: 0;
+    padding: 1.05rem 1.3rem;
+    border-left: 2px solid var(--eosin);
+    border-radius: 0 6px 6px 0;
+    background: color-mix(in srgb, var(--eosin) 5%, var(--paper));
+  }
+
+  footer {
+    margin-top: 3.5rem;
+    font-family: var(--sans);
+    font-size: var(--meta);
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  footer p { margin: 0 0 0.35rem; }
+  footer .updated { color: var(--faint); margin-top: 1rem; }
+
+  /* One quiet entrance for the header, nothing else moves */
+  @media (prefers-reduced-motion: no-preference) {
+    header { animation: arrive 0.7s cubic-bezier(.2,.7,.2,1) both; }
+    @keyframes arrive { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  }
+
+  @media (max-width: 879px) {
+    .page { padding-top: 4rem; }
+    section { margin-top: 3.5rem; }
+  }
+  @media (max-width: 480px) {
+    body { font-size: 1.0625rem; }
+    .page { padding: 3rem 1rem 3rem; }
+    .lede { margin-top: 2.5rem; }
+    .news li { grid-template-columns: 1fr; gap: 0; padding: 0.45rem 0; }
+    .news time { padding-top: 0; }
+  }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header>
+    <h1 class="name">Yingcheng (Charles) Wu <span class="zh" lang="zh">吴英成</span></h1>
+    <ul class="roles">
+      <li>Incoming Assistant Professor</li>
+      <li>Co-founder, <a href="https://phai-labs.com">PhAI Labs</a></li>
+    </ul>
+    <ul class="links">
+      <li><a href="mailto:wuyc@stanford.edu">wuyc@stanford.edu</a></li>
+      <li><a href="mailto:wuyc@phai-labs.com">wuyc@phai-labs.com</a></li>
+      <li><a href="https://scholar.google.com/citations?user=szIas6UAAAAJ&amp;hl=en">Google Scholar</a></li>
+      <li><a href="https://github.com/wu-yc">GitHub</a></li>
+      <li><a href="https://x.com/Charles_Y_Wu">X</a></li>
+      <li><a href="https://www.linkedin.com/in/yingcheng-wu/">LinkedIn</a></li>
+    </ul>
+    <p class="lede">I build AI that does science,<br><i>in silico</i>, in the lab and <span class="keep">in the clinic.</span></p>
+  </header>
+
+  <section id="about" aria-labelledby="about-h">
+    <h2 id="about-h">About</h2>
+    <div class="sec about">
+      <p>I am an incoming Assistant Professor. I also co-founded <a href="https://phai-labs.com">PhAI Labs</a>, which has raised tens of millions of dollars to build models and data infrastructure for real scientific discovery.</p>
+      <p>My work asks how AI can do science end to end: pick the right questions, run experiments in wet labs and clinics, and learn from what comes back. Recent projects include <a href="https://arxiv.org/abs/2609.15973">Discovery Foundation Models</a>, <a href="http://science-buddy.io">ScienceBuddy</a>, <a href="https://aitonomy.org/projects/scienceide">ScienceIDE</a>, <a href="https://arxiv.org/abs/2609.14709">the Immune World Model</a>, <a href="https://www.biorxiv.org/content/10.64898/2026.06.10.731360v1">GALILEO</a>, <a href="https://github.com/wu-yc/LabClaw">LabClaw</a> and <a href="https://medos-ai.github.io/">MedOS</a>.</p>
+      <p>I trained at Fudan and Stanford across clinical medicine, cancer, immunology and AI for science, with <strong>co-first-author papers in <em>Cell</em>, <em>Science</em> and <em>Nature</em></strong>.</p>
+    </div>
+  </section>
+
+  <section id="news" aria-labelledby="news-h">
+    <h2 id="news-h">News</h2>
+    <ul class="sec news">
+      <li><time datetime="2026-09">Sep 2026</time><span>PhAI Labs released <a href="https://arxiv.org/abs/2609.15973">Discovery Foundation Models</a>, <a href="http://science-buddy.io">ScienceBuddy</a> and <a href="https://github.com/Gen-Verse/JEPA-Anything">JEPA-Anything</a>.</span></li>
+      <li><time datetime="2026-09">Sep 2026</time><span><a href="https://arxiv.org/abs/2609.14709">An immune world model</a> for multiscale forecasting and therapeutic hypothesis generation is out.</span></li>
+      <li><time datetime="2026-08">Aug 2026</time><span>Two preprints on self-improving agents: <a href="https://arxiv.org/abs/2608.24876">Recuris</a> and <a href="https://arxiv.org/abs/2608.04003">PAST-Bench</a>.</span></li>
+      <li><time datetime="2026-07">Jul 2026</time><span>Interviewed by <a href="https://www.163.com/dy/article/L30Q2NJ905119734.html">MIT Technology Review China</a>: “The next generation of AI should distill the Earth.”</span></li>
+      <li><time datetime="2026-06">Jun 2026</time><span><a href="https://www.medrxiv.org/content/10.64898/2026.06.14.26355612v1">MedGenesis</a>, our clinical world model, is out on medRxiv.</span></li>
+      <li><time datetime="2026-06">Jun 2026</time><span><a href="https://www.biorxiv.org/content/10.64898/2026.06.10.731360v1">GALILEO</a>, our physical AI scientist for therapeutic discovery, is out on bioRxiv.</span></li>
+      <li><time datetime="2026-03">Mar 2026</time><span>Open-sourced <a href="https://github.com/wu-yc/LabClaw">LabClaw</a>, 200+ biomedical skills for AI agents (1k+ GitHub stars).</span></li>
+    </ul>
+  </section>
+
+  <section id="research" aria-labelledby="research-h">
+    <h2 id="research-h">Research</h2>
+    <ul class="sec themes">
+      <li>
+        <h3>AI for Science</h3>
+        <p>AI that finds open questions, forms testable hypotheses and keeps improving from experimental evidence.</p>
+        <p class="proj">Discovery Foundation Models, ScienceBuddy, ScienceIDE, JEPA-Anything</p>
+      </li>
+      <li>
+        <h3>Physical AI scientists</h3>
+        <p>Agents that plan and carry out real experiments with robots and lab instruments.</p>
+        <p class="proj">LabClaw, GALILEO</p>
+      </li>
+      <li>
+        <h3>Biomedical world models</h3>
+        <p>Models of patients, tissues and immune systems that forecast responses to interventions and point to new therapies.</p>
+        <p class="proj">Immune World Model, MedOS, MedGenesis, OpenIO</p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="publications" aria-labelledby="pubs-h">
+    <h2 id="pubs-h">Selected publications</h2>
+    <div class="sec">
+
+      <div class="pub-group">
+        <h3 class="group-h">AI for scientific discovery</h3>
+        <ul class="pubs">
+          <li>
+            <span class="t">Discovery Foundation Models: Toward open-ended discovery intelligence</span>
+            <span class="a">L.&nbsp;Yang, Z.&nbsp;Yin, <b>Y.&nbsp;Wu*</b></span>
+            <span class="v"><span><em>arXiv</em> 2026</span><a href="https://arxiv.org/abs/2609.15973">Paper</a><a href="https://github.com/Gen-Verse/DFM-Plans">GitHub</a></span>
+          </li>
+          <li>
+            <span class="t">ScienceBuddy: Recursive-in-recursive self-improvement for interactive scientific agents</span>
+            <span class="a">S.&nbsp;Xue#, J.&nbsp;Zhong#, Z.&nbsp;Nan#, … T.&nbsp;Cheng, Z.&nbsp;Yin*, <b>Y.&nbsp;Wu*</b>, L.&nbsp;Yang*</span>
+            <span class="v"><span><em>arXiv</em> 2026</span><a href="https://arxiv.org/abs/2609.17523">Paper</a><a href="http://science-buddy.io">Website</a><a href="https://github.com/Gen-Verse/ScienceBuddy-RSI">Code</a></span>
+          </li>
+          <li>
+            <span class="t">An immune world model for multiscale forecasting and therapeutic hypothesis generation</span>
+            <span class="a">T.&nbsp;Cui#, X.&nbsp;Wang#, Z.&nbsp;Li#, … W.&nbsp;Ouyang, P.&nbsp;A.&nbsp;Heng*, L.&nbsp;Yang*, Z.&nbsp;Yin*, <b>Y.&nbsp;Wu*</b></span>
+            <span class="v"><span><em>arXiv</em> 2026</span><a href="https://arxiv.org/abs/2609.14709">Paper</a></span>
+          </li>
+          <li>
+            <span class="t">OpenIO: An open framework for AI-native immunotherapy</span>
+            <span class="a"><b>Y.&nbsp;Wu</b>, … S.&nbsp;Zheng, Q.&nbsp;Gao</span>
+            <span class="v"><span><em>Cancer Cell</em> 2026</span><a href="https://openio-consortium.github.io/">Project</a></span>
+          </li>
+          <li>
+            <span class="t">GALILEO: Embodied AI scientist for autonomous therapeutic discovery in dynamic membrane systems</span>
+            <span class="a">N.&nbsp;Jiang, R.&nbsp;Wei, H.&nbsp;Xiao, … J.&nbsp;Fan, P.&nbsp;Torr, <b>Y.&nbsp;Wu*</b>, Q.&nbsp;Gao*</span>
+            <span class="v"><span><em>bioRxiv</em> 2026</span><a href="https://www.biorxiv.org/content/10.64898/2026.06.10.731360v1">Paper</a></span>
+          </li>
+          <li>
+            <span class="t">MedGenesis: Toward a world model for autonomous clinical and translational research</span>
+            <span class="a">H.&nbsp;Xiao, N.&nbsp;Jiang, T.&nbsp;Zhang, … P.&nbsp;Torr, S.&nbsp;Zheng, <b>Y.&nbsp;Wu*</b>, Q.&nbsp;Gao*</span>
+            <span class="v"><span><em>medRxiv</em> 2026</span><a href="https://www.medrxiv.org/content/10.64898/2026.06.14.26355612v1">Paper</a></span>
+          </li>
+          <li>
+            <span class="t">MedOS: AI-XR-Cobot world model for clinical perception and action</span>
+            <span class="a"><b>Y.&nbsp;C.&nbsp;Wu</b>, M.&nbsp;Yin, B.&nbsp;Shi, Z.&nbsp;Zhang, … C.&nbsp;Curtis, Z.&nbsp;Bao, M.&nbsp;Wang*, L.&nbsp;Cong*</span>
+            <span class="v"><span><em>medRxiv</em> 2026</span><a href="https://medos-ai.github.io/assets/logos/MedOS-paper.pdf">Paper</a><a href="https://medos-ai.github.io/">Project</a></span>
+          </li>
+        </ul>
+
+        <details>
+          <summary>More recent preprints</summary>
+          <ul class="pubs">
+            <li>
+              <span class="t">ScienceIDE: Turning world’s scientific codebase into agent learnable environments</span>
+              <span class="a">H.&nbsp;Geng, Z.&nbsp;Huang, H.&nbsp;Li, … F.&nbsp;Wu, Y.&nbsp;Xing, X.&nbsp;Meng, Z.&nbsp;Yin*, <b>Y.&nbsp;Wu*</b>, L.&nbsp;Yang*</span>
+              <span class="v"><span><em>arXiv</em> 2026</span><a href="https://arxiv.org/abs/2609.19134">Paper</a><a href="https://aitonomy.org/projects/scienceide">Project</a><a href="https://github.com/aitofound/ScienceIDE">Code</a></span>
+            </li>
+            <li>
+              <span class="t">JEPA-Anything: Learning predictive models across different worlds</span>
+              <span class="a">T.&nbsp;Cui, Z.&nbsp;Wang, X.&nbsp;Xu, … P.&nbsp;A.&nbsp;Heng, <b>Y.&nbsp;Wu*</b>, Z.&nbsp;Yin*, L.&nbsp;Yang*</span>
+              <span class="v"><span><em>arXiv</em> 2026</span><a href="https://arxiv.org/abs/2609.20800">Paper</a><a href="https://github.com/Gen-Verse/JEPA-Anything">Code</a></span>
+            </li>
+            <li>
+              <span class="t">Recursive experiential–working memory evolution for long-horizon agent harnesses</span>
+              <span class="a">Z.&nbsp;Yu, <b>Y.&nbsp;Wu</b>, Z.&nbsp;Yin, K.&nbsp;Chen, Z.&nbsp;Zhao, M.&nbsp;Wang, S.&nbsp;Yan, L.&nbsp;Yang</span>
+              <span class="v"><span><em>arXiv</em> 2026</span><a href="https://arxiv.org/abs/2608.24876">Paper</a></span>
+            </li>
+            <li>
+              <span class="t">PAST-Bench: Benchmarking the foundations of recursive self-improvement in personal agents</span>
+              <span class="a">S.&nbsp;Xue#, Z.&nbsp;Ding#, Y.&nbsp;Shen#, Y.&nbsp;Wang, Z.&nbsp;Yin, <b>Y.&nbsp;Wu</b>, Y.&nbsp;Chen, M.&nbsp;Wang*, L.&nbsp;Yang*</span>
+              <span class="v"><span><em>arXiv</em> 2026</span><a href="https://arxiv.org/abs/2608.04003">Paper</a></span>
+            </li>
+            <li>
+              <span class="t">Toward skill-native LLMs: Skill entropy for benchmarking and training long-horizon reasoning</span>
+              <span class="a">Y.&nbsp;He, L.&nbsp;Yang, J.&nbsp;Liu, Y.&nbsp;Yang, L.&nbsp;Zhang, <b>Y.&nbsp;Wu</b>, Z.&nbsp;Yin, M.&nbsp;Wang, S.&nbsp;Arora</span>
+              <span class="v"><span><em>arXiv</em> 2026</span><a href="https://arxiv.org/abs/2608.05139">Paper</a><a href="https://github.com/Gen-Verse/Skill-Entropy-RL">Code</a></span>
+            </li>
+            <li>
+              <span class="t">OriGene: A self-evolving virtual disease biologist automating therapeutic target discovery</span>
+              <span class="a">Z.&nbsp;Zhang#, Z.&nbsp;Qiu#, <b>Y.&nbsp;Wu#</b>, … Q.&nbsp;Gao, S.&nbsp;Sun, S.&nbsp;Zheng</span>
+              <span class="v"><span><em>bioRxiv</em> 2025</span><a href="https://www.biorxiv.org/content/10.1101/2025.06.03.657658v2">Paper</a></span>
+            </li>
+          </ul>
+        </details>
+      </div>
+
+      <div class="pub-group">
+        <h3 class="group-h">Cancer Research</h3>
+        <ul class="pubs">
+          <li>
+            <span class="t">Neutrophil profiling illuminates anti-tumor antigen-presenting potency</span>
+            <span class="a"><b>Y.&nbsp;Wu#</b>, J.&nbsp;Ma#, X.&nbsp;Yang#, F.&nbsp;Nan#, T.&nbsp;Zhang#, … X.&nbsp;Zhang, Q.&nbsp;Gao</span>
+            <span class="v"><span><em class="top">Cell</em> 2024</span><a href="https://doi.org/10.1016/j.cell.2024.02.005">Paper</a></span>
+          </li>
+          <li>
+            <span class="t">A blueprint for tumor-infiltrating B cells across human cancers</span>
+            <span class="a">J.&nbsp;Ma#, <b>Y.&nbsp;Wu#</b>, L.&nbsp;Ma#, X.&nbsp;Yang#, T.&nbsp;Zhang#, … X.&nbsp;Zhang, Q.&nbsp;Gao</span>
+            <span class="v"><span><em class="top">Science</em> 2024</span><a href="https://doi.org/10.1126/science.adj4857">Paper</a></span>
+          </li>
+          <li>
+            <span class="t">Amplifying antigen-induced cellular responses with proximity labelling</span>
+            <span class="a">S.&nbsp;Li#, Y.&nbsp;Meng#, Z.&nbsp;Wang#, <b>Y.&nbsp;Wu#</b>, … C.&nbsp;Xu, Q.&nbsp;Gao, S.&nbsp;Han</span>
+            <span class="v"><span><em class="top">Nature</em> 2025</span><a href="https://doi.org/10.1038/s41586-025-09518-6">Paper</a></span>
+          </li>
+        </ul>
+
+        <details>
+          <summary>More papers</summary>
+          <ul class="pubs">
+            <li>
+              <span class="t">Tumor-host cometabolism collaborates to shape cancer immunity</span>
+              <span class="a"><b>Y.&nbsp;Wu</b>, Q.&nbsp;Zou, P.&nbsp;Jiang, Q.&nbsp;Gao</span>
+              <span class="v"><span><em>Cancer Discovery</em> 2024</span></span>
+            </li>
+            <li>
+              <span class="t">Spatiotemporal immune landscape of colorectal cancer liver metastasis at single-cell level</span>
+              <span class="a"><b>Y.&nbsp;Wu#</b>, S.&nbsp;Yang#, J.&nbsp;Ma#, Z.&nbsp;Chen#, … X.&nbsp;Zhang, Q.&nbsp;Gao</span>
+              <span class="v"><span><em>Cancer Discovery</em> 2022</span><a href="https://pubmed.ncbi.nlm.nih.gov/34417225/">Paper</a></span>
+            </li>
+          </ul>
+        </details>
+      </div>
+
+      <p class="note"># equal contribution, * corresponding author. Full list on <a href="https://scholar.google.com/citations?user=szIas6UAAAAJ&amp;hl=en">Google Scholar</a>.</p>
+    </div>
+  </section>
+
+  <section id="honors" aria-labelledby="honors-h">
+    <h2 id="honors-h">Selected honors</h2>
+    <div class="sec">
+      <ul class="honors">
+        <li>Invited Young Scientist, Lindau Nobel Laureate Meetings</li>
+        <li>Sidney &amp; Joan Pestka Award, International Cytokine &amp; Interferon Society</li>
+        <li>Forbes Global Alliance Young Leader</li>
+        <li>WAIC Yunfan Rising Star Award <span class="zh-note" lang="zh">世界人工智能大会明日之星</span></li>
+        <li>World’s Top 2% Scientists, Stanford</li>
+        <li>Shanghai Science Rising Star Award <span class="zh-note" lang="zh">上海市明日科技之星</span></li>
+      </ul>
+      <details>
+        <summary>Show all honors</summary>
+        <ul class="honors">
+          <li>National Early-Career Innovation Award, Ministry of Education, China <span class="zh-note" lang="zh">中国青少年科技创新奖</span></li>
+          <li>Early Career Fellowship, China Association for Science and Technology <span class="zh-note" lang="zh">中国科协青年人才托举工程</span></li>
+          <li>PhD Fellowship, National Natural Science Foundation of China <span class="zh-note" lang="zh">首批国家自然科学基金青年学生基础项目</span></li>
+          <li>National Scholarship of China (2017, 2020, 2022, 2024) <span class="zh-note" lang="zh">国家奖学金</span></li>
+          <li>APASL Young Investigator Award</li>
+          <li>IUBMB Young Scientist Fellowship</li>
+          <li>APPLE Young Investigator Award</li>
+          <li>Fudan Academic Star, Fudan Outstanding Honoree, Fudan Fenglin Star <span class="zh-note" lang="zh">复旦学术之星、复旦优秀标兵、复旦枫林之星</span></li>
+        </ul>
+      </details>
+    </div>
+  </section>
+
+  <section id="hiring" aria-label="Hiring">
+    <div class="sec">
+      <p class="recruit"><strong>I’m hiring.</strong> Looking for collaborators who want to build AI that does science, based in Palo Alto, Shanghai or Beijing. Send your CV to <a href="mailto:wuyc@phai-labs.com">wuyc@phai-labs.com</a>.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="sec">
+      <p>Outside work, I code, read philosophy and swim.</p>
+      <p>I’ve traveled to 30 countries, and to me travel is RL for life: explore, get feedback, update.</p>
+      <p class="updated">Last updated October 2026</p>
+    </div>
+  </footer>
+
+</main>
+</body>
+</html>
