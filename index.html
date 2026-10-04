@@ -12,6 +12,9 @@
 <meta name="theme-color" content="#fafafc" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#131118" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233f2f86'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Georgia,serif' font-size='38' fill='%23fafafc'%3EW%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/fontawesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/regular.min.css">
 <style>
   /*
     Palette from an H&E stain: hematoxylin violet for links,
@@ -111,14 +114,53 @@
     line-height: 1.55;
   }
   .roles a { color: inherit; text-decoration-color: color-mix(in srgb, var(--muted) 35%, transparent); }
+  /* Contact icons: quiet grey, violet on hover, with a small label */
   .links {
-    font-family: var(--sans);
-    font-size: 0.875rem;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem 1.4rem;
-    margin-top: 1.1rem;
+    gap: 0.35rem;
+    margin: 1rem 0 0 -0.45rem;
   }
+  .links a {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 50%;
+    font-size: 1.05rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s ease, background-color 0.2s ease;
+  }
+  .links a:hover, .links a:focus-visible {
+    color: var(--hema);
+    background: color-mix(in srgb, var(--hema) 8%, transparent);
+  }
+  .links a::after {
+    content: attr(data-label);
+    position: absolute;
+    top: calc(100% + 0.3rem);
+    left: 50%;
+    transform: translate(-50%, -2px);
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    white-space: nowrap;
+    color: var(--paper);
+    background: var(--ink);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+  .links a:hover::after, .links a:focus-visible::after { opacity: 1; transform: translate(-50%, 0); }
+  @media (hover: none) { .links a::after { display: none; } }
+  /* Fallback if the icon font can't load (e.g. a blocked CDN): show the labels as text */
+  .no-icons .links { gap: 0.4rem 1.4rem; margin-left: 0; }
+  .no-icons .links a { width: auto; height: auto; border-radius: 0; background: none; font-family: var(--sans); font-size: var(--meta); color: var(--hema); }
+  .no-icons .links a i, .no-icons .links a::after { display: none; }
+  .no-icons .links a::before { content: attr(data-label); }
   .keep { white-space: nowrap; }
   .lede {
     font-size: clamp(1.55rem, 3.6vw, 2.15rem);
@@ -327,12 +369,12 @@
       <li>Co-founder, <a href="https://phai-labs.com">PhAI Labs</a></li>
     </ul>
     <ul class="links">
-      <li><a href="mailto:wuyc@stanford.edu">wuyc@stanford.edu</a></li>
-      <li><a href="mailto:wuyc@phai-labs.com">wuyc@phai-labs.com</a></li>
-      <li><a href="https://scholar.google.com/citations?user=szIas6UAAAAJ&amp;hl=en">Google Scholar</a></li>
-      <li><a href="https://github.com/wu-yc">GitHub</a></li>
-      <li><a href="https://x.com/Charles_Y_Wu">X</a></li>
-      <li><a href="https://www.linkedin.com/in/yingcheng-wu/">LinkedIn</a></li>
+      <li><a href="mailto:wuyc@stanford.edu" aria-label="Email wuyc@stanford.edu" data-label="wuyc@stanford.edu"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a></li>
+      <li><a href="mailto:wuyc@phai-labs.com" aria-label="Email wuyc@phai-labs.com" data-label="wuyc@phai-labs.com"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a></li>
+      <li><a href="https://scholar.google.com/citations?user=szIas6UAAAAJ&amp;hl=en" aria-label="Google Scholar" data-label="Google Scholar"><i class="fa-brands fa-google-scholar" aria-hidden="true"></i></a></li>
+      <li><a href="https://github.com/wu-yc" aria-label="GitHub" data-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a></li>
+      <li><a href="https://x.com/Charles_Y_Wu" aria-label="X" data-label="X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
+      <li><a href="https://www.linkedin.com/in/yingcheng-wu/" aria-label="LinkedIn" data-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a></li>
     </ul>
     <p class="lede">I build AI that does science,<br><i>in silico</i>, in the lab and <span class="keep">in the clinic.</span></p>
   </header>
@@ -340,9 +382,8 @@
   <section id="about" aria-labelledby="about-h">
     <h2 id="about-h">About</h2>
     <div class="sec about">
-      <p>I am an incoming Assistant Professor. I also co-founded <a href="https://phai-labs.com">PhAI Labs</a>, which has raised tens of millions of dollars to build models and data infrastructure for real scientific discovery.</p>
-      <p>My work asks how AI can do science end to end: pick the right questions, run experiments in wet labs and clinics, and learn from what comes back. Recent projects include <a href="https://arxiv.org/abs/2609.15973">Discovery Foundation Models</a>, <a href="http://science-buddy.io">ScienceBuddy</a>, <a href="https://aitonomy.org/projects/scienceide">ScienceIDE</a>, <a href="https://arxiv.org/abs/2609.14709">the Immune World Model</a>, <a href="https://www.biorxiv.org/content/10.64898/2026.06.10.731360v1">GALILEO</a>, <a href="https://github.com/wu-yc/LabClaw">LabClaw</a> and <a href="https://medos-ai.github.io/">MedOS</a>.</p>
-      <p>I trained at Fudan and Stanford across clinical medicine, cancer, immunology and AI for science, with <strong>co-first-author papers in <em>Cell</em>, <em>Science</em> and <em>Nature</em></strong>.</p>
+      <p>I am an incoming Assistant Professor. I also co-founded <a href="https://phai-labs.com">PhAI Labs</a>, which has raised tens of millions of dollars.</p>
+      <p>I trained at Fudan and Stanford in clinical medicine, cancer immunology and AI for science, with <strong>co-first-author papers in <em>Cell</em>, <em>Science</em> and <em>Nature</em></strong>.</p>
     </div>
   </section>
 
@@ -350,12 +391,12 @@
     <h2 id="news-h">News</h2>
     <ul class="sec news">
       <li><time datetime="2026-09">Sep 2026</time><span>PhAI Labs released <a href="https://arxiv.org/abs/2609.15973">Discovery Foundation Models</a>, <a href="http://science-buddy.io">ScienceBuddy</a> and <a href="https://github.com/Gen-Verse/JEPA-Anything">JEPA-Anything</a>.</span></li>
-      <li><time datetime="2026-09">Sep 2026</time><span><a href="https://arxiv.org/abs/2609.14709">An immune world model</a> for multiscale forecasting and therapeutic hypothesis generation is out.</span></li>
-      <li><time datetime="2026-08">Aug 2026</time><span>Two preprints on self-improving agents: <a href="https://arxiv.org/abs/2608.24876">Recuris</a> and <a href="https://arxiv.org/abs/2608.04003">PAST-Bench</a>.</span></li>
-      <li><time datetime="2026-07">Jul 2026</time><span>Interviewed by <a href="https://www.163.com/dy/article/L30Q2NJ905119734.html">MIT Technology Review China</a>: “The next generation of AI should distill the Earth.”</span></li>
-      <li><time datetime="2026-06">Jun 2026</time><span><a href="https://www.medrxiv.org/content/10.64898/2026.06.14.26355612v1">MedGenesis</a>, our clinical world model, is out on medRxiv.</span></li>
-      <li><time datetime="2026-06">Jun 2026</time><span><a href="https://www.biorxiv.org/content/10.64898/2026.06.10.731360v1">GALILEO</a>, our physical AI scientist for therapeutic discovery, is out on bioRxiv.</span></li>
-      <li><time datetime="2026-03">Mar 2026</time><span>Open-sourced <a href="https://github.com/wu-yc/LabClaw">LabClaw</a>, 200+ biomedical skills for AI agents (1k+ GitHub stars).</span></li>
+      <li><time datetime="2026-09">Sep 2026</time><span><a href="https://arxiv.org/abs/2609.14709">Immune World Model</a> is out.</span></li>
+      <li><time datetime="2026-08">Aug 2026</time><span><a href="https://arxiv.org/abs/2608.24876">Recuris</a> and <a href="https://arxiv.org/abs/2608.04003">PAST-Bench</a>, on self-improving agents.</span></li>
+      <li><time datetime="2026-07">Jul 2026</time><span>Interviewed by <a href="https://www.163.com/dy/article/L30Q2NJ905119734.html">MIT Technology Review China</a>.</span></li>
+      <li><time datetime="2026-06">Jun 2026</time><span><a href="https://www.medrxiv.org/content/10.64898/2026.06.14.26355612v1">MedGenesis</a>, our clinical world model, is out.</span></li>
+      <li><time datetime="2026-06">Jun 2026</time><span><a href="https://www.biorxiv.org/content/10.64898/2026.06.10.731360v1">GALILEO</a>, our physical AI scientist, is out.</span></li>
+      <li><time datetime="2026-03">Mar 2026</time><span>Open-sourced <a href="https://github.com/wu-yc/LabClaw">LabClaw</a> (1k+ GitHub stars).</span></li>
     </ul>
   </section>
 
@@ -364,17 +405,17 @@
     <ul class="sec themes">
       <li>
         <h3>AI for Science</h3>
-        <p>AI that finds open questions, forms testable hypotheses and keeps improving from experimental evidence.</p>
+        <p>AI that asks questions, tests hypotheses and learns from evidence.</p>
         <p class="proj">Discovery Foundation Models, ScienceBuddy, ScienceIDE, JEPA-Anything</p>
       </li>
       <li>
         <h3>Physical AI scientists</h3>
-        <p>Agents that plan and carry out real experiments with robots and lab instruments.</p>
+        <p>Agents that run real experiments.</p>
         <p class="proj">LabClaw, GALILEO</p>
       </li>
       <li>
         <h3>Biomedical world models</h3>
-        <p>Models of patients, tissues and immune systems that forecast responses to interventions and point to new therapies.</p>
+        <p>Models that predict how patients and immune systems respond to therapy.</p>
         <p class="proj">Immune World Model, MedOS, MedGenesis, OpenIO</p>
       </li>
     </ul>
@@ -394,12 +435,12 @@
           </li>
           <li>
             <span class="t">ScienceBuddy: Recursive-in-recursive self-improvement for interactive scientific agents</span>
-            <span class="a">S.&nbsp;Xue#, J.&nbsp;Zhong#, Z.&nbsp;Nan#, … T.&nbsp;Cheng, Z.&nbsp;Yin*, <b>Y.&nbsp;Wu*</b>, L.&nbsp;Yang*</span>
+            <span class="a">S.&nbsp;Xue#, … Z.&nbsp;Yin*, <b>Y.&nbsp;Wu*</b>, L.&nbsp;Yang*</span>
             <span class="v"><span><em>arXiv</em> 2026</span><a href="https://arxiv.org/abs/2609.17523">Paper</a><a href="http://science-buddy.io">Website</a><a href="https://github.com/Gen-Verse/ScienceBuddy-RSI">Code</a></span>
           </li>
           <li>
             <span class="t">An immune world model for multiscale forecasting and therapeutic hypothesis generation</span>
-            <span class="a">T.&nbsp;Cui#, X.&nbsp;Wang#, Z.&nbsp;Li#, … W.&nbsp;Ouyang, P.&nbsp;A.&nbsp;Heng*, L.&nbsp;Yang*, Z.&nbsp;Yin*, <b>Y.&nbsp;Wu*</b></span>
+            <span class="a">T.&nbsp;Cui#, … P.&nbsp;A.&nbsp;Heng*, L.&nbsp;Yang*, Z.&nbsp;Yin*, <b>Y.&nbsp;Wu*</b></span>
             <span class="v"><span><em>arXiv</em> 2026</span><a href="https://arxiv.org/abs/2609.14709">Paper</a></span>
           </li>
           <li>
@@ -407,54 +448,54 @@
             <span class="a"><b>Y.&nbsp;Wu</b>, … S.&nbsp;Zheng, Q.&nbsp;Gao</span>
             <span class="v"><span><em>Cancer Cell</em> 2026</span><a href="https://openio-consortium.github.io/">Project</a></span>
           </li>
-          <li>
-            <span class="t">GALILEO: Embodied AI scientist for autonomous therapeutic discovery in dynamic membrane systems</span>
-            <span class="a">N.&nbsp;Jiang, R.&nbsp;Wei, H.&nbsp;Xiao, … J.&nbsp;Fan, P.&nbsp;Torr, <b>Y.&nbsp;Wu*</b>, Q.&nbsp;Gao*</span>
-            <span class="v"><span><em>bioRxiv</em> 2026</span><a href="https://www.biorxiv.org/content/10.64898/2026.06.10.731360v1">Paper</a></span>
-          </li>
-          <li>
-            <span class="t">MedGenesis: Toward a world model for autonomous clinical and translational research</span>
-            <span class="a">H.&nbsp;Xiao, N.&nbsp;Jiang, T.&nbsp;Zhang, … P.&nbsp;Torr, S.&nbsp;Zheng, <b>Y.&nbsp;Wu*</b>, Q.&nbsp;Gao*</span>
-            <span class="v"><span><em>medRxiv</em> 2026</span><a href="https://www.medrxiv.org/content/10.64898/2026.06.14.26355612v1">Paper</a></span>
-          </li>
-          <li>
-            <span class="t">MedOS: AI-XR-Cobot world model for clinical perception and action</span>
-            <span class="a"><b>Y.&nbsp;C.&nbsp;Wu</b>, M.&nbsp;Yin, B.&nbsp;Shi, Z.&nbsp;Zhang, … C.&nbsp;Curtis, Z.&nbsp;Bao, M.&nbsp;Wang*, L.&nbsp;Cong*</span>
-            <span class="v"><span><em>medRxiv</em> 2026</span><a href="https://medos-ai.github.io/assets/logos/MedOS-paper.pdf">Paper</a><a href="https://medos-ai.github.io/">Project</a></span>
-          </li>
         </ul>
 
         <details>
           <summary>More recent preprints</summary>
           <ul class="pubs">
             <li>
+              <span class="t">GALILEO: Embodied AI scientist for autonomous therapeutic discovery in dynamic membrane systems</span>
+              <span class="a">N.&nbsp;Jiang, … <b>Y.&nbsp;Wu*</b>, Q.&nbsp;Gao*</span>
+              <span class="v"><span><em>bioRxiv</em> 2026</span><a href="https://www.biorxiv.org/content/10.64898/2026.06.10.731360v1">Paper</a></span>
+            </li>
+            <li>
+              <span class="t">MedGenesis: Toward a world model for autonomous clinical and translational research</span>
+              <span class="a">H.&nbsp;Xiao, … <b>Y.&nbsp;Wu*</b>, Q.&nbsp;Gao*</span>
+              <span class="v"><span><em>medRxiv</em> 2026</span><a href="https://www.medrxiv.org/content/10.64898/2026.06.14.26355612v1">Paper</a></span>
+            </li>
+            <li>
+              <span class="t">MedOS: AI-XR-Cobot world model for clinical perception and action</span>
+              <span class="a"><b>Y.&nbsp;C.&nbsp;Wu</b>, … M.&nbsp;Wang*, L.&nbsp;Cong*</span>
+              <span class="v"><span><em>medRxiv</em> 2026</span><a href="https://medos-ai.github.io/assets/logos/MedOS-paper.pdf">Paper</a><a href="https://medos-ai.github.io/">Project</a></span>
+            </li>
+            <li>
               <span class="t">ScienceIDE: Turning world’s scientific codebase into agent learnable environments</span>
-              <span class="a">H.&nbsp;Geng, Z.&nbsp;Huang, H.&nbsp;Li, … F.&nbsp;Wu, Y.&nbsp;Xing, X.&nbsp;Meng, Z.&nbsp;Yin*, <b>Y.&nbsp;Wu*</b>, L.&nbsp;Yang*</span>
+              <span class="a">H.&nbsp;Geng, … Z.&nbsp;Yin*, <b>Y.&nbsp;Wu*</b>, L.&nbsp;Yang*</span>
               <span class="v"><span><em>arXiv</em> 2026</span><a href="https://arxiv.org/abs/2609.19134">Paper</a><a href="https://aitonomy.org/projects/scienceide">Project</a><a href="https://github.com/aitofound/ScienceIDE">Code</a></span>
             </li>
             <li>
               <span class="t">JEPA-Anything: Learning predictive models across different worlds</span>
-              <span class="a">T.&nbsp;Cui, Z.&nbsp;Wang, X.&nbsp;Xu, … P.&nbsp;A.&nbsp;Heng, <b>Y.&nbsp;Wu*</b>, Z.&nbsp;Yin*, L.&nbsp;Yang*</span>
+              <span class="a">T.&nbsp;Cui, … <b>Y.&nbsp;Wu*</b>, Z.&nbsp;Yin*, L.&nbsp;Yang*</span>
               <span class="v"><span><em>arXiv</em> 2026</span><a href="https://arxiv.org/abs/2609.20800">Paper</a><a href="https://github.com/Gen-Verse/JEPA-Anything">Code</a></span>
             </li>
             <li>
               <span class="t">Recursive experiential–working memory evolution for long-horizon agent harnesses</span>
-              <span class="a">Z.&nbsp;Yu, <b>Y.&nbsp;Wu</b>, Z.&nbsp;Yin, K.&nbsp;Chen, Z.&nbsp;Zhao, M.&nbsp;Wang, S.&nbsp;Yan, L.&nbsp;Yang</span>
+              <span class="a">Z.&nbsp;Yu, <b>Y.&nbsp;Wu</b>, … L.&nbsp;Yang</span>
               <span class="v"><span><em>arXiv</em> 2026</span><a href="https://arxiv.org/abs/2608.24876">Paper</a></span>
             </li>
             <li>
               <span class="t">PAST-Bench: Benchmarking the foundations of recursive self-improvement in personal agents</span>
-              <span class="a">S.&nbsp;Xue#, Z.&nbsp;Ding#, Y.&nbsp;Shen#, Y.&nbsp;Wang, Z.&nbsp;Yin, <b>Y.&nbsp;Wu</b>, Y.&nbsp;Chen, M.&nbsp;Wang*, L.&nbsp;Yang*</span>
+              <span class="a">S.&nbsp;Xue#, … <b>Y.&nbsp;Wu</b>, … M.&nbsp;Wang*, L.&nbsp;Yang*</span>
               <span class="v"><span><em>arXiv</em> 2026</span><a href="https://arxiv.org/abs/2608.04003">Paper</a></span>
             </li>
             <li>
               <span class="t">Toward skill-native LLMs: Skill entropy for benchmarking and training long-horizon reasoning</span>
-              <span class="a">Y.&nbsp;He, L.&nbsp;Yang, J.&nbsp;Liu, Y.&nbsp;Yang, L.&nbsp;Zhang, <b>Y.&nbsp;Wu</b>, Z.&nbsp;Yin, M.&nbsp;Wang, S.&nbsp;Arora</span>
+              <span class="a">Y.&nbsp;He, … <b>Y.&nbsp;Wu</b>, … S.&nbsp;Arora</span>
               <span class="v"><span><em>arXiv</em> 2026</span><a href="https://arxiv.org/abs/2608.05139">Paper</a><a href="https://github.com/Gen-Verse/Skill-Entropy-RL">Code</a></span>
             </li>
             <li>
               <span class="t">OriGene: A self-evolving virtual disease biologist automating therapeutic target discovery</span>
-              <span class="a">Z.&nbsp;Zhang#, Z.&nbsp;Qiu#, <b>Y.&nbsp;Wu#</b>, … Q.&nbsp;Gao, S.&nbsp;Sun, S.&nbsp;Zheng</span>
+              <span class="a">Z.&nbsp;Zhang#, Z.&nbsp;Qiu#, <b>Y.&nbsp;Wu#</b>, … S.&nbsp;Zheng</span>
               <span class="v"><span><em>bioRxiv</em> 2025</span><a href="https://www.biorxiv.org/content/10.1101/2025.06.03.657658v2">Paper</a></span>
             </li>
           </ul>
@@ -466,17 +507,17 @@
         <ul class="pubs">
           <li>
             <span class="t">Neutrophil profiling illuminates anti-tumor antigen-presenting potency</span>
-            <span class="a"><b>Y.&nbsp;Wu#</b>, J.&nbsp;Ma#, X.&nbsp;Yang#, F.&nbsp;Nan#, T.&nbsp;Zhang#, … X.&nbsp;Zhang, Q.&nbsp;Gao</span>
+            <span class="a"><b>Y.&nbsp;Wu#</b>, J.&nbsp;Ma#, … Q.&nbsp;Gao</span>
             <span class="v"><span><em class="top">Cell</em> 2024</span><a href="https://doi.org/10.1016/j.cell.2024.02.005">Paper</a></span>
           </li>
           <li>
             <span class="t">A blueprint for tumor-infiltrating B cells across human cancers</span>
-            <span class="a">J.&nbsp;Ma#, <b>Y.&nbsp;Wu#</b>, L.&nbsp;Ma#, X.&nbsp;Yang#, T.&nbsp;Zhang#, … X.&nbsp;Zhang, Q.&nbsp;Gao</span>
+            <span class="a">J.&nbsp;Ma#, <b>Y.&nbsp;Wu#</b>, … Q.&nbsp;Gao</span>
             <span class="v"><span><em class="top">Science</em> 2024</span><a href="https://doi.org/10.1126/science.adj4857">Paper</a></span>
           </li>
           <li>
             <span class="t">Amplifying antigen-induced cellular responses with proximity labelling</span>
-            <span class="a">S.&nbsp;Li#, Y.&nbsp;Meng#, Z.&nbsp;Wang#, <b>Y.&nbsp;Wu#</b>, … C.&nbsp;Xu, Q.&nbsp;Gao, S.&nbsp;Han</span>
+            <span class="a">S.&nbsp;Li#, Y.&nbsp;Meng#, Z.&nbsp;Wang#, <b>Y.&nbsp;Wu#</b>, … S.&nbsp;Han</span>
             <span class="v"><span><em class="top">Nature</em> 2025</span><a href="https://doi.org/10.1038/s41586-025-09518-6">Paper</a></span>
           </li>
         </ul>
@@ -491,7 +532,7 @@
             </li>
             <li>
               <span class="t">Spatiotemporal immune landscape of colorectal cancer liver metastasis at single-cell level</span>
-              <span class="a"><b>Y.&nbsp;Wu#</b>, S.&nbsp;Yang#, J.&nbsp;Ma#, Z.&nbsp;Chen#, … X.&nbsp;Zhang, Q.&nbsp;Gao</span>
+              <span class="a"><b>Y.&nbsp;Wu#</b>, S.&nbsp;Yang#, … Q.&nbsp;Gao</span>
               <span class="v"><span><em>Cancer Discovery</em> 2022</span><a href="https://pubmed.ncbi.nlm.nih.gov/34417225/">Paper</a></span>
             </li>
           </ul>
@@ -531,7 +572,7 @@
 
   <section id="hiring" aria-label="Hiring">
     <div class="sec">
-      <p class="recruit"><strong>I’m hiring.</strong> Looking for collaborators who want to build AI that does science, based in Palo Alto, Shanghai or Beijing. Send your CV to <a href="mailto:wuyc@phai-labs.com">wuyc@phai-labs.com</a>.</p>
+      <p class="recruit"><strong>I’m hiring</strong> collaborators in Palo Alto, Shanghai and Beijing. Send your CV to <a href="mailto:wuyc@phai-labs.com">wuyc@phai-labs.com</a>.</p>
     </div>
   </section>
 
@@ -544,5 +585,15 @@
   </footer>
 
 </main>
+<script>
+  // If the icon font hasn't loaded ~3s after the page, fall back to text links.
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      var ok = false;
+      try { document.fonts.forEach(function (f) { if (/Font Awesome/.test(f.family) && f.status === 'loaded') ok = true; }); } catch (e) { ok = true; }
+      if (!ok) document.documentElement.classList.add('no-icons');
+    }, 3000);
+  });
+</script>
 </body>
 </html>
