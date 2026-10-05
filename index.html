@@ -9,27 +9,36 @@
 <meta property="og:description" content="I build AI that does science, in silico, in the lab and in the clinic.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://charles-wu.com/">
-<meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0c0c10" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#c4d6ee" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070a13" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Crect x='0' y='0' width='9' height='9' rx='1.5' fill='%23b9aaf5'/%3E%3Crect x='10.5' y='0' width='9' height='9' rx='1.5' fill='%236c58d6'/%3E%3Crect x='21' y='0' width='9' height='9' rx='1.5' fill='%233f2f86'/%3E%3Crect x='0' y='10.5' width='9' height='9' rx='1.5' fill='%236c58d6'/%3E%3Crect x='10.5' y='10.5' width='9' height='9' rx='1.5' fill='%23ee8db0'/%3E%3Crect x='21' y='10.5' width='9' height='9' rx='1.5' fill='%236c58d6'/%3E%3Crect x='0' y='21' width='9' height='9' rx='1.5' fill='%233f2f86'/%3E%3Crect x='10.5' y='21' width='9' height='9' rx='1.5' fill='%236c58d6'/%3E%3Crect x='21' y='21' width='9' height='9' rx='1.5' fill='%23c2416f'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/fontawesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/regular.min.css">
 <style>
   /*
-    Mosaic: a bento grid of tiles, and a pixel motif drawn from an H&E slide,
-    hematoxylin violet with eosin pink. System fonts only.
+    Clear sky: a bento grid of clean white tiles over a slow, living sky.
+    The clouds are drawn live in WebGL from the five --sky-* colours below,
+    so changing those five values recolours the whole sky. Move the pointer
+    through the margins and the clouds part around it.
+    The pixel marks keep the H&E motif, hematoxylin violet with eosin pink.
+    System fonts only.
   */
   :root {
-    --bg: #f5f5f7;
-    --tile: #ffffff;
-    --line: #e8e8ec;
-    --ink: #16161a;
-    --muted: #6e6e78;
-    --faint: #a9a9b2;
+    /* ---- Sky: edit these five to recolour the clouds ---- */
+    --sky-0: #a6c3ea;   /* upper sky */
+    --sky-1: #eaf0f8;   /* lower sky, near the horizon */
+    --sky-2: #fbe7eb;   /* a faint blush on low, sunlit clouds */
+    --sky-3: #d8e2f0;   /* cloud undersides, in shade */
+    --sky-4: #ffffff;   /* cloud tops, in sun */
+
+    --bg: #e6edf7;
+    --paper: #ffffff;
+    --tile: rgba(255, 255, 255, 0.94);
+    --tile-shadow: 0 1px 2px rgba(20, 40, 80, 0.035), 0 8px 28px -12px rgba(20, 40, 80, 0.13);
+    --line: rgba(20, 30, 60, 0.07);
+    --ink: #15171c;
+    --muted: #666a76;
+    --faint: #9a9ea9;
     --accent: #5b47c7;
-    --dark-tile: #16161a;
-    --dark-ink: #f5f5f7;
+    --on-sky: rgba(21, 23, 28, 0.66);
     /* mosaic palette: light to dark violet, plus two eosin pinks */
     --h0: #ece7fd; --h1: #d6ccfa; --h2: #b9aaf5; --h3: #8f7bea; --h4: #6c58d6; --h5: #3f2f86;
     --e0: #fdeef3; --e1: #f8cfdd; --e2: #e0628f;
@@ -40,15 +49,27 @@
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #0c0c10; --tile: #15151b; --line: #24242c; --ink: #f2f2f5; --muted: #9b9ba6; --faint: #5c5c66;
-      --accent: #b3a4f7; --dark-tile: #ece9fb; --dark-ink: #16161a;
+      --sky-0: #050811; --sky-1: #0e1426; --sky-2: #2c3054; --sky-3: #111830; --sky-4: #364569;
+      --bg: #0a0e1a; --paper: #12151e;
+      --tile: rgba(18, 21, 30, 0.93);
+      --tile-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05), 0 12px 32px -14px rgba(0, 0, 0, 0.6);
+      --line: rgba(255, 255, 255, 0.07);
+      --ink: #f1f2f5; --muted: #9da2ae; --faint: #6a6f7c;
+      --accent: #b9abfa;
+      --on-sky: rgba(241, 242, 245, 0.62);
       --h0: #221d3a; --h1: #2f2754; --h2: #43378a; --h3: #5f4dc0; --h4: #8d7be8; --h5: #c4b8fa;
       --e0: #2a1520; --e1: #4a1f35; --e2: #e0628f;
     }
   }
   :root[data-theme="dark"] {
-    --bg: #0c0c10; --tile: #15151b; --line: #24242c; --ink: #f2f2f5; --muted: #9b9ba6; --faint: #5c5c66;
-    --accent: #b3a4f7; --dark-tile: #ece9fb; --dark-ink: #16161a;
+    --sky-0: #050811; --sky-1: #0e1426; --sky-2: #2c3054; --sky-3: #111830; --sky-4: #364569;
+    --bg: #0a0e1a; --paper: #12151e;
+    --tile: rgba(18, 21, 30, 0.93);
+    --tile-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05), 0 12px 32px -14px rgba(0, 0, 0, 0.6);
+    --line: rgba(255, 255, 255, 0.07);
+    --ink: #f1f2f5; --muted: #9da2ae; --faint: #6a6f7c;
+    --accent: #b9abfa;
+    --on-sky: rgba(241, 242, 245, 0.62);
     --h0: #221d3a; --h1: #2f2754; --h2: #43378a; --h3: #5f4dc0; --h4: #8d7be8; --h5: #c4b8fa;
     --e0: #2a1520; --e1: #4a1f35; --e2: #e0628f;
   }
@@ -57,10 +78,17 @@
   .e0 { fill: var(--e0); } .e1 { fill: var(--e1); } .e2 { fill: var(--e2); }
 
   *, *::before, *::after { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; background: var(--bg); }
   body {
     margin: 0;
-    background: var(--bg);
+    /* Painted sky: what you see before the clouds fade in, or if WebGL is unavailable */
+    background:
+      radial-gradient(55% 45% at 18% 78%, color-mix(in srgb, var(--sky-2) 85%, transparent), transparent 70%),
+      radial-gradient(45% 40% at 82% 70%, color-mix(in srgb, var(--sky-2) 55%, transparent), transparent 70%),
+      radial-gradient(50% 45% at 70% 22%, color-mix(in srgb, var(--sky-3) 70%, transparent), transparent 72%),
+      linear-gradient(180deg, var(--sky-0), var(--sky-1));
+    background-color: var(--bg);
+    background-attachment: fixed;
     color: var(--ink);
     font-family: var(--sans);
     font-size: 0.975rem;
@@ -72,7 +100,7 @@
     color: var(--ink);
     text-decoration: underline;
     text-decoration-thickness: 1px;
-    text-decoration-color: color-mix(in srgb, var(--ink) 25%, transparent);
+    text-decoration-color: color-mix(in srgb, var(--ink) 18%, transparent);
     text-underline-offset: 0.2em;
     transition: color .2s ease, text-decoration-color .2s ease;
   }
@@ -83,23 +111,33 @@
   ul { list-style: none; margin: 0; padding: 0; }
   strong, b { font-weight: 650; }
 
-  /* Living pixel background: sits behind the opaque tiles, shows in gutters and margins */
-  #px { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
-  .page { position: relative; z-index: 1; }
-  .page { max-width: 72rem; margin: 0 auto; padding: 1.25rem 1.25rem 3rem; }
+  /* ---------- Sky ---------- */
+  #sky {
+    position: fixed; top: 0; left: 0; z-index: 0;
+    width: 100%; height: 100vh; height: 100lvh;
+    display: block; pointer-events: none;
+    opacity: 0; transition: opacity 1.8s ease;
+  }
+  #sky.on { opacity: 1; }
+  .page { position: relative; z-index: 1; max-width: 72rem; margin: 0 auto; padding: 1.25rem 1.25rem 3rem; }
 
   /* ---------- Bento grid ---------- */
   .grid {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    gap: 0.75rem;
+    gap: 1rem;
   }
   .tile {
     background: var(--tile);
-    border: 1px solid var(--line);
     border-radius: var(--radius);
+    box-shadow: var(--tile-shadow);
     padding: 1.75rem;
     min-width: 0;
+    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(30px);
+  }
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .tile { background: color-mix(in srgb, var(--paper) 90%, transparent); }
   }
   .s4 { grid-column: span 4; } .s5 { grid-column: span 5; } .s6 { grid-column: span 6; }
   .s7 { grid-column: span 7; } .s8 { grid-column: span 8; } .s12 { grid-column: span 12; }
@@ -123,9 +161,11 @@
   }
 
   /* ---------- Hero ---------- */
-  .hero { padding: 2.75rem 2.75rem 2.5rem; display: flex; flex-direction: column; }
+  .hero {
+    padding: 2.75rem 2.75rem 2.5rem; display: flex; flex-direction: column;
+  }
   @media (min-width: 961px) {
-    .hero { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 3.5rem; align-items: end; }
+    .hero { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 3.5rem; align-items: end; min-height: 17.5rem; }
     .hero .who { grid-column: 1; }
     .hero .lede { grid-column: 2; padding: 0 0 0.3rem; margin: 0; white-space: nowrap; font-size: clamp(1.3rem, 2.3vw, 1.75rem); }
   }
@@ -156,46 +196,45 @@
   .links a {
     position: relative; display: grid; place-items: center;
     width: 2.25rem; height: 2.25rem; border-radius: 10px;
-    font-size: 1.05rem; color: var(--muted); text-decoration: none;
+    color: var(--muted); text-decoration: none;
     transition: color .2s ease, background-color .2s ease;
   }
-  .links a:hover, .links a:focus-visible { color: var(--accent); background: color-mix(in srgb, var(--accent) 9%, transparent); }
+  .links a:hover, .links a:focus-visible { color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent); }
   .links a::after {
     content: attr(data-label);
     position: absolute; top: calc(100% + 0.3rem); left: 50%;
     transform: translate(-50%, -2px);
     font-size: 0.75rem; white-space: nowrap;
-    color: var(--tile); background: var(--ink);
+    color: var(--paper); background: var(--ink);
     padding: 0.2rem 0.5rem; border-radius: 6px;
     opacity: 0; pointer-events: none; z-index: 2;
     transition: opacity .15s ease, transform .15s ease;
   }
   .links a:hover::after, .links a:focus-visible::after { opacity: 1; transform: translate(-50%, 0); }
   @media (hover: none) { .links a::after { display: none; } }
-  .no-icons .links { gap: 0.4rem 1.25rem; margin-left: 0; }
-  .no-icons .links a { width: auto; height: auto; background: none; font-size: var(--meta); color: var(--accent); }
-  .no-icons .links a i, .no-icons .links a::after { display: none; }
-  .no-icons .links a::before { content: attr(data-label); }
+  .ic { display: block; width: 1.15rem; height: 1.15rem; flex: none; }
+  .links a .ic { width: 1.1rem; height: 1.1rem; }
 
   /* About */
   .about p { font-size: 1.05rem; line-height: 1.6; }
 
   /* News */
-  .news li { display: grid; grid-template-columns: 4.6rem 1fr; gap: 0.75rem; padding: 0.4rem 0; border-top: 1px solid var(--line); }
-  .news li:first-child { border-top: 0; padding-top: 0; }
+  .news li { display: grid; grid-template-columns: 4.6rem 1fr; gap: 0.75rem; padding: 0.35rem 0; }
+  .news li:first-child { padding-top: 0; }
   .news time { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); padding-top: 0.2rem; white-space: nowrap; }
   .news a, .about a { white-space: nowrap; }
 
   /* Research tiles */
+  .themes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem 3rem; }
   .theme { display: flex; flex-direction: column; }
-  .glyph { width: 29px; height: 29px; margin-bottom: 1.5rem; }
+  .glyph { width: 29px; height: 29px; margin-bottom: 1.25rem; }
   .theme h3 { font-size: 1.15rem; font-weight: 650; letter-spacing: -0.015em; margin: 0 0 0.4rem; }
   .theme p { color: var(--ink); }
   .theme .proj { margin-top: auto; padding-top: 1.25rem; font-size: var(--meta); color: var(--muted); }
 
   /* Publications */
   .pub-cols { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 1.5rem 3rem; }
-  .group-h { font-size: 0.95rem; font-weight: 650; letter-spacing: -0.01em; margin: 0 0 1.1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--line); }
+  .group-h { font-size: 0.95rem; font-weight: 650; letter-spacing: -0.01em; margin: 0 0 1.1rem; }
   .pubs li + li { margin-top: 1.25rem; }
   .pubs .t { display: block; font-weight: 600; font-size: 1rem; line-height: 1.35; letter-spacing: -0.01em; text-wrap: pretty; }
   .pubs .a { display: block; font-size: var(--meta); color: var(--muted); margin-top: 0.25rem; line-height: 1.45; }
@@ -228,33 +267,34 @@
   .honors li:hover .zh-note { color: var(--muted); }
   details .honors { margin-top: -0.3rem; }
 
-  /* Hiring: the one dark tile */
-  .hire { background: var(--dark-tile); color: var(--dark-ink); border-color: var(--dark-tile); display: flex; flex-direction: column; }
-  .hire .label { color: color-mix(in srgb, var(--dark-ink) 60%, transparent); }
+  /* Hiring */
+  .hire { display: flex; flex-direction: column; }
   .hire p { font-size: 1.3rem; font-weight: 550; letter-spacing: -0.02em; line-height: 1.3; }
   .hire .cta {
     margin-top: auto; align-self: flex-start;
     display: inline-flex; align-items: center; gap: 0.5rem;
     padding: 0.6rem 1rem; border-radius: 999px;
-    background: var(--dark-ink); color: var(--dark-tile);
+    background: var(--ink); color: var(--paper);
     font-size: 0.9rem; font-weight: 550; text-decoration: none; white-space: nowrap;
+    transition: background-color .2s ease;
   }
-  .hire .cta:hover { background: var(--h2); color: #16161a; }
+  .hire .cta:hover { background: var(--accent); color: var(--paper); }
   .hire .spacer { height: 1.75rem; }
 
-  footer { padding: 2rem 0.5rem 0; font-size: var(--meta); color: var(--muted); line-height: 1.7; }
+  /* Footer sits straight on the sky */
+  footer { padding: 2.25rem 0.5rem 0; font-size: var(--meta); color: var(--on-sky); line-height: 1.7; }
   footer p { margin: 0; }
-  footer .updated { color: var(--faint); margin-top: 0.75rem; }
+  footer .updated { opacity: 0.7; margin-top: 0.75rem; }
 
   @media (max-width: 960px) {
     .s4, .s5, .s6, .s7, .s8 { grid-column: span 12; }
     .pub-cols { grid-template-columns: 1fr; gap: 2.25rem; }
-    .research .s4 { grid-column: span 12; }
+    .themes { grid-template-columns: 1fr; gap: 2.25rem; }
   }
   @media (max-width: 520px) {
     .page { padding: 0.75rem 0.75rem 2.5rem; }
-    .grid { gap: 0.6rem; }
-    .tile { padding: 1.35rem; border-radius: 18px; }
+    .grid { gap: 0.75rem; }
+    .tile { padding: 1.35rem; border-radius: 18px; -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px); }
     .hero { padding: 1.75rem 1.4rem; }
     .news li { grid-template-columns: 1fr; gap: 0.1rem; }
     .hire .cta { font-size: 0.82rem; white-space: nowrap; padding: 0.6rem 0.9rem; }
@@ -262,7 +302,7 @@
 </style>
 </head>
 <body>
-<canvas id="px" aria-hidden="true"></canvas>
+<canvas id="sky" aria-hidden="true"></canvas>
 <main class="page">
   <div class="grid">
 
@@ -274,12 +314,12 @@
         <li>Co-founder, <a href="https://phai-labs.com">PhAI Labs</a></li>
       </ul>
       <ul class="links">
-      <li><a href="mailto:wuyc@stanford.edu" aria-label="Email wuyc@stanford.edu" data-label="wuyc@stanford.edu"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a></li>
-      <li><a href="mailto:wuyc@phai-labs.com" aria-label="Email wuyc@phai-labs.com" data-label="wuyc@phai-labs.com"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a></li>
-      <li><a href="https://scholar.google.com/citations?user=szIas6UAAAAJ&amp;hl=en" aria-label="Google Scholar" data-label="Google Scholar"><i class="fa-brands fa-google-scholar" aria-hidden="true"></i></a></li>
-      <li><a href="https://github.com/wu-yc" aria-label="GitHub" data-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a></li>
-      <li><a href="https://x.com/Charles_Y_Wu" aria-label="X" data-label="X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
-      <li><a href="https://www.linkedin.com/in/yingcheng-wu/" aria-label="LinkedIn" data-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a></li>
+      <li><a href="mailto:wuyc@stanford.edu" aria-label="Email wuyc@stanford.edu" data-label="wuyc@stanford.edu"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.8 6.6 7.1 5.6a1.8 1.8 0 0 0 2.2 0l7.1-5.6"/></svg></a></li>
+      <li><a href="mailto:wuyc@phai-labs.com" aria-label="Email wuyc@phai-labs.com" data-label="wuyc@phai-labs.com"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.8 6.6 7.1 5.6a1.8 1.8 0 0 0 2.2 0l7.1-5.6"/></svg></a></li>
+      <li><a href="https://scholar.google.com/citations?user=szIas6UAAAAJ&amp;hl=en" aria-label="Google Scholar" data-label="Google Scholar"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M5.242 13.769 0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg></a></li>
+      <li><a href="https://github.com/wu-yc" aria-label="GitHub" data-label="GitHub"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+      <li><a href="https://x.com/Charles_Y_Wu" aria-label="X" data-label="X"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a></li>
+      <li><a href="https://www.linkedin.com/in/yingcheng-wu/" aria-label="LinkedIn" data-label="LinkedIn"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></li>
     </ul>
       </div>
       <p class="lede">I build AI that does science,<br><i>in silico</i>, in the lab and <span class="keep">in the clinic.</span></p>
@@ -307,23 +347,28 @@
     </ul>
     </section>
 
-    <section class="tile theme s4" aria-labelledby="r1">
-      <svg class="glyph" viewBox="0 0 29 29" aria-hidden="true" focusable="false"><rect x="12" y="0" width="5" height="5" rx="1" class="e2"/><rect x="12" y="6" width="5" height="5" rx="1" class="h4"/><rect x="0" y="12" width="5" height="5" rx="1" class="e2"/><rect x="6" y="12" width="5" height="5" rx="1" class="h4"/><rect x="12" y="12" width="5" height="5" rx="1" class="h2"/><rect x="18" y="12" width="5" height="5" rx="1" class="h4"/><rect x="24" y="12" width="5" height="5" rx="1" class="e2"/><rect x="12" y="18" width="5" height="5" rx="1" class="h4"/><rect x="12" y="24" width="5" height="5" rx="1" class="e2"/></svg>
-      <h3 id="r1">AI for Science</h3>
-      <p>AI that asks questions, tests hypotheses and learns from evidence.</p>
-      <p class="proj">Discovery Foundation Models, ScienceBuddy, ScienceIDE, JEPA-Anything</p>
-    </section>
-    <section class="tile theme s4" aria-labelledby="r2">
-      <svg class="glyph" viewBox="0 0 29 29" aria-hidden="true" focusable="false"><rect x="6" y="0" width="5" height="5" rx="1" class="h4"/><rect x="12" y="0" width="5" height="5" rx="1" class="h4"/><rect x="18" y="0" width="5" height="5" rx="1" class="h4"/><rect x="12" y="6" width="5" height="5" rx="1" class="h4"/><rect x="6" y="12" width="5" height="5" rx="1" class="h4"/><rect x="12" y="12" width="5" height="5" rx="1" class="h2"/><rect x="18" y="12" width="5" height="5" rx="1" class="h4"/><rect x="0" y="18" width="5" height="5" rx="1" class="h4"/><rect x="6" y="18" width="5" height="5" rx="1" class="h2"/><rect x="12" y="18" width="5" height="5" rx="1" class="e2"/><rect x="18" y="18" width="5" height="5" rx="1" class="h2"/><rect x="24" y="18" width="5" height="5" rx="1" class="h4"/><rect x="0" y="24" width="5" height="5" rx="1" class="h4"/><rect x="6" y="24" width="5" height="5" rx="1" class="h4"/><rect x="12" y="24" width="5" height="5" rx="1" class="h4"/><rect x="18" y="24" width="5" height="5" rx="1" class="h4"/><rect x="24" y="24" width="5" height="5" rx="1" class="h4"/></svg>
-      <h3 id="r2">Physical AI scientists</h3>
-      <p>Agents that run real experiments.</p>
-      <p class="proj">LabClaw, GALILEO</p>
-    </section>
-    <section class="tile theme s4" aria-labelledby="r3">
-      <svg class="glyph" viewBox="0 0 29 29" aria-hidden="true" focusable="false"><rect x="6" y="0" width="5" height="5" rx="1" class="h4"/><rect x="12" y="0" width="5" height="5" rx="1" class="h4"/><rect x="18" y="0" width="5" height="5" rx="1" class="h4"/><rect x="0" y="6" width="5" height="5" rx="1" class="h4"/><rect x="6" y="6" width="5" height="5" rx="1" class="h2"/><rect x="18" y="6" width="5" height="5" rx="1" class="h2"/><rect x="24" y="6" width="5" height="5" rx="1" class="h4"/><rect x="0" y="12" width="5" height="5" rx="1" class="h4"/><rect x="12" y="12" width="5" height="5" rx="1" class="e2"/><rect x="24" y="12" width="5" height="5" rx="1" class="h4"/><rect x="0" y="18" width="5" height="5" rx="1" class="h4"/><rect x="6" y="18" width="5" height="5" rx="1" class="h2"/><rect x="18" y="18" width="5" height="5" rx="1" class="h2"/><rect x="24" y="18" width="5" height="5" rx="1" class="h4"/><rect x="6" y="24" width="5" height="5" rx="1" class="h4"/><rect x="12" y="24" width="5" height="5" rx="1" class="h4"/><rect x="18" y="24" width="5" height="5" rx="1" class="h4"/></svg>
-      <h3 id="r3">Biomedical world models</h3>
-      <p>Models that predict how patients and immune systems respond to therapy.</p>
-      <p class="proj">Immune World Model, MedOS, MedGenesis, OpenIO</p>
+    <section class="tile s12" id="research" aria-labelledby="research-h">
+      <h2 class="label" id="research-h">Research directions</h2>
+      <div class="themes">
+        <div class="theme">
+          <svg class="glyph" viewBox="0 0 29 29" aria-hidden="true" focusable="false"><rect x="12" y="0" width="5" height="5" rx="1" class="e2"/><rect x="12" y="6" width="5" height="5" rx="1" class="h4"/><rect x="0" y="12" width="5" height="5" rx="1" class="e2"/><rect x="6" y="12" width="5" height="5" rx="1" class="h4"/><rect x="12" y="12" width="5" height="5" rx="1" class="h2"/><rect x="18" y="12" width="5" height="5" rx="1" class="h4"/><rect x="24" y="12" width="5" height="5" rx="1" class="e2"/><rect x="12" y="18" width="5" height="5" rx="1" class="h4"/><rect x="12" y="24" width="5" height="5" rx="1" class="e2"/></svg>
+          <h3 id="r1">AI for Science</h3>
+          <p>AI that asks questions, tests hypotheses and learns from evidence.</p>
+          <p class="proj">Discovery Foundation Models, ScienceBuddy, ScienceIDE, JEPA-Anything</p>
+        </div>
+        <div class="theme">
+          <svg class="glyph" viewBox="0 0 29 29" aria-hidden="true" focusable="false"><rect x="6" y="0" width="5" height="5" rx="1" class="h4"/><rect x="12" y="0" width="5" height="5" rx="1" class="h4"/><rect x="18" y="0" width="5" height="5" rx="1" class="h4"/><rect x="12" y="6" width="5" height="5" rx="1" class="h4"/><rect x="6" y="12" width="5" height="5" rx="1" class="h4"/><rect x="12" y="12" width="5" height="5" rx="1" class="h2"/><rect x="18" y="12" width="5" height="5" rx="1" class="h4"/><rect x="0" y="18" width="5" height="5" rx="1" class="h4"/><rect x="6" y="18" width="5" height="5" rx="1" class="h2"/><rect x="12" y="18" width="5" height="5" rx="1" class="e2"/><rect x="18" y="18" width="5" height="5" rx="1" class="h2"/><rect x="24" y="18" width="5" height="5" rx="1" class="h4"/><rect x="0" y="24" width="5" height="5" rx="1" class="h4"/><rect x="6" y="24" width="5" height="5" rx="1" class="h4"/><rect x="12" y="24" width="5" height="5" rx="1" class="h4"/><rect x="18" y="24" width="5" height="5" rx="1" class="h4"/><rect x="24" y="24" width="5" height="5" rx="1" class="h4"/></svg>
+          <h3 id="r2">Physical AI scientists</h3>
+          <p>Agents that run real experiments.</p>
+          <p class="proj">LabClaw, GALILEO</p>
+        </div>
+        <div class="theme">
+          <svg class="glyph" viewBox="0 0 29 29" aria-hidden="true" focusable="false"><rect x="6" y="0" width="5" height="5" rx="1" class="h4"/><rect x="12" y="0" width="5" height="5" rx="1" class="h4"/><rect x="18" y="0" width="5" height="5" rx="1" class="h4"/><rect x="0" y="6" width="5" height="5" rx="1" class="h4"/><rect x="6" y="6" width="5" height="5" rx="1" class="h2"/><rect x="18" y="6" width="5" height="5" rx="1" class="h2"/><rect x="24" y="6" width="5" height="5" rx="1" class="h4"/><rect x="0" y="12" width="5" height="5" rx="1" class="h4"/><rect x="12" y="12" width="5" height="5" rx="1" class="e2"/><rect x="24" y="12" width="5" height="5" rx="1" class="h4"/><rect x="0" y="18" width="5" height="5" rx="1" class="h4"/><rect x="6" y="18" width="5" height="5" rx="1" class="h2"/><rect x="18" y="18" width="5" height="5" rx="1" class="h2"/><rect x="24" y="18" width="5" height="5" rx="1" class="h4"/><rect x="6" y="24" width="5" height="5" rx="1" class="h4"/><rect x="12" y="24" width="5" height="5" rx="1" class="h4"/><rect x="18" y="24" width="5" height="5" rx="1" class="h4"/></svg>
+          <h3 id="r3">Biomedical world models</h3>
+          <p>Models that predict how patients and immune systems respond to therapy.</p>
+          <p class="proj">Immune World Model, MedOS, MedGenesis, OpenIO</p>
+        </div>
+      </div>
     </section>
 
     <section class="tile s12" id="publications" aria-labelledby="pubs-h">
@@ -474,7 +519,7 @@
       <h2 class="label" id="hire-h">Hiring</h2>
       <p><strong>I’m hiring</strong> collaborators in Palo Alto, Shanghai and Beijing.</p>
       <div class="spacer"></div>
-      <a class="cta" href="mailto:wuyc@phai-labs.com"><i class="fa-regular fa-envelope" aria-hidden="true"></i>Send your CV to wuyc@phai-labs.com</a>
+      <a class="cta" href="mailto:wuyc@phai-labs.com"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.8 6.6 7.1 5.6a1.8 1.8 0 0 0 2.2 0l7.1-5.6"/></svg>Send your CV to wuyc@phai-labs.com</a>
     </section>
 
   </div>
@@ -486,129 +531,169 @@
   </footer>
 </main>
 <script>
-  // Icon fallback: if the icon font hasn't loaded ~3s after the page, show text links.
-  window.addEventListener('load', function () {
-    setTimeout(function () {
-      var ok = false;
-      try { document.fonts.forEach(function (f) { if (/Font Awesome/.test(f.family) && f.status === 'loaded') ok = true; }); } catch (e) { ok = true; }
-      if (!ok) document.documentElement.classList.add('no-icons');
-    }, 3000);
-  });
-  // Living pixel background: a faint mosaic floor in the open margins; a few cells glow and fade;
-  // the cursor leaves a soft trail. Cells never peek out from under a tile.
+  // Living sky, drawn in WebGL at low resolution and scaled up, which keeps it soft and cheap.
+  // Two layers: big slow clouds with sunlit tops and shaded undersides, and faint high wisps
+  // drifting faster above them. Where the sky is cloudy and where it is clear wanders over time.
+  // The pointer stirs the clouds: they part and swirl around it and close up again behind it.
+  // Colours come from the --sky-* variables. Without WebGL, the painted CSS sky on <body> stays.
   (function () {
-    var c = document.getElementById('px');
+    var c = document.getElementById('sky');
     if (!c || !c.getContext) return;
-    var ctx = c.getContext('2d');
-    var P = 24, S = 18, R = 3;                        // pitch, cell size, corner radius (CSS px)
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var fine = window.matchMedia('(pointer: fine)').matches;
-    var tiles = document.querySelectorAll('.tile');
-    var dpr, w, h, cols, rows, ox, oy, ink, palette = [], free = [], freeSet = new Set(), floor = null, ready = false, live = new Map(), last = 0;
+    var gl = c.getContext('webgl', { alpha: false, antialias: false, depth: false, stencil: false, powerPreference: 'low-power' });
+    if (!gl) return;
 
-    function readPalette() {
-      var cs = getComputedStyle(document.documentElement), v = function (n) { return cs.getPropertyValue(n).trim(); };
-      palette = [v('--h2'), v('--h3'), v('--h3'), v('--h4'), v('--h4'), v('--h5'), v('--e2')];
-      ink = v('--ink');
+    var N = 10;                         // pointer slots: one for the hover, the rest for its wake
+    var VS = 'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}';
+    var FS = [
+      '#ifdef GL_FRAGMENT_PRECISION_HIGH',
+      'precision highp float;',
+      '#else',
+      'precision mediump float;',
+      '#endif',
+      'uniform vec2 u_res;',            // drawing-buffer size
+      'uniform float u_k;',             // drawing-buffer pixels per CSS pixel
+      'uniform float u_unit;',          // CSS pixels per cloud unit
+      'uniform float u_t;',
+      'uniform vec2 u_off;',
+      'uniform vec3 u_c0, u_c1, u_c2, u_c3, u_c4;',
+      'uniform vec3 u_tr[' + N + '];',  // pointer: CSS px (y up), strength
+      'float hash(vec2 p){vec3 p3=fract(vec3(p.xyx)*.1031);p3+=dot(p3,p3.yzx+33.33);return fract((p3.x+p3.y)*p3.z);}',
+      'float noise(vec2 p){vec2 i=floor(p),f=fract(p);vec2 u=f*f*f*(f*(f*6.-15.)+10.);',
+      '  return mix(mix(hash(i),hash(i+vec2(1.,0.)),u.x),mix(hash(i+vec2(0.,1.)),hash(i+vec2(1.,1.)),u.x),u.y);}',
+      'const mat2 M=mat2(1.6,1.2,-1.2,1.6);',
+      'float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<4;i++){v+=a*noise(p);p=M*p+vec2(3.1,1.7);a*=.5;}return v;}',
+      'void main(){',
+      '  vec2 uv=gl_FragCoord.xy/u_res;',
+      '  vec2 s=gl_FragCoord.xy/u_k;',
+      // the pointer pushes the clouds outward and swirls them a little
+      '  vec2 push=vec2(0.); float clr=0.;',
+      '  for(int i=0;i<' + N + ';i++){',
+      '    vec3 m=u_tr[i]; vec2 d=(s-m.xy)/120.;',
+      '    float w=m.z*exp(-dot(d,d));',
+      '    push+=(d*.6+vec2(-d.y,d.x))*w; clr+=w;',
+      '  }',
+      '  clr=min(clr,1.);',
+      '  vec2 p=s/u_unit+u_off+push*.2; p.y*=1.15;',
+      '  float t=u_t;',
+      // sky, with faint high wisps streaming across the upper part
+      '  vec3 col=mix(u_c1,u_c0,smoothstep(0.,1.,uv.y));',
+      '  float wv=fbm(vec2(p.x*.45,p.y*2.6)+vec2(11.-.8*t,3.));',
+      '  col=mix(col,u_c4,smoothstep(.55,.8,wv)*.45*smoothstep(.2,.9,uv.y)*(1.-clr*.6));',
+      // the main clouds
+      '  vec2 q=vec2(fbm(p+vec2(-.5*t,.05*t)),fbm(p+vec2(5.2,1.3)-vec2(.35*t,.1*t)));',
+      '  vec2 r=vec2(fbm(p+1.5*q+vec2(1.7,9.2)+.2*t),fbm(p+1.5*q+vec2(8.3,2.8)-.16*t));',
+      '  vec2 b=p+1.4*r+vec2(-.42*t,0.);',
+      '  float f=fbm(b);',
+      '  float fu=fbm(b+vec2(.03,.14));',                                // one step toward the sun
+      '  float cov=.5+(noise(p*.3+vec2(.25*t,-.15*t))-.5)*.34;',      // clear patches open and close
+      '  float d=smoothstep(cov-.06,cov+.2,f)*(1.-clr*.8);',
+      '  float lit=clamp(.62+(f-fu)*4.5,0.,1.);',
+      '  vec3 cl=mix(u_c3,u_c4,lit);',
+      '  cl=mix(cl,u_c2,(1.-uv.y)*lit*.55);',
+      '  col=mix(col,cl,d*.96);',
+      '  gl_FragColor=vec4(col,1.);',
+      '}'
+    ].join('\n');
+
+    function sh(type, src) {
+      var o = gl.createShader(type); gl.shaderSource(o, src); gl.compileShader(o);
+      if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) { console.warn(gl.getShaderInfoLog(o)); return null; }
+      return o;
     }
-    function cell(g, x, y) {
-      g.beginPath();
-      if (g.roundRect) g.roundRect(x, y, S, S, R); else g.rect(x, y, S, S);
-      g.fill();
+    var vs = sh(gl.VERTEX_SHADER, VS), fs = sh(gl.FRAGMENT_SHADER, FS);
+    if (!vs || !fs) return;
+    var pr = gl.createProgram(); gl.attachShader(pr, vs); gl.attachShader(pr, fs); gl.linkProgram(pr);
+    if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return;
+    gl.useProgram(pr);
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    var loc = gl.getAttribLocation(pr, 'a'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    var U = {};
+    ['u_res', 'u_k', 'u_unit', 'u_t', 'u_off', 'u_c0', 'u_c1', 'u_c2', 'u_c3', 'u_c4', 'u_tr[0]'].forEach(function (n) { U[n] = gl.getUniformLocation(pr, n); });
+
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var CLOUD = 720, k = 0.4, W = 0, H = 0;
+    var t0 = performance.now(), last = 0, seed = 30 + Math.random() * 60;
+    var slots = new Float32Array(N * 3);
+    var hover = { x: -1e4, y: -1e4, s: 0, on: false }, wake = [], LIFE = 1900;
+
+    function hex(v) {
+      v = (v || '').trim().replace('#', '');
+      if (v.length === 3) v = v.replace(/./g, '$&$&');
+      var n = parseInt(v, 16);
+      return isNaN(n) ? [0.8, 0.85, 0.95] : [(n >> 16 & 255) / 255, (n >> 8 & 255) / 255, (n & 255) / 255];
     }
-    function layout() {                               // which grid cells are fully clear of every tile
-      if (!ready) return;
-      var rs = [], m = 6;
-      for (var t = 0; t < tiles.length; t++) {
-        var b = tiles[t].getBoundingClientRect();
-        if (b.bottom > -P && b.top < h + P) rs.push([b.left - m, b.top - m, b.right + m, b.bottom + m]);
+    function colours() {
+      var cs = getComputedStyle(document.documentElement);
+      for (var i = 0; i < 5; i++) gl.uniform3fv(U['u_c' + i], hex(cs.getPropertyValue('--sky-' + i)));
+    }
+    function size() {
+      W = c.clientWidth; H = c.clientHeight;
+      if (!W || !H) return;
+      CLOUD = Math.max(380, Math.min(720, Math.max(W, H) * 0.5));   // phones get smaller clouds so a few fit on screen
+      k = Math.min(0.4, 520 / Math.max(W, H));                         // a small buffer; the smooth upscale does the blurring
+      c.width = Math.max(1, Math.round(W * k)); c.height = Math.max(1, Math.round(H * k));
+      gl.viewport(0, 0, c.width, c.height);
+      gl.uniform2f(U.u_res, c.width, c.height);
+      gl.uniform1f(U.u_k, c.width / W);
+      gl.uniform1f(U.u_unit, CLOUD);
+    }
+    function stir(now) {
+      // hover: eases in while the pointer is over the page, and breathes a little
+      hover.s += ((hover.on ? 0.35 : 0) - hover.s) * 0.06;
+      slots[0] = hover.x; slots[1] = hover.y; slots[2] = hover.s * (0.85 + 0.15 * Math.sin(now / 700));
+      // wake: each mark swells quickly, then fades as the clouds close back in
+      wake = wake.filter(function (m) { return now - m.t < LIFE; });
+      for (var i = 1; i < N; i++) {
+        var m = wake[wake.length - i], j = i * 3;
+        if (m) {
+          var a = (now - m.t) / LIFE, fade = (1 - a) * (1 - a);
+          slots[j] = m.x; slots[j + 1] = m.y; slots[j + 2] = m.s * fade * Math.min(1, (now - m.t) / 140);
+        } else { slots[j] = -1e4; slots[j + 1] = -1e4; slots[j + 2] = 0; }
       }
-      free = []; freeSet.clear();
-      for (var j = 0; j < rows; j++) for (var i = 0; i < cols; i++) {
-        var x = ox + i * P, y = oy + j * P, hit = false;
-        for (var k = 0; k < rs.length && !hit; k++) hit = x < rs[k][2] && x + S > rs[k][0] && y < rs[k][3] && y + S > rs[k][1];
-        if (!hit) { free.push(i + ',' + j); freeSet.add(i + ',' + j); }
-      }
-      var g = floor.getContext('2d');
-      g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, floor.width, floor.height);
-      g.setTransform(dpr, 0, 0, dpr, 0, 0); g.fillStyle = ink; g.globalAlpha = 0.018;
-      free.forEach(function (key) { var q = key.split(','); cell(g, ox + q[0] * P, oy + q[1] * P); });
-      if (reduce) {                                    // a still scatter instead of motion
-        for (var n = 0; n < free.length; n += 37) {
-          var q = free[n].split(','); g.globalAlpha = 0.2; g.fillStyle = palette[n % palette.length];
-          cell(g, ox + q[0] * P, oy + q[1] * P);
-        }
-      }
-      draw(performance.now());
-    }
-    function resize() {
-      readPalette();
-      dpr = Math.min(2, window.devicePixelRatio || 1);
-      w = window.innerWidth || document.documentElement.clientWidth;
-      h = window.innerHeight || document.documentElement.clientHeight;
-      if (!w || !h) { ready = false; return; }         // hidden or zero-size frame: wait for a real size
-      c.width = Math.round(w * dpr); c.height = Math.round(h * dpr);
-      c.style.width = w + 'px'; c.style.height = h + 'px';
-      cols = Math.ceil(w / P) + 1; rows = Math.ceil(h / P) + 1;
-      ox = Math.round(((w % P) - (P - S)) / 2); oy = 4;
-      floor = document.createElement('canvas'); floor.width = c.width; floor.height = c.height;
-      ready = true;
-      layout();
-    }
-    function light(key, now, dur, peak) {
-      if (!freeSet.has(key)) return;
-      var cur = live.get(key);
-      if (cur && now - cur.t < cur.d * 0.5) return;
-      live.set(key, { t: now, d: dur, a: peak, c: palette[(Math.random() * palette.length) | 0] });
+      gl.uniform3fv(U['u_tr[0]'], slots);
     }
     function draw(now) {
-      if (!ready || !floor.width || !floor.height) return;
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.clearRect(0, 0, c.width, c.height);
-      ctx.drawImage(floor, 0, 0);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      live.forEach(function (p, key) {
-        var q = (now - p.t) / p.d;
-        if (q >= 1 || !freeSet.has(key)) { live.delete(key); return; }
-        var ij = key.split(',');
-        ctx.globalAlpha = p.a * Math.sin(Math.PI * q);
-        ctx.fillStyle = p.c;
-        cell(ctx, ox + ij[0] * P, oy + ij[1] * P);
-      });
-      ctx.globalAlpha = 1;
+      if (!W || !H) return;
+      stir(now);
+      gl.uniform1f(U.u_t, seed + (reduce.matches ? 0 : (now - t0) / 1000 * 0.05));
+      gl.uniform2f(U.u_off, 0, -(window.scrollY || 0) / CLOUD * 0.22);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+      if (!c.classList.contains('on')) c.classList.add('on');
     }
     function loop(now) {
       requestAnimationFrame(loop);
-      if (now - last < 33) return;                      // ~30 fps is plenty
-      if (!ready) { last = now; return; }
-      var dt = Math.min(0.1, (now - last) / 1000); last = now;
-      var spawn = free.length / 90 * dt;                // a handful of cells at a time
-      while (spawn > 0) {
-        if (free.length && (spawn >= 1 || Math.random() < spawn))
-          light(free[(Math.random() * free.length) | 0], now, 2400 + Math.random() * 2400, 0.22 + Math.random() * 0.3);
-        spawn -= 1;
-      }
+      if (document.hidden || reduce.matches) return;
+      if (now - last < 33) return;     // ~30 fps is plenty for drifting clouds
+      last = now;
       draw(now);
     }
-    var pending = false;
-    function relayout() { if (pending) return; pending = true; requestAnimationFrame(function () { pending = false; layout(); }); }
-    window.addEventListener('scroll', relayout, { passive: true });
-    window.addEventListener('resize', function () { clearTimeout(resize.t); resize.t = setTimeout(resize, 120); });
-    if (window.ResizeObserver) new ResizeObserver(function () { if (!ready) resize(); }).observe(document.documentElement);
-    document.querySelectorAll('details').forEach(function (d) { d.addEventListener('toggle', relayout); });
-    var mq = window.matchMedia('(prefers-color-scheme: dark)');
-    if (mq.addEventListener) mq.addEventListener('change', resize);
-    resize();
-    if (reduce) return;
-    if (fine) window.addEventListener('pointermove', function (e) {
-      var now = performance.now(), i = Math.floor((e.clientX - ox) / P), j = Math.floor((e.clientY - oy) / P);
-      light(i + ',' + j, now, 1100, 0.5);
-      if (Math.random() < 0.35) {
-        var d = [[1, 0], [-1, 0], [0, 1], [0, -1]][(Math.random() * 4) | 0];
-        light((i + d[0]) + ',' + (j + d[1]), now, 900, 0.28);
-      }
-    }, { passive: true });
+
+    colours();
+    size();
+    draw(performance.now());
     requestAnimationFrame(loop);
+
+    window.addEventListener('resize', function () { clearTimeout(size.t); size.t = setTimeout(function () { size(); draw(performance.now()); }, 100); });
+    window.addEventListener('scroll', function () { if (reduce.matches) requestAnimationFrame(draw); }, { passive: true });
+    if (window.matchMedia('(pointer: fine)').matches) {
+      window.addEventListener('pointermove', function (e) {
+        if (e.pointerType === 'touch' || reduce.matches) return;
+        var now = performance.now(), x = e.clientX, y = H - e.clientY, lp = wake[wake.length - 1];
+        hover.x = x; hover.y = y; hover.on = true;
+        var dist = lp ? Math.hypot(x - lp.x, y - lp.y) : 1e4;
+        if (dist > 26 || (lp && now - lp.t > 160 && dist > 6)) {
+          wake.push({ x: x, y: y, t: now, s: Math.min(1, 0.45 + Math.min(dist, 300) / 160) });
+          if (wake.length > 40) wake.shift();
+        }
+      }, { passive: true });
+      document.documentElement.addEventListener('pointerleave', function () { hover.on = false; });
+      window.addEventListener('blur', function () { hover.on = false; });
+    }
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mq.addEventListener) mq.addEventListener('change', function () { colours(); draw(performance.now()); });
+    if (reduce.addEventListener) reduce.addEventListener('change', function () { draw(performance.now()); });
+    c.addEventListener('webglcontextlost', function (e) { e.preventDefault(); c.classList.remove('on'); });
   })();
 </script>
 </body>
