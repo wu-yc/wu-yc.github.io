@@ -9,36 +9,27 @@
 <meta property="og:description" content="I build AI that does science, in silico, in the lab and in the clinic.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://charles-wu.com/">
-<meta name="theme-color" content="#c4d6ee" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#070a13" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f4f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c0c10" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Crect x='0' y='0' width='9' height='9' rx='1.5' fill='%23b9aaf5'/%3E%3Crect x='10.5' y='0' width='9' height='9' rx='1.5' fill='%236c58d6'/%3E%3Crect x='21' y='0' width='9' height='9' rx='1.5' fill='%233f2f86'/%3E%3Crect x='0' y='10.5' width='9' height='9' rx='1.5' fill='%236c58d6'/%3E%3Crect x='10.5' y='10.5' width='9' height='9' rx='1.5' fill='%23ee8db0'/%3E%3Crect x='21' y='10.5' width='9' height='9' rx='1.5' fill='%236c58d6'/%3E%3Crect x='0' y='21' width='9' height='9' rx='1.5' fill='%233f2f86'/%3E%3Crect x='10.5' y='21' width='9' height='9' rx='1.5' fill='%236c58d6'/%3E%3Crect x='21' y='21' width='9' height='9' rx='1.5' fill='%23c2416f'/%3E%3C/svg%3E">
 <style>
   /*
-    Clear sky: a bento grid of clean white tiles over a slow, living sky.
-    The clouds are drawn live in WebGL from the five --sky-* colours below,
-    so changing those five values recolours the whole sky. Move the pointer
-    through the margins and the clouds part around it.
-    The pixel marks keep the H&E motif, hematoxylin violet with eosin pink.
-    System fonts only.
+    Mosaic: a bento grid of clean white tiles on a floor of small rounded squares.
+    Near the top the squares are stained like an H&E slide, hematoxylin violet
+    with eosin pink, and the stain thins out down the page. The --h* and --e*
+    colours below set the stain. System fonts only.
   */
   :root {
-    /* ---- Sky: edit these five to recolour the clouds ---- */
-    --sky-0: #a6c3ea;   /* upper sky */
-    --sky-1: #eaf0f8;   /* lower sky, near the horizon */
-    --sky-2: #fbe7eb;   /* a faint blush on low, sunlit clouds */
-    --sky-3: #d8e2f0;   /* cloud undersides, in shade */
-    --sky-4: #ffffff;   /* cloud tops, in sun */
-
-    --bg: #e6edf7;
+    --bg: #f4f4f7;
+    --floor: rgba(24, 22, 48, 0.024);
     --paper: #ffffff;
-    --tile: rgba(255, 255, 255, 0.94);
-    --tile-shadow: 0 1px 2px rgba(20, 40, 80, 0.035), 0 8px 28px -12px rgba(20, 40, 80, 0.13);
+    --tile: #ffffff;
+    --tile-shadow: 0 0 0 1px rgba(24, 22, 48, 0.045), 0 1px 2px rgba(24, 22, 48, 0.03), 0 10px 30px -16px rgba(24, 22, 48, 0.14);
     --line: rgba(20, 30, 60, 0.07);
-    --ink: #15171c;
-    --muted: #666a76;
-    --faint: #9a9ea9;
+    --ink: #16161a;
+    --muted: #6b6b76;
+    --faint: #a3a3ad;
     --accent: #5b47c7;
-    --on-sky: rgba(21, 23, 28, 0.66);
     /* mosaic palette: light to dark violet, plus two eosin pinks */
     --h0: #ece7fd; --h1: #d6ccfa; --h2: #b9aaf5; --h3: #8f7bea; --h4: #6c58d6; --h5: #3f2f86;
     --e0: #fdeef3; --e1: #f8cfdd; --e2: #e0628f;
@@ -49,46 +40,37 @@
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --sky-0: #050811; --sky-1: #0e1426; --sky-2: #2c3054; --sky-3: #111830; --sky-4: #364569;
-      --bg: #0a0e1a; --paper: #12151e;
-      --tile: rgba(18, 21, 30, 0.93);
+      --bg: #0c0c10; --paper: #15151b;
+      --tile: #15151b;
+      --floor: rgba(255, 255, 255, 0.024);
       --tile-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05), 0 12px 32px -14px rgba(0, 0, 0, 0.6);
       --line: rgba(255, 255, 255, 0.07);
-      --ink: #f1f2f5; --muted: #9da2ae; --faint: #6a6f7c;
+      --ink: #f2f2f5; --muted: #9b9ba6; --faint: #5c5c66;
       --accent: #b9abfa;
-      --on-sky: rgba(241, 242, 245, 0.62);
       --h0: #221d3a; --h1: #2f2754; --h2: #43378a; --h3: #5f4dc0; --h4: #8d7be8; --h5: #c4b8fa;
       --e0: #2a1520; --e1: #4a1f35; --e2: #e0628f;
     }
   }
   :root[data-theme="dark"] {
-    --sky-0: #050811; --sky-1: #0e1426; --sky-2: #2c3054; --sky-3: #111830; --sky-4: #364569;
-    --bg: #0a0e1a; --paper: #12151e;
-    --tile: rgba(18, 21, 30, 0.93);
+    --bg: #0c0c10; --paper: #15151b;
+    --tile: #15151b;
+    --floor: rgba(255, 255, 255, 0.024);
     --tile-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05), 0 12px 32px -14px rgba(0, 0, 0, 0.6);
     --line: rgba(255, 255, 255, 0.07);
-    --ink: #f1f2f5; --muted: #9da2ae; --faint: #6a6f7c;
+    --ink: #f2f2f5; --muted: #9b9ba6; --faint: #5c5c66;
     --accent: #b9abfa;
-    --on-sky: rgba(241, 242, 245, 0.62);
     --h0: #221d3a; --h1: #2f2754; --h2: #43378a; --h3: #5f4dc0; --h4: #8d7be8; --h5: #c4b8fa;
     --e0: #2a1520; --e1: #4a1f35; --e2: #e0628f;
   }
   .h0 { fill: var(--h0); } .h1 { fill: var(--h1); } .h2 { fill: var(--h2); }
   .h3 { fill: var(--h3); } .h4 { fill: var(--h4); } .h5 { fill: var(--h5); }
   .e0 { fill: var(--e0); } .e1 { fill: var(--e1); } .e2 { fill: var(--e2); }
+  .fl { fill: var(--floor); }
 
   *, *::before, *::after { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; background: var(--bg); }
   body {
-    margin: 0;
-    /* Painted sky: what you see before the clouds fade in, or if WebGL is unavailable */
-    background:
-      radial-gradient(55% 45% at 18% 78%, color-mix(in srgb, var(--sky-2) 85%, transparent), transparent 70%),
-      radial-gradient(45% 40% at 82% 70%, color-mix(in srgb, var(--sky-2) 55%, transparent), transparent 70%),
-      radial-gradient(50% 45% at 70% 22%, color-mix(in srgb, var(--sky-3) 70%, transparent), transparent 72%),
-      linear-gradient(180deg, var(--sky-0), var(--sky-1));
-    background-color: var(--bg);
-    background-attachment: fixed;
+    margin: 0; position: relative;
     color: var(--ink);
     font-family: var(--sans);
     font-size: 0.975rem;
@@ -111,14 +93,12 @@
   ul { list-style: none; margin: 0; padding: 0; }
   strong, b { font-weight: 650; }
 
-  /* ---------- Sky ---------- */
-  #sky {
-    position: fixed; top: 0; left: 0; z-index: 0;
-    width: 100%; height: 100vh; height: 100lvh;
-    display: block; pointer-events: none;
-    opacity: 0; transition: opacity 1.8s ease;
-  }
-  #sky.on { opacity: 1; }
+  /* ---------- Mosaic floor ---------- */
+  .mosaic { position: absolute; top: 0; left: 0; width: 100%; z-index: 0; overflow: hidden; pointer-events: none; }
+  .mosaic svg { display: block; opacity: 0; transition: opacity .9s ease; }
+  .mosaic.in svg { opacity: 1; }
+  .blip { position: absolute; top: 0; left: 0; width: 18px; height: 18px; border-radius: 3px; opacity: 0; }
+  @media (prefers-reduced-motion: reduce) { .mosaic svg { transition: none; } }
   .page { position: relative; z-index: 1; max-width: 72rem; margin: 0 auto; padding: 1.25rem 1.25rem 3rem; }
 
   /* ---------- Bento grid ---------- */
@@ -133,11 +113,6 @@
     box-shadow: var(--tile-shadow);
     padding: 1.75rem;
     min-width: 0;
-    -webkit-backdrop-filter: blur(30px);
-    backdrop-filter: blur(30px);
-  }
-  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    .tile { background: color-mix(in srgb, var(--paper) 90%, transparent); }
   }
   .s4 { grid-column: span 4; } .s5 { grid-column: span 5; } .s6 { grid-column: span 6; }
   .s7 { grid-column: span 7; } .s8 { grid-column: span 8; } .s12 { grid-column: span 12; }
@@ -267,13 +242,13 @@
   .honors li:hover .zh-note { color: var(--muted); }
   details .honors { margin-top: -0.3rem; }
 
-  /* Hiring */
+  /* Work with us */
   .hire { display: flex; flex-direction: column; }
   .hire p { font-size: 1.3rem; font-weight: 550; letter-spacing: -0.02em; line-height: 1.3; }
   .hire .cta {
-    margin-top: auto; align-self: flex-start;
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 0.6rem 1rem; border-radius: 999px;
+    margin-top: auto; align-self: center; width: 100%; max-width: 22rem;
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.7rem 1rem; border-radius: 999px;
     background: var(--ink); color: var(--paper);
     font-size: 0.9rem; font-weight: 550; text-decoration: none; white-space: nowrap;
     transition: background-color .2s ease;
@@ -281,8 +256,7 @@
   .hire .cta:hover { background: var(--accent); color: var(--paper); }
   .hire .spacer { height: 1.75rem; }
 
-  /* Footer sits straight on the sky */
-  footer { padding: 2.25rem 0.5rem 0; font-size: var(--meta); color: var(--on-sky); line-height: 1.7; }
+  footer { padding: 2.25rem 0.5rem 0; font-size: var(--meta); color: var(--muted); line-height: 1.7; }
   footer p { margin: 0; }
   footer .updated { opacity: 0.7; margin-top: 0.75rem; }
 
@@ -294,15 +268,14 @@
   @media (max-width: 520px) {
     .page { padding: 0.75rem 0.75rem 2.5rem; }
     .grid { gap: 0.75rem; }
-    .tile { padding: 1.35rem; border-radius: 18px; -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px); }
+    .tile { padding: 1.35rem; border-radius: 18px; }
     .hero { padding: 1.75rem 1.4rem; }
     .news li { grid-template-columns: 1fr; gap: 0.1rem; }
-    .hire .cta { font-size: 0.82rem; white-space: nowrap; padding: 0.6rem 0.9rem; }
   }
 </style>
 </head>
 <body>
-<canvas id="sky" aria-hidden="true"></canvas>
+<div class="mosaic" id="mosaic" aria-hidden="true"></div>
 <main class="page">
   <div class="grid">
 
@@ -515,11 +488,11 @@
       </details>
     </section>
 
-    <section class="tile hire s4" id="hiring" aria-labelledby="hire-h">
-      <h2 class="label" id="hire-h">Hiring</h2>
-      <p><strong>I’m hiring</strong> collaborators in Palo Alto, Shanghai and Beijing.</p>
+    <section class="tile hire s4" id="join" aria-labelledby="hire-h">
+      <h2 class="label" id="hire-h">Work with us</h2>
+      <p><strong>Come build with us</strong> in Palo Alto, Shanghai or Beijing. I’d love to hear from you.</p>
       <div class="spacer"></div>
-      <a class="cta" href="mailto:wuyc@phai-labs.com"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.8 6.6 7.1 5.6a1.8 1.8 0 0 0 2.2 0l7.1-5.6"/></svg>Send your CV to wuyc@phai-labs.com</a>
+      <a class="cta" href="mailto:wuyc@phai-labs.com"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.8 6.6 7.1 5.6a1.8 1.8 0 0 0 2.2 0l7.1-5.6"/></svg>wuyc@phai-labs.com</a>
     </section>
 
   </div>
@@ -531,169 +504,123 @@
   </footer>
 </main>
 <script>
-  // Living sky, drawn in WebGL at low resolution and scaled up, which keeps it soft and cheap.
-  // Two layers: big slow clouds with sunlit tops and shaded undersides, and faint high wisps
-  // drifting faster above them. Where the sky is cloudy and where it is clear wanders over time.
-  // The pointer stirs the clouds: they part and swirl around it and close up again behind it.
-  // Colours come from the --sky-* variables. Without WebGL, the painted CSS sky on <body> stays.
+  // Mosaic: a quiet floor of rounded squares in the open margins, stained like an H&E slide near
+  // the top of the page and thinning out further down. It is drawn once into a static SVG that
+  // scrolls with the page, and nothing animates on its own, so the page costs nothing at rest or
+  // while scrolling. Moving the pointer through the margins lights a short trail of cells.
+  // Cells only sit where they are fully clear of every tile.
   (function () {
-    var c = document.getElementById('sky');
-    if (!c || !c.getContext) return;
-    var gl = c.getContext('webgl', { alpha: false, antialias: false, depth: false, stencil: false, powerPreference: 'low-power' });
-    if (!gl) return;
-
-    var N = 10;                         // pointer slots: one for the hover, the rest for its wake
-    var VS = 'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}';
-    var FS = [
-      '#ifdef GL_FRAGMENT_PRECISION_HIGH',
-      'precision highp float;',
-      '#else',
-      'precision mediump float;',
-      '#endif',
-      'uniform vec2 u_res;',            // drawing-buffer size
-      'uniform float u_k;',             // drawing-buffer pixels per CSS pixel
-      'uniform float u_unit;',          // CSS pixels per cloud unit
-      'uniform float u_t;',
-      'uniform vec2 u_off;',
-      'uniform vec3 u_c0, u_c1, u_c2, u_c3, u_c4;',
-      'uniform vec3 u_tr[' + N + '];',  // pointer: CSS px (y up), strength
-      'float hash(vec2 p){vec3 p3=fract(vec3(p.xyx)*.1031);p3+=dot(p3,p3.yzx+33.33);return fract((p3.x+p3.y)*p3.z);}',
-      'float noise(vec2 p){vec2 i=floor(p),f=fract(p);vec2 u=f*f*f*(f*(f*6.-15.)+10.);',
-      '  return mix(mix(hash(i),hash(i+vec2(1.,0.)),u.x),mix(hash(i+vec2(0.,1.)),hash(i+vec2(1.,1.)),u.x),u.y);}',
-      'const mat2 M=mat2(1.6,1.2,-1.2,1.6);',
-      'float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<4;i++){v+=a*noise(p);p=M*p+vec2(3.1,1.7);a*=.5;}return v;}',
-      'void main(){',
-      '  vec2 uv=gl_FragCoord.xy/u_res;',
-      '  vec2 s=gl_FragCoord.xy/u_k;',
-      // the pointer pushes the clouds outward and swirls them a little
-      '  vec2 push=vec2(0.); float clr=0.;',
-      '  for(int i=0;i<' + N + ';i++){',
-      '    vec3 m=u_tr[i]; vec2 d=(s-m.xy)/120.;',
-      '    float w=m.z*exp(-dot(d,d));',
-      '    push+=(d*.6+vec2(-d.y,d.x))*w; clr+=w;',
-      '  }',
-      '  clr=min(clr,1.);',
-      '  vec2 p=s/u_unit+u_off+push*.2; p.y*=1.15;',
-      '  float t=u_t;',
-      // sky, with faint high wisps streaming across the upper part
-      '  vec3 col=mix(u_c1,u_c0,smoothstep(0.,1.,uv.y));',
-      '  float wv=fbm(vec2(p.x*.45,p.y*2.6)+vec2(11.-.8*t,3.));',
-      '  col=mix(col,u_c4,smoothstep(.55,.8,wv)*.45*smoothstep(.2,.9,uv.y)*(1.-clr*.6));',
-      // the main clouds
-      '  vec2 q=vec2(fbm(p+vec2(-.5*t,.05*t)),fbm(p+vec2(5.2,1.3)-vec2(.35*t,.1*t)));',
-      '  vec2 r=vec2(fbm(p+1.5*q+vec2(1.7,9.2)+.2*t),fbm(p+1.5*q+vec2(8.3,2.8)-.16*t));',
-      '  vec2 b=p+1.4*r+vec2(-.42*t,0.);',
-      '  float f=fbm(b);',
-      '  float fu=fbm(b+vec2(.03,.14));',                                // one step toward the sun
-      '  float cov=.5+(noise(p*.3+vec2(.25*t,-.15*t))-.5)*.34;',      // clear patches open and close
-      '  float d=smoothstep(cov-.06,cov+.2,f)*(1.-clr*.8);',
-      '  float lit=clamp(.62+(f-fu)*4.5,0.,1.);',
-      '  vec3 cl=mix(u_c3,u_c4,lit);',
-      '  cl=mix(cl,u_c2,(1.-uv.y)*lit*.55);',
-      '  col=mix(col,cl,d*.96);',
-      '  gl_FragColor=vec4(col,1.);',
-      '}'
-    ].join('\n');
-
-    function sh(type, src) {
-      var o = gl.createShader(type); gl.shaderSource(o, src); gl.compileShader(o);
-      if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) { console.warn(gl.getShaderInfoLog(o)); return null; }
-      return o;
-    }
-    var vs = sh(gl.VERTEX_SHADER, VS), fs = sh(gl.FRAGMENT_SHADER, FS);
-    if (!vs || !fs) return;
-    var pr = gl.createProgram(); gl.attachShader(pr, vs); gl.attachShader(pr, fs); gl.linkProgram(pr);
-    if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return;
-    gl.useProgram(pr);
-    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-    var loc = gl.getAttribLocation(pr, 'a'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-    var U = {};
-    ['u_res', 'u_k', 'u_unit', 'u_t', 'u_off', 'u_c0', 'u_c1', 'u_c2', 'u_c3', 'u_c4', 'u_tr[0]'].forEach(function (n) { U[n] = gl.getUniformLocation(pr, n); });
-
+    var box = document.getElementById('mosaic');
+    if (!box) return;
+    var P = 24, S = 18, R = 3, M = 6;            // pitch, cell size, corner radius, clearance (CSS px)
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-    var CLOUD = 720, k = 0.4, W = 0, H = 0;
-    var t0 = performance.now(), last = 0, seed = 30 + Math.random() * 60;
-    var slots = new Float32Array(N * 3);
-    var hover = { x: -1e4, y: -1e4, s: 0, on: false }, wake = [], LIFE = 1900;
+    var tiles = document.querySelectorAll('.tile');
+    var seed = Math.random() * 1000, ox = 0, oy = 4, W = 0, Hd = 0;
+    var free = [], freeSet = new Set();
+    var svgNS = 'http://www.w3.org/2000/svg';
+    var BAYER = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];   // 4x4 ordered dither
 
-    function hex(v) {
-      v = (v || '').trim().replace('#', '');
-      if (v.length === 3) v = v.replace(/./g, '$&$&');
-      var n = parseInt(v, 16);
-      return isNaN(n) ? [0.8, 0.85, 0.95] : [(n >> 16 & 255) / 255, (n >> 8 & 255) / 255, (n & 255) / 255];
+    function hash(x, y) { var h = Math.sin(x * 127.1 + y * 311.7 + seed) * 43758.5453; return h - Math.floor(h); }
+    function noise(x, y) {
+      var i = Math.floor(x), j = Math.floor(y), fx = x - i, fy = y - j;
+      var u = fx * fx * (3 - 2 * fx), v = fy * fy * (3 - 2 * fy);
+      var a = hash(i, j), b = hash(i + 1, j), c = hash(i, j + 1), d = hash(i + 1, j + 1);
+      return a + (b - a) * u + (c - a) * v + (a - b - c + d) * u * v;
     }
-    function colours() {
-      var cs = getComputedStyle(document.documentElement);
-      for (var i = 0; i < 5; i++) gl.uniform3fv(U['u_c' + i], hex(cs.getPropertyValue('--sky-' + i)));
+    function cell(x, y) {                           // one rounded square as path data
+      var s = S - 2 * R;
+      return 'M' + (x + R) + ' ' + y + 'h' + s + 'a' + R + ' ' + R + ' 0 0 1 ' + R + ' ' + R + 'v' + s +
+        'a' + R + ' ' + R + ' 0 0 1 -' + R + ' ' + R + 'h-' + s + 'a' + R + ' ' + R + ' 0 0 1 -' + R + ' -' + R +
+        'v-' + s + 'a' + R + ' ' + R + ' 0 0 1 ' + R + ' -' + R + 'z';
     }
-    function size() {
-      W = c.clientWidth; H = c.clientHeight;
-      if (!W || !H) return;
-      CLOUD = Math.max(380, Math.min(720, Math.max(W, H) * 0.5));   // phones get smaller clouds so a few fit on screen
-      k = Math.min(0.4, 520 / Math.max(W, H));                         // a small buffer; the smooth upscale does the blurring
-      c.width = Math.max(1, Math.round(W * k)); c.height = Math.max(1, Math.round(H * k));
-      gl.viewport(0, 0, c.width, c.height);
-      gl.uniform2f(U.u_res, c.width, c.height);
-      gl.uniform1f(U.u_k, c.width / W);
-      gl.uniform1f(U.u_unit, CLOUD);
-    }
-    function stir(now) {
-      // hover: eases in while the pointer is over the page, and breathes a little
-      hover.s += ((hover.on ? 0.35 : 0) - hover.s) * 0.06;
-      slots[0] = hover.x; slots[1] = hover.y; slots[2] = hover.s * (0.85 + 0.15 * Math.sin(now / 700));
-      // wake: each mark swells quickly, then fades as the clouds close back in
-      wake = wake.filter(function (m) { return now - m.t < LIFE; });
-      for (var i = 1; i < N; i++) {
-        var m = wake[wake.length - i], j = i * 3;
-        if (m) {
-          var a = (now - m.t) / LIFE, fade = (1 - a) * (1 - a);
-          slots[j] = m.x; slots[j + 1] = m.y; slots[j + 2] = m.s * fade * Math.min(1, (now - m.t) / 140);
-        } else { slots[j] = -1e4; slots[j + 1] = -1e4; slots[j + 2] = 0; }
+
+    function build() {
+      W = box.clientWidth;
+      box.style.height = '0px';
+      Hd = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+      box.style.height = Hd + 'px';
+      if (!W || !Hd) return;
+      ox = (((W - S) / 2) % P + P) % P;           // columns mirror about the centre of the page
+      var sx = window.scrollX || 0, sy = window.scrollY || 0, rs = [];
+      for (var t = 0; t < tiles.length; t++) {
+        var b = tiles[t].getBoundingClientRect();
+        rs.push([b.left + sx - M, b.top + sy - M, b.right + sx + M, b.bottom + sy + M]);
       }
-      gl.uniform3fv(U['u_tr[0]'], slots);
-    }
-    function draw(now) {
-      if (!W || !H) return;
-      stir(now);
-      gl.uniform1f(U.u_t, seed + (reduce.matches ? 0 : (now - t0) / 1000 * 0.05));
-      gl.uniform2f(U.u_off, 0, -(window.scrollY || 0) / CLOUD * 0.22);
-      gl.drawArrays(gl.TRIANGLES, 0, 3);
-      if (!c.classList.contains('on')) c.classList.add('on');
-    }
-    function loop(now) {
-      requestAnimationFrame(loop);
-      if (document.hidden || reduce.matches) return;
-      if (now - last < 33) return;     // ~30 fps is plenty for drifting clouds
-      last = now;
-      draw(now);
+      free = []; freeSet.clear();
+      var paths = {}, BAND = 20;                // rows per band
+      var gut = rs.length ? Math.min.apply(null, rs.map(function (q) { return q[0]; })) : W * 0.1;
+      var ax = Math.max(110, Math.min(320, gut * 1.15)), ay = 320;   // reach of the stain across and down
+      var cols = Math.ceil(W / P) + 1, rows = Math.floor((Hd - oy - S) / P) + 1;
+      for (var j = 0; j < rows; j++) {
+        var y = oy + j * P;
+        for (var i = 0; i < cols; i++) {
+          var x = ox + i * P;
+          if (x < 0 || x + S > W) continue;
+          var hit = false;
+          for (var k = 0; k < rs.length && !hit; k++) hit = x < rs[k][2] && x + S > rs[k][0] && y < rs[k][3] && y + S > rs[k][1];
+          if (hit) continue;
+          free.push([x, y]); freeSet.add(i + ',' + j);
+          // the stain: a dithered wash of violet that pools in the two top corners and fades
+          // toward the content and down the page, its edge broken up a little by noise
+          var dx = Math.min(x + S / 2, W - x - S / 2) / ax, dy = (y + S / 2) / ay;
+          var I = Math.exp(-(dx * dx + dy * dy)) * (0.62 + 0.34 * noise(x / 110, y / 110));
+          var th = BAYER[(j & 3) * 4 + (i & 3)] / 16 + (hash(i, j) - 0.5) * 0.12;
+          var band = (j / BAND) | 0;
+          if (I > th * 0.9 + 0.1 || hash(i * 1.37, j * 0.71) < 0.0025) {
+            var tint = hash(i + 7.1, j + 3.3), c;
+            if (I > 0.45 && tint < 0.06) c = 'e2';
+            else if (tint < 0.05) c = 'e1';
+            else c = I > 0.82 ? 'h4' : I > 0.6 ? 'h3' : I > 0.38 ? 'h2' : 'h1';
+            var bucket = band + '|' + c + '|1';
+            paths[bucket] = (paths[bucket] || '') + cell(x, y);
+          } else { var fk = band + '|fl|1'; paths[fk] = (paths[fk] || '') + cell(x, y); }
+        }
+      }
+      var svg = document.createElementNS(svgNS, 'svg');
+      svg.setAttribute('width', W); svg.setAttribute('height', Hd); svg.setAttribute('aria-hidden', 'true');
+      Object.keys(paths).sort(function (a, b) { return (a.indexOf('|fl|') < 0) - (b.indexOf('|fl|') < 0); }).forEach(function (key) {
+        var q = key.split('|'), el = document.createElementNS(svgNS, 'path');
+        el.setAttribute('class', q[1]); if (q[2] !== '1') el.setAttribute('fill-opacity', q[2]); el.setAttribute('d', paths[key]);
+        svg.appendChild(el);
+      });
+      var old = box.querySelector('svg');
+      if (old) box.replaceChild(svg, old); else { box.insertBefore(svg, box.firstChild); requestAnimationFrame(function () { requestAnimationFrame(function () { box.classList.add('in'); }); }); }
     }
 
-    colours();
-    size();
-    draw(performance.now());
-    requestAnimationFrame(loop);
-
-    window.addEventListener('resize', function () { clearTimeout(size.t); size.t = setTimeout(function () { size(); draw(performance.now()); }, 100); });
-    window.addEventListener('scroll', function () { if (reduce.matches) requestAnimationFrame(draw); }, { passive: true });
+    // ---- living cells: a small pool of squares, faded in and out by the compositor ----
+    var pool = [], at = 0, COLORS = ['h2', 'h3', 'h3', 'h4', 'h4', 'h5', 'e2'];
+    for (var q = 0; q < 16; q++) {
+      var d = document.createElement('i'); d.className = 'blip'; box.appendChild(d); pool.push(d);
+    }
+    function light(x, y, dur, peak) {
+      if (!pool[0].animate) return;
+      var el = pool[at]; at = (at + 1) % pool.length;
+      el.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+      el.style.background = 'var(--' + COLORS[(Math.random() * COLORS.length) | 0] + ')';
+      el.animate([{ opacity: 0 }, { opacity: peak, offset: 0.18 }, { opacity: 0 }], { duration: dur, easing: 'ease-out' });
+    }
+    var lastKey = '';
     if (window.matchMedia('(pointer: fine)').matches) {
       window.addEventListener('pointermove', function (e) {
-        if (e.pointerType === 'touch' || reduce.matches) return;
-        var now = performance.now(), x = e.clientX, y = H - e.clientY, lp = wake[wake.length - 1];
-        hover.x = x; hover.y = y; hover.on = true;
-        var dist = lp ? Math.hypot(x - lp.x, y - lp.y) : 1e4;
-        if (dist > 26 || (lp && now - lp.t > 160 && dist > 6)) {
-          wake.push({ x: x, y: y, t: now, s: Math.min(1, 0.45 + Math.min(dist, 300) / 160) });
-          if (wake.length > 40) wake.shift();
+        if (reduce.matches || e.pointerType === 'touch') return;
+        var i = Math.floor((e.pageX - ox) / P), j = Math.floor((e.pageY - oy) / P), key = i + ',' + j;
+        if (key === lastKey) return;
+        lastKey = key;
+        if (freeSet.has(key)) light(ox + i * P, oy + j * P, 1100, 0.6);
+        if (Math.random() < 0.35) {
+          var dd = [[1, 0], [-1, 0], [0, 1], [0, -1]][(Math.random() * 4) | 0], k2 = (i + dd[0]) + ',' + (j + dd[1]);
+          if (freeSet.has(k2)) light(ox + (i + dd[0]) * P, oy + (j + dd[1]) * P, 900, 0.3);
         }
       }, { passive: true });
-      document.documentElement.addEventListener('pointerleave', function () { hover.on = false; });
-      window.addEventListener('blur', function () { hover.on = false; });
     }
-    var mq = window.matchMedia('(prefers-color-scheme: dark)');
-    if (mq.addEventListener) mq.addEventListener('change', function () { colours(); draw(performance.now()); });
-    if (reduce.addEventListener) reduce.addEventListener('change', function () { draw(performance.now()); });
-    c.addEventListener('webglcontextlost', function (e) { e.preventDefault(); c.classList.remove('on'); });
+
+    var pending = 0;
+    function rebuild() { clearTimeout(pending); pending = setTimeout(build, 120); }
+    build();
+    window.addEventListener('resize', rebuild);
+    document.querySelectorAll('details').forEach(function (el) { el.addEventListener('toggle', rebuild); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(rebuild);
+    if (window.ResizeObserver) new ResizeObserver(rebuild).observe(document.querySelector('.page'));
   })();
 </script>
 </body>
